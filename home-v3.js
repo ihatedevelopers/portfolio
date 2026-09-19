@@ -80,13 +80,20 @@ const workImages = {
     content: 'assets/visual-content-v1.png',
     tooling: 'assets/hero-workflow-v1.png',
 };
+Object.values(workImages).forEach((source) => { const image = new Image(); image.src = source; });
+let workSwapTimer;
 document.querySelectorAll('[data-v3-work]').forEach((item) => {
     const show = () => {
         const next = workImages[item.dataset.v3Work];
         if (!next || !v3WorkImage || !v3WorkMedia) return;
         document.querySelectorAll('[data-v3-work]').forEach((node) => node.classList.toggle('is-active', node === item));
+        if (v3WorkImage.getAttribute('src') === next) return;
+        window.clearTimeout(workSwapTimer);
         v3WorkMedia.classList.add('is-changing');
-        window.setTimeout(() => { v3WorkImage.src = next; v3WorkMedia.classList.remove('is-changing'); }, 180);
+        workSwapTimer = window.setTimeout(() => {
+            v3WorkImage.src = next;
+            window.requestAnimationFrame(() => v3WorkMedia.classList.remove('is-changing'));
+        }, 80);
     };
     item.addEventListener('mouseenter', show);
     item.addEventListener('focus', show);
