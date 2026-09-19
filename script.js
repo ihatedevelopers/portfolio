@@ -309,8 +309,14 @@ if (signalStage && signalCanvas) {
         pointer.tx = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
         pointer.ty = Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height));
         pointer.active = true;
+        signalStage.style.setProperty('--art-x', `${(pointer.tx - .5) * -12}px`);
+        signalStage.style.setProperty('--art-y', `${(pointer.ty - .5) * -8}px`);
     }, { passive: true });
-    signalStage.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
+    signalStage.addEventListener('pointerleave', () => {
+        pointer.active = false;
+        signalStage.style.setProperty('--art-x', '0px');
+        signalStage.style.setProperty('--art-y', '0px');
+    }, { passive: true });
     igniteButton?.addEventListener('click', ignite);
     window.addEventListener('resize', resizeSignal, { passive: true });
     resizeSignal();
