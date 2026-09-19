@@ -7,6 +7,8 @@ const v3Menu = document.querySelector('[data-v3-menu]');
 const v3Visual = document.querySelector('[data-v3-visual]');
 const v3Canvas = document.querySelector('#v3-thread');
 const v3Live = document.querySelector('[data-v3-live]');
+const v3Word = document.querySelector('[data-v3-word]');
+const v3Stages = [...document.querySelectorAll('[data-v3-stage]')];
 const v3WorkMedia = document.querySelector('[data-v3-work-media]');
 const v3WorkImage = document.querySelector('[data-v3-work-image]');
 
@@ -41,6 +43,27 @@ const v3WriteLine = (value) => {
 
 if (!v3ReducedMotion) window.setInterval(() => { v3LineIndex = (v3LineIndex + 1) % v3Lines.length; v3WriteLine(v3Lines[v3LineIndex]); }, 5600);
 
+const v3Words = v3Turkish ? ['çalışan', 'görünen', 'büyüyen', 'anlamlı'] : ['useful', 'visible', 'moving', 'memorable'];
+let v3WordIndex = 0;
+const v3SwapWord = () => {
+    if (!v3Word || v3ReducedMotion) return;
+    v3Word.classList.add('is-swapping');
+    window.setTimeout(() => {
+        v3WordIndex = (v3WordIndex + 1) % v3Words.length;
+        v3Word.textContent = v3Words[v3WordIndex];
+        v3Word.classList.remove('is-swapping');
+        v3Word.classList.add('is-entering');
+        window.setTimeout(() => v3Word.classList.remove('is-entering'), 420);
+    }, 260);
+};
+if (!v3ReducedMotion) window.setInterval(v3SwapWord, 4600);
+
+let v3StageIndex = 0;
+if (!v3ReducedMotion && v3Stages.length) window.setInterval(() => {
+    v3StageIndex = (v3StageIndex + 1) % v3Stages.length;
+    v3Stages.forEach((stage, index) => stage.classList.toggle('is-active', index === v3StageIndex));
+}, 1350);
+
 v3Menu?.addEventListener('click', () => {
     const open = v3Nav?.classList.toggle('is-open');
     v3Menu.setAttribute('aria-expanded', String(Boolean(open)));
@@ -55,7 +78,7 @@ const workImages = {
     ai: 'assets/visual-ai-v1.png',
     web: 'assets/visual-web-v1.png',
     content: 'assets/visual-content-v1.png',
-    tooling: 'assets/hero-monolith-v1.png',
+    tooling: 'assets/hero-workflow-v1.png',
 };
 document.querySelectorAll('[data-v3-work]').forEach((item) => {
     const show = () => {
