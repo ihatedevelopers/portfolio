@@ -41,6 +41,55 @@ const phaseColors = { ai: '#a1ead4', web: '#f2b86f', content: '#ee9178' };
 let currentPhase = 'ai';
 let lineIndex = 0;
 let writerId = 0;
+let ignitionAction = null;
+let ignitionResetTimer = null;
+
+const setStatus = (value) => stageStatuses.forEach((node) => { node.textContent = value; });
+const setIgniteLabels = (active) => {
+    const heroButton = document.querySelector('[data-v2-hero-ignite]');
+    const stageButton = document.querySelector('[data-v2-ignite]');
+    if (heroButton) {
+        heroButton.classList.toggle('is-fired', active);
+        const label = heroButton.querySelector('span');
+        if (label) label.textContent = active ? (isTurkish ? 'AKIŞ DEVREDE' : 'CURRENT LIVE') : (isTurkish ? 'AKIŞI BAŞLAT' : 'START THE CURRENT');
+    }
+    if (stageButton) {
+        const label = stageButton.querySelector('span');
+        if (label) label.textContent = active ? (isTurkish ? 'AKIŞ AKTİF' : 'CURRENT LIVE') : (isTurkish ? 'AKIŞI BAŞLAT' : 'START THE CURRENT');
+    }
+};
+const spawnBurst = (sourceButton) => {
+    if (!stage) return;
+    const stageBounds = stage.getBoundingClientRect();
+    const buttonBounds = sourceButton && stage.contains(sourceButton) ? sourceButton.getBoundingClientRect() : null;
+    const burst = document.createElement('div');
+    burst.className = 'v2-burst';
+    burst.innerHTML = '<i></i><i></i><i></i>';
+    burst.style.left = `${buttonBounds ? buttonBounds.left - stageBounds.left + buttonBounds.width / 2 : stageBounds.width * .52}px`;
+    burst.style.top = `${buttonBounds ? buttonBounds.top - stageBounds.top + buttonBounds.height / 2 : stageBounds.height * .58}px`;
+    stage.appendChild(burst);
+    window.setTimeout(() => burst.remove(), 1350);
+};
+const fallbackIgnition = (sourceButton) => {
+    if (!stage) return;
+    stage.classList.remove('is-ignited');
+    void stage.offsetWidth;
+    stage.classList.add('is-ignited');
+    spawnBurst(sourceButton);
+    setIgniteLabels(true);
+    setStatus(isTurkish ? 'AKIŞ ÜÇ KATMANDAN GEÇİYOR' : 'CURRENT MOVING THROUGH THREE LAYERS');
+    window.clearTimeout(ignitionResetTimer);
+    ignitionResetTimer = window.setTimeout(() => {
+        stage.classList.remove('is-ignited');
+        setIgniteLabels(false);
+        setStatus(copy.phases[currentPhase].status);
+    }, 1600);
+};
+ignitionAction = fallbackIgnition;
+document.querySelectorAll('[data-v2-ignite], [data-v2-hero-ignite]').forEach((button) => button.addEventListener('click', () => {
+    if (button.matches('[data-v2-hero-ignite]')) stage?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+    ignitionAction?.(button);
+}));
 
 const writeLine = (value, animate = true) => {
     if (!liveLine) return;
@@ -82,7 +131,7 @@ const setPhase = (phase, animate = true) => {
         tab.classList.toggle('is-active', active);
         tab.setAttribute('aria-selected', String(active));
     });
-    stageStatuses.forEach((node) => { node.textContent = phaseCopy.status; });
+    setStatus(phaseCopy.status);
     writeLine(phaseCopy.line, animate);
 };
 
@@ -284,29 +333,21 @@ const initScene = async () => {
         stage.classList.remove('is-ignited');
         void stage.offsetWidth;
         stage.classList.add('is-ignited');
-        const bounds = stage.getBoundingClientRect();
-        const button = stage.querySelector('[data-v2-ignite]')?.getBoundingClientRect();
-        const burst = document.createElement('div');
-        burst.className = 'v2-burst';
-        burst.innerHTML = '<i></i><i></i><i></i>';
-        burst.style.left = `${button ? button.left - bounds.left + button.width / 2 : bounds.width * .52}px`;
-        burst.style.top = `${button ? button.top - bounds.top + button.height / 2 : bounds.height * .58}px`;
-        stage.appendChild(burst);
-        window.setTimeout(() => burst.remove(), 1350);
+        spawnBurst(stage.querySelector('[data-v2-ignite]'));
         for (let index = 0; index < 3; index += 1) {
             const pulse = new THREE.Mesh(new THREE.SphereGeometry(.08, 10, 10), meshMaterial(index === 0 ? colors.ai : index === 1 ? colors.web : colors.content, 1));
             world.add(pulse);
             pulses.push({ mesh: pulse, born: elapsed + index * .18 });
         }
-        stageStatuses.forEach((node) => { node.textContent = isTurkish ? 'AKIŞ ÜÇ KATMANDAN GEÇİYOR' : 'CURRENT MOVING THROUGH THREE LAYERS'; });
-        document.querySelector('[data-v2-hero-ignite]')?.classList.add('is-fired');
+        setIgniteLabels(true);
+        setStatus(isTurkish ? 'AKIŞ ÜÇ KATMANDAN GEÇİYOR' : 'CURRENT MOVING THROUGH THREE LAYERS');
         window.setTimeout(() => {
             stage.classList.remove('is-ignited');
-            stageStatuses.forEach((node) => { node.textContent = copy.phases[currentPhase].status; });
+            setIgniteLabels(false);
+            setStatus(copy.phases[currentPhase].status);
         }, 1600);
     };
-    stage.querySelector('[data-v2-ignite]')?.addEventListener('click', ignite);
-    document.querySelector('[data-v2-hero-ignite]')?.addEventListener('click', ignite);
+    ignitionAction = ignite;
 
     const render = () => {
         elapsed += .016;
