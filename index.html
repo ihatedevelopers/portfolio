@@ -1,53 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ömer & Müge | Portfolio Hub</title>
+    <meta name="theme-color" content="#08090b">
+    <meta name="description" content="Ömer & Müge — AI systems, web, SEO, content and digital operations.">
+    <title>Ömer & Müge — Digital Operators</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="lang-switch">
-        <a href="index.html" class="active">EN</a>
-        <span>|</span>
-        <a href="index_tr.html">TR</a>
-    </div>
+<body class="home-page">
+    <header class="site-nav">
+        <a class="brand" href="index.html" aria-label="Home"><span class="brand-mark">O/M</span><span>Ömer &amp; Müge<br><small>Digital Operators</small></span></a>
+        <nav class="nav-links" aria-label="Main menu">
+            <a href="#work">People</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#projects">Selected work</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="language-switch"><a class="active" href="index.html">EN</a><span>/</span><a href="index_tr.html">TR</a></div>
+        <button class="menu-trigger" type="button" data-menu-trigger aria-label="Open menu" aria-expanded="false"></button>
+    </header>
 
-    <div class="hub-container fade-in">
-        <h1 class="hub-title">Ömer & Müge</h1>
-        <p class="hub-subtitle">Professional Partners in Tourism, Technology, and Creative Operations</p>
-        
-        <div class="cards-wrapper">
-            <!-- Ömer's Card -->
-            <a href="omer.html" class="profile-card omer">
-                <div class="avatar-wrapper">
-                    <img src="omer_avatar.jpg" alt="Ömer Vural" class="avatar">
+    <main class="page-shell">
+        <section class="hero" id="top">
+            <div class="hero-copy reveal">
+                <p class="eyebrow"><span class="signal-dot"></span> INDEPENDENT DIGITAL OPERATORS / AKSARAY → EVERYWHERE</p>
+                <h1>The layer between<br><em>good ideas</em><br>and real results.</h1>
+                <p class="hero-lede">We connect AI systems, web experiences, SEO and content production at one working table. We do not just make the idea look good — we make it work.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#work">Explore the system <span>↘</span></a>
+                    <a class="text-button" href="#contact">Start a conversation <span>↗</span></a>
                 </div>
-                <h2 class="name">Ömer Vural</h2>
-                <div class="tagline">Tourism & Tech Operations</div>
-                <p class="bio">A tech-driven problem solver bridging Tourism Guidance education with server administration, AI integration, and digital hospitality operations.</p>
-                <div class="badge-container">
-                    <span class="badge">English C1</span>
-                    <span class="badge">AI & Vibecoding</span>
-                    <span class="badge">Guest Relations</span>
-                </div>
-            </a>
-            
-            <!-- Müge's Card -->
-            <a href="muge.html" class="profile-card muge">
-                <div class="avatar-wrapper">
-                    <img src="muge_avatar.jpg" alt="Rabia Müge Emiroğlu" class="avatar">
-                </div>
-                <h2 class="name">Rabia Müge Emiroğlu</h2>
-                <div class="tagline">Creative Operations & Support</div>
-                <p class="bio">A detail-oriented creative operations specialist custom-tailoring guest experiences by combining communication psychology and craft skills.</p>
-                <div class="badge-container">
-                    <span class="badge">English B1-B2</span>
-                    <span class="badge">Handcrafts & Design</span>
-                    <span class="badge">Operations Support</span>
-                </div>
-            </a>
-        </div>
-    </div>
+                <div class="hero-proof"><span>AI workflows</span><span>Web / SEO</span><span>Content systems</span><span>Human operations</span></div>
+            </div>
+            <div class="hero-stage reveal" data-scene="home">
+                <canvas id="hero-canvas" aria-label="Interactive digital systems visualisation"></canvas>
+                <span class="stage-corner top">FIELD 00 / SHARED SYSTEM</span>
+                <span class="stage-corner bottom">Drag / hover / explore</span>
+                <span class="scene-readout">LIVE / 02 OPERATORS</span>
+                <button class="scene-node node-one is-active" type="button" data-focus="ai">AI systems</button>
+                <button class="scene-node node-two" type="button" data-focus="web">Web / SEO</button>
+                <button class="scene-node node-three" type="button" data-focus="content">Content</button>
+                <button class="scene-node node-four" type="button" data-focus="experience">Human layer</button>
+                <div class="scene-focus"><strong data-focus-title>AI workflows</strong><span data-focus-description>Research, triage, personalisation and follow-up logic that keeps moving.</span></div>
+            </div>
+        </section>
+
+        <section class="section reveal" id="work">
+            <div class="section-head">
+                <div><p class="section-kicker">FIELD 01 / THE PEOPLE</p><h2>Two points of view.<br><span>One production reflex.</span></h2></div>
+                <p class="section-intro">One thinks about how the system should work. The other thinks about how people should feel inside it. Our work begins there.</p>
+            </div>
+            <div class="duo-grid">
+                <a class="profile-panel omer" href="omer.html">
+                    <div class="panel-meta"><span>01 / Ömer Vural</span><strong>AI + SYSTEMS</strong></div>
+                    <span class="panel-orbit" aria-hidden="true"></span>
+                    <h3>Ömer<br><em>Vural</em></h3>
+                    <p>A digital systems builder connecting AI tools, automation, web infrastructure and SEO logic to real operations.</p>
+                    <div class="panel-footer"><span>Profile / selected work</span><b>↗</b></div>
+                </a>
+                <a class="profile-panel muge" href="muge.html">
+                    <div class="panel-meta"><span>02 / Rabia Müge Emiroğlu</span><strong>CONTENT + EXPERIENCE</strong></div>
+                    <span class="panel-orbit" aria-hidden="true"></span>
+                    <h3>Müge<br><em>Emiroğlu</em></h3>
+                    <p>A creative operations partner treating content, visual language and guest experience as one connected system.</p>
+                    <div class="panel-footer"><span>Profile / selected work</span><b>↗</b></div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section reveal" id="capabilities">
+            <div class="section-head"><div><p class="section-kicker">FIELD 02 / THE CAPABILITY STACK</p><h2>When needed,<br><span>we think full-stack.</span></h2></div><p class="section-intro">Tools are not decoration here. They exist to make the process faster and the result clearer.</p></div>
+            <div class="capability-grid">
+                <article class="capability"><span class="tool-index">01 / THINK</span><h3>AI &amp; Automation</h3><p>Agentic workflows, email operations, research, response classification and the conversion of repetitive work into useful systems.</p></article>
+                <article class="capability"><span class="tool-index">02 / SHAPE</span><h3>Web &amp; SEO</h3><p>Fast, legible digital surfaces; technical cleanup, content architecture and visibility-focused improvements.</p></article>
+                <article class="capability"><span class="tool-index">03 / TELL</span><h3>Content &amp; Social</h3><p>A repeatable visual and editorial layer for social channels without losing the voice of the brand.</p></article>
+            </div>
+        </section>
+
+        <section class="section reveal" id="projects">
+            <div class="section-head"><div><p class="section-kicker">FIELD 03 / SELECTED SIGNALS</p><h2>We show<br><span>what we actually build.</span></h2></div><p class="section-intro">Every piece in this portfolio is built, tested or actively used — not a claim dressed up as a case study.</p></div>
+            <div class="work-strip">
+                <a href="omer.html#case-ai"><small>01 / SYSTEM</small><div><strong>Autonomous AI Outreach Engine</strong><span>research · personalisation · triage · follow-up</span></div><b>↗</b></a>
+                <a href="omer.html#case-web"><small>02 / DIGITAL</small><div><strong>Web, SEO &amp; automation systems</strong><span>design · content architecture · technical cleanup</span></div><b>↗</b></a>
+                <a href="muge.html#case-content"><small>03 / CREATIVE</small><div><strong>Content direction &amp; visual production</strong><span>social · brand language · short-form video</span></div><b>↗</b></a>
+                <a href="omer.html#case-extensions"><small>04 / TOOLING</small><div><strong>Browser extensions &amp; operations tools</strong><span>Chrome · maps research · workflow helpers</span></div><b>↗</b></a>
+                <a href="artviva.html"><small>05 / EXPERIENCE</small><div><strong>Artviva interactive digital catalog</strong><span>motion · discovery · premium web presentation</span></div><b>↗</b></a>
+            </div>
+        </section>
+
+        <section class="contact-block reveal" id="contact">
+            <div><p class="section-kicker">FIELD 04 / OPEN CHANNEL</p><h2>Have a good idea?<br><em>Let’s start.</em></h2></div>
+            <div class="contact-copy"><p>If you need a website, automation, SEO cleanup or a content system, we can break the problem down together and design something that is useful in the real world.</p><a href="mailto:gallagherandmathers@gmail.com">gallagherandmathers@gmail.com ↗</a></div>
+        </section>
+        <footer class="site-footer"><span>© 2026 Ömer &amp; Müge</span><span>AI / WEB / CONTENT / OPERATIONS</span><a href="#top">Back to top ↑</a></footer>
+    </main>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

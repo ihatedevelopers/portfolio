@@ -1,213 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ömer Vural | Hospitality & Tech Specialist</title>
+    <meta name="theme-color" content="#08090b">
+    <meta name="description" content="Ömer Vural — AI systems, web, SEO and automation.">
+    <title>Ömer Vural — AI &amp; Digital Operations</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="omer">
-    <div class="lang-switch">
-        <a href="omer.html" class="active">EN</a>
-        <span>|</span>
-        <a href="omer_tr.html">TR</a>
-    </div>
-
-    <div class="cv-container fade-in">
-        <a href="index.html" class="back-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            Back to Hub
-        </a>
-        
-        <div class="cv-header">
-            <div class="avatar-wrapper">
-                <img src="omer_avatar.jpg" alt="Ömer Vural" class="avatar">
+<body class="omer-page">
+    <header class="site-nav">
+        <a class="brand" href="index.html" aria-label="Back to hub"><span class="brand-mark">O/M</span><span>Ömer &amp; Müge<br><small>Digital Operators</small></span></a>
+        <nav class="nav-links" aria-label="Main menu"><a href="index.html#projects">Selected work</a><a href="#method">How I work</a><a href="#contact">Contact</a></nav>
+        <div class="language-switch"><a class="active" href="omer.html">EN</a><span>/</span><a href="omer_tr.html">TR</a></div>
+        <button class="menu-trigger" type="button" data-menu-trigger aria-label="Open menu" aria-expanded="false"></button>
+    </header>
+    <main class="page-shell">
+        <section class="profile-hero">
+            <div class="hero-copy reveal">
+                <a class="back-link" href="index.html">← Back to the shared portfolio</a>
+                <p class="profile-tagline" style="margin-top:34px">PROFILE 01 / AI + DIGITAL OPERATIONS</p>
+                <h1>Ömer<br><em>Vural</em></h1>
+                <p class="profile-role">A digital problem solver using AI tools professionally and connecting automation, web, SEO and content systems to real operations.</p>
+                <div class="profile-avatar"><img src="omer_avatar.jpg" alt="Ömer Vural"><span>AI systems / Web / Automation / SEO</span></div>
             </div>
-            <div class="cv-header-text">
-                <h1>Ömer Vural</h1>
-                <p>Hospitality Operations Specialist & Tech-Savvy Problem Solver</p>
+            <div class="hero-stage reveal" data-scene="omer">
+                <canvas id="hero-canvas" aria-label="Ömer's digital systems visualisation"></canvas>
+                <span class="stage-corner top">FIELD 01 / PERSONAL SYSTEM</span><span class="stage-corner bottom">Move through the stack</span><span class="scene-readout">ONLINE / BUILD MODE</span>
+                <button class="scene-node node-one is-active" type="button" data-focus="ai">AI orchestration</button><button class="scene-node node-two" type="button" data-focus="web">Web / SEO</button><button class="scene-node node-three" type="button" data-focus="content">Content tools</button><button class="scene-node node-four" type="button" data-focus="experience">Operations</button>
+                <div class="scene-focus"><strong data-focus-title>AI workflows</strong><span data-focus-description>Research, triage, personalisation and follow-up logic that keeps moving.</span></div>
             </div>
-        </div>
-        
-        <div class="cv-grid">
-            <div class="cv-main">
-                <div class="cv-section">
-                    <h2>Experience</h2>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">June 2023 - September 2023</div>
-                        <div class="timeline-title">Hospitality Operations Intern</div>
-                        <div class="timeline-company">Meliá Berlin · Berlin, Germany (Erasmus+ Placement)</div>
-                        <p class="timeline-desc">Adapted quickly to five-star international hospitality workflows. Provided high-level bilingual service to global guests and assisted in daily operational management in a multicultural team.</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">June 2018 - August 2018</div>
-                        <div class="timeline-title">F&B Service Specialist</div>
-                        <div class="timeline-company">Rixos Hotel · Konya, Turkey</div>
-                        <p class="timeline-desc">Delivered high-standard five-star services to international guests. Handled guest issues and high-occupancy rushes with dynamic crisis management and problem-solving skills.</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">June 2017 - August 2017</div>
-                        <div class="timeline-title">Hospitality Support Intern</div>
-                        <div class="timeline-company">Dedeman Hotel · Konya, Turkey</div>
-                        <p class="timeline-desc">Developed a solid foundation in front-of-house operations under traditional five-star corporate hospitality standards.</p>
-                    </div>
-                </div>
-                
-                <div class="cv-section">
-                    <h2>Featured Projects & Portfolio</h2>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2026 - Present</div>
-                        <div class="timeline-title">Autonomous AI Outreach & Automation Engine</div>
-                        <div class="timeline-company">Personal Engineering Project (Python / Agentic AI)</div>
-                        <p class="timeline-desc">Architected and deployed a multi-threaded Python AI engine for European business outreach. Features autonomous target discovery, email verification, personalized motivation letter generation, and real-time response triage.</p>
-                    </div>
+        </section>
 
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025 - Present</div>
-                        <div class="timeline-title">Cappadocia Tourist Guides WhatsApp Rapid-Response Automation</div>
-                        <div class="timeline-company">Tourism Operations Engineering (Browser Automation)</div>
-                        <p class="timeline-desc">Engineered an automated WhatsApp response system specifically for licensed tourist guides in Cappadocia. Detects incoming agency tour requests in guide groups and instantly dispatches automated quotes, enabling guides to secure bookings in seconds.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025 - Present</div>
-                        <div class="timeline-title">Google Maps Lead Scraper & Custom Chrome Extensions</div>
-                        <div class="timeline-company">Browser Extension Engineering (Manifest V3 JavaScript)</div>
-                        <p class="timeline-desc">Developed production-grade Chrome Extensions including a Google Maps Lead Scraper for B2B contact extraction, Instagram Helper extension for content workflows, and YouTube automation tools.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025 - Present</div>
-                        <div class="timeline-title">Instagram Location-Targeted Growth & Automation Engines</div>
-                        <div class="timeline-company">Social Media Automation Engineering (Rate-Limit Safe Workflows)</div>
-                        <p class="timeline-desc">Engineered custom Instagram automation workflows capable of scheduled multi-post publishing, location-targeted audience engagement (e.g. reaching users in Oslo/Zakynthos with promo codes or personalized offers), and safe rate-limit compliant growth tools.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024 - 2025</div>
-                        <div class="timeline-title">Academic Research Tool: Municipal Google Reviews Analysis</div>
-                        <div class="timeline-company">Academic Software Engineering (Accepted Peer-Reviewed Journal)</div>
-                        <p class="timeline-desc">Engineered a custom data extraction tool for university professors to scrape and analyze Google Reviews across all municipal tourism enterprises. Generated sentiment & service improvement reports for local government, leading to paper acceptance in a peer-reviewed journal.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024 - Present</div>
-                        <div class="timeline-title">Custom Web Design & Client Development Demos</div>
-                        <div class="timeline-company">Bespoke Client Portals (HTML5/CSS3/JS & Netlify Deployment)</div>
-                        <p class="timeline-desc">Designed and deployed custom responsive websites for local business clients: 
-                            <br>• Kardeşler Restorant: <a href="https://kardesler-restorant.lovable.app/" target="_blank" style="color:#0071e3;text-decoration:underline;">kardesler-restorant.lovable.app</a>
-                            <br>• Bi' Başka Döner: <a href="https://bibaskadoner.netlify.app/" target="_blank" style="color:#0071e3;text-decoration:underline;">bibaskadoner.netlify.app</a>
-                            <br>• Atikeler Estetik: <a href="https://atikeler-estetik.netlify.app/" target="_blank" style="color:#0071e3;text-decoration:underline;">atikeler-estetik.netlify.app</a>
-                            <br>• Palace Garden: <a href="https://palace-garden-aksaray.netlify.app/" target="_blank" style="color:#0071e3;text-decoration:underline;">palace-garden-aksaray.netlify.app</a>
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2023 - Present</div>
-                        <div class="timeline-title">AI-Assisted Graphic & Social Media Design Gallery</div>
-                        <div class="timeline-company">Brand Visuals, Channel Banners & Digital Media Marketing (Joint Project)</div>
-                        <p class="timeline-desc">Designed custom visual branding assets, promotional graphics, social media banners, and video reels:
-                            <br>• <b>Gaming Channel Covers & Banners:</b> Designed 25+ custom YouTube/Twitch covers & thumbnail graphics (CS:GO / Gaming Series).
-                            <br>• <b>Commercial Brand Identity:</b> Beauty House logo presentation, brand identity assets, and commercial price lists.
-                            <br>• <b>Motion & Reels Content:</b> 4K 60fps social media video reels and promotional video clips.
-                        </p>
-                        <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
-                            <img src="designs/1.jpeg" style="width:120px;height:80px;object-fit:cover;border-radius:6px;border:1px solid #ddd;" alt="Design 1">
-                            <img src="designs/2.jpeg" style="width:120px;height:80px;object-fit:cover;border-radius:6px;border:1px solid #ddd;" alt="Design 2">
-                            <img src="designs/3.jpeg" style="width:120px;height:80px;object-fit:cover;border-radius:6px;border:1px solid #ddd;" alt="Design 3">
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2023 - Present</div>
-                        <div class="timeline-title">Community Web Infrastructure & AI Bot Development</div>
-                        <div class="timeline-company">55Games Reborn · <a href="https://www.55games.com.tr/reborn/" target="_blank" style="color:#0071e3;text-decoration:underline;">55games.com.tr/reborn</a></div>
-                        <p class="timeline-desc">Managed community operations, developed custom Discord AI moderation & support bots, and assisted in web portal architecture for high-traffic online communities.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2016 - Present</div>
-                        <div class="timeline-title">Organic Cinema Content & Visual Storytelling</div>
-                        <div class="timeline-company">Instagram: <a href="https://instagram.com/sinemaotag" target="_blank" style="color:#0071e3;text-decoration:underline;">@sinemaotag</a></div>
-                        <p class="timeline-desc">Founded and curated a 100% organic cinema community focused on film aesthetics, short-form video/reels editing, and cultural storytelling with zero bot engagement.</p>
-                    </div>
-                </div>
-                
-                <div class="cv-section">
-                    <h2>Education & Exchange</h2>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2020 - 2024</div>
-                        <div class="timeline-title">Bachelor of Science in Tourism Guidance</div>
-                        <div class="timeline-company">Aksaray University · Aksaray, Turkey</div>
-                        <p class="timeline-desc">Graduated with comprehensive training in European & Anatolian Art History, Archaeology, Mythology, Tour Management, and Intercultural Communication.</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">September 2023 - February 2024</div>
-                        <div class="timeline-title">Erasmus+ Student Exchange Program</div>
-                        <div class="timeline-company">Kauno kolegija · Kaunas, Lithuania</div>
-                        <p class="timeline-desc">Completed coursework in International Management, Communication Psychology, and Business Philosophy. Developed high intercultural adaptability and academic discipline.</p>
-                    </div>
-                </div>
+        <section class="work-board reveal" id="work">
+            <div class="board-label"><p class="section-kicker">FIELD 02 / SELECTED WORK</p><h2>Systems<br>with a job<br>to do.</h2><p>Good technology should look impressive on screen while genuinely reducing the work happening behind it.</p></div>
+            <div class="case-list">
+                <article class="case-item" id="case-ai"><span class="project-index">01 / AI</span><div><h3>Autonomous AI Outreach &amp; Triage Engine</h3><p>A multi-part Python system that researches European businesses, verifies suitable targets, generates personalised outreach and classifies replies. SMTP/IMAP, state tracking, follow-up logic and account rotation live in one working flow.</p><div class="case-meta"><span>Python</span><span>Agentic workflows</span><span>IMAP / SMTP</span><span>Stateful triage</span></div><div class="case-visual ai"><span>discover → qualify → personalise → send → learn</span></div></div><b class="case-arrow">↗</b></article>
+                <article class="case-item" id="case-web"><span class="project-index">02 / WEB</span><div><h3>Web, SEO &amp; Digital Presence Systems</h3><p>I design responsive websites for local businesses and personal projects while treating content hierarchy, technical cleanup, page speed and search visibility as one connected problem.</p><div class="case-meta"><span>HTML / CSS / JS</span><span>SEO structure</span><span>Netlify</span><span>UX</span></div><div class="case-visual web"><span>structure is a feature / clarity compounds</span></div></div><b class="case-arrow">↗</b></article>
+                <article class="case-item" id="case-extensions"><span class="project-index">03 / TOOLS</span><div><h3>Browser Extensions &amp; Research Helpers</h3><p>Manifest V3 Chrome extensions for Google Maps lead research, Instagram workflows and YouTube tooling — turning repetitive browser work into faster, more controlled actions.</p><div class="case-meta"><span>JavaScript</span><span>Manifest V3</span><span>Chrome APIs</span><span>Workflow design</span></div><div class="case-visual social"><span>browser → signal → useful action</span></div></div><b class="case-arrow">↗</b></article>
+                <article class="case-item"><span class="project-index">04 / OPS</span><div><h3>WhatsApp Rapid-Response Automation</h3><p>A browser automation flow supporting fast quote responses for tourism operations in Cappadocia. The goal is not to sound like a bot — it is to deliver the right information at the right moment.</p><div class="case-meta"><span>Browser automation</span><span>Operations</span><span>Response design</span></div></div><b class="case-arrow">↗</b></article>
             </div>
-            
-            <div class="cv-sidebar">
-                <div class="sidebar-block">
-                    <h3>Contact</h3>
-                    <div class="contact-info">
-                        <a href="mailto:gallagherandmathers@gmail.com" class="contact-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            gallagherandmathers@gmail.com
-                        </a>
-                        <span class="contact-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                            (+90) 531 711 4577
-                        </span>
-                        <span class="contact-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            Aksaray, Turkey
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="sidebar-block">
-                    <h3>Languages</h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Turkish</span>
-                            <span class="skill-level">Native</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">English</span>
-                            <span class="skill-level">B2 Professional</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="sidebar-block">
-                    <h3>Digital Skills</h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Server Administration</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">AI & Vibecoding</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Software Development</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">PMS & Reservation Systems</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
+
+        <section class="method-section reveal" id="method">
+            <div><p class="section-kicker">FIELD 03 / THE METHOD</p><h2>I map the problem<br><em>before the tool.</em></h2><p class="section-intro" style="margin-top:28px">Tools change. The way of thinking does not. I find what costs time, then build the smallest useful system around it.</p><div class="toolbelt"><span class="tool-chip">Python</span><span class="tool-chip">JavaScript</span><span class="tool-chip">HTML / CSS</span><span class="tool-chip">SEO</span><span class="tool-chip">AI tooling</span><span class="tool-chip">Chrome extensions</span></div></div>
+            <div class="method-list"><article><b>01</b><div><h3>Observe</h3><p>I do not automate a workflow before understanding the user, the context and the actual bottleneck.</p></div></article><article><b>02</b><div><h3>Orchestrate</h3><p>I connect the right AI tool, data and human decision into one legible flow.</p></div></article><article><b>03</b><div><h3>Ship</h3><p>I deliver something that works, can be checked and can be handed over when needed.</p></div></article></div>
+        </section>
+
+        <section class="profile-contact reveal" id="contact"><div class="contact-block"><div><p class="section-kicker">OPEN CHANNEL</p><h2>Let’s build<br><em>a system.</em></h2></div><div class="contact-copy"><p>If there is a concrete problem in AI, web, SEO or automation, write to me and we can break it down together.</p><a href="mailto:gallagherandmathers@gmail.com">gallagherandmathers@gmail.com ↗</a></div></div></section>
+        <footer class="site-footer"><span>Ömer Vural / AI + DIGITAL OPERATIONS</span><a href="index.html">Back to the shared portfolio ↑</a></footer>
+    </main>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

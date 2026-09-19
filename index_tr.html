@@ -1,53 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ömer & Müge | Portfolyo Hub</title>
+    <meta name="theme-color" content="#08090b">
+    <meta name="description" content="Ömer & Müge — AI sistemleri, web, SEO, içerik ve dijital operasyonlar.">
+    <title>Ömer & Müge — Digital Operators</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="lang-switch">
-        <a href="index.html">EN</a>
-        <span>|</span>
-        <a href="index_tr.html" class="active">TR</a>
-    </div>
+<body class="home-page">
+    <header class="site-nav">
+        <a class="brand" href="index_tr.html" aria-label="Ana sayfa"><span class="brand-mark">O/M</span><span>Ömer &amp; Müge<br><small>Digital Operators</small></span></a>
+        <nav class="nav-links" aria-label="Ana menü">
+            <a href="#work">İnsanlar</a>
+            <a href="#capabilities">Ne yapıyoruz</a>
+            <a href="#projects">Çalışmalar</a>
+            <a href="#contact">İletişim</a>
+        </nav>
+        <div class="language-switch"><a href="index.html">EN</a><span>/</span><a class="active" href="index_tr.html">TR</a></div>
+        <button class="menu-trigger" type="button" data-menu-trigger aria-label="Menüyü aç" aria-expanded="false"></button>
+    </header>
 
-    <div class="hub-container fade-in">
-        <h1 class="hub-title">Ömer & Müge</h1>
-        <p class="hub-subtitle">Turizm, Teknoloji ve Kreatif Operasyonlarda Profesyonel Çözüm Ortakları</p>
-        
-        <div class="cards-wrapper">
-            <!-- Ömer'in Kartı -->
-            <a href="omer_tr.html" class="profile-card omer">
-                <div class="avatar-wrapper">
-                    <img src="omer_avatar.jpg" alt="Ömer Vural" class="avatar">
+    <main class="page-shell">
+        <section class="hero" id="top">
+            <div class="hero-copy reveal">
+                <p class="eyebrow"><span class="signal-dot"></span> INDEPENDENT DIGITAL OPERATORS / AKSARAY → EVERYWHERE</p>
+                <h1>İyi fikirle<br><em>gerçek sonuç</em><br>arasındaki katman.</h1>
+                <p class="hero-lede">AI sistemleri, web deneyimleri, SEO ve içerik üretimini tek bir çalışma masasında birleştiriyoruz. Fikri sadece güzel göstermiyor, çalışır hâle getiriyoruz.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#work">Sistemi keşfet <span>↘</span></a>
+                    <a class="text-button" href="#contact">Bir iş konuşalım <span>↗</span></a>
                 </div>
-                <h2 class="name">Ömer Vural</h2>
-                <div class="tagline">Turizm ve Teknoloji Operasyonları</div>
-                <p class="bio">Turizm rehberliği eğitimiyle sunucu yönetimi, AI entegrasyonu ve dijital otel operasyonlarını birleştiren teknoloji odaklı problem çözücü.</p>
-                <div class="badge-container">
-                    <span class="badge">İngilizce C1</span>
-                    <span class="badge">AI & Vibecoding</span>
-                    <span class="badge">Misafir İlişkileri</span>
-                </div>
-            </a>
-            
-            <!-- Müge'nin Kartı -->
-            <a href="muge_tr.html" class="profile-card muge">
-                <div class="avatar-wrapper">
-                    <img src="muge_avatar.jpg" alt="Rabia Müge Emiroğlu" class="avatar">
-                </div>
-                <h2 class="name">Rabia Müge Emiroğlu</h2>
-                <div class="tagline">Kreatif Operasyonlar & Destek</div>
-                <p class="bio">İletişim psikolojisi eğitimi ve el becerilerini birleştirerek misafir deneyimini özelleştiren, detaycı kreatif operasyonlar uzmanı.</p>
-                <div class="badge-container">
-                    <span class="badge">İngilizce B1-B2</span>
-                    <span class="badge">El Sanatları & Tasarım</span>
-                    <span class="badge">Operasyon Destek</span>
-                </div>
-            </a>
-        </div>
-    </div>
+                <div class="hero-proof"><span>AI workflows</span><span>Web / SEO</span><span>Content systems</span><span>Human operations</span></div>
+            </div>
+            <div class="hero-stage reveal" data-scene="home">
+                <canvas id="hero-canvas" aria-label="İnteraktif dijital sistem görselleştirmesi"></canvas>
+                <span class="stage-corner top">FIELD 00 / SHARED SYSTEM</span>
+                <span class="stage-corner bottom">Drag / hover / explore</span>
+                <span class="scene-readout">LIVE / 02 OPERATORS</span>
+                <button class="scene-node node-one is-active" type="button" data-focus="ai">AI systems</button>
+                <button class="scene-node node-two" type="button" data-focus="web">Web / SEO</button>
+                <button class="scene-node node-three" type="button" data-focus="content">Content</button>
+                <button class="scene-node node-four" type="button" data-focus="experience">Human layer</button>
+                <div class="scene-focus"><strong data-focus-title>AI workflows</strong><span data-focus-description>Research, triage, personalisation and follow-up logic that keeps moving.</span></div>
+            </div>
+        </section>
+
+        <section class="section reveal" id="work">
+            <div class="section-head">
+                <div><p class="section-kicker">FIELD 01 / THE PEOPLE</p><h2>İki ayrı bakış.<br><span>Aynı üretim refleksi.</span></h2></div>
+                <p class="section-intro">Biri sistemin nasıl çalışacağını, diğeri insanların o sistemde ne hissedeceğini düşünür. Ortak işimiz tam burada başlar.</p>
+            </div>
+            <div class="duo-grid">
+                <a class="profile-panel omer" href="omer_tr.html">
+                    <div class="panel-meta"><span>01 / Ömer Vural</span><strong>AI + SYSTEMS</strong></div>
+                    <span class="panel-orbit" aria-hidden="true"></span>
+                    <h3>Ömer<br><em>Vural</em></h3>
+                    <p>AI araçlarını, otomasyonları, web altyapısını ve SEO mantığını gerçek operasyonlara bağlayan dijital sistem geliştiricisi.</p>
+                    <div class="panel-footer"><span>Profil / çalışmalar</span><b>↗</b></div>
+                </a>
+                <a class="profile-panel muge" href="muge_tr.html">
+                    <div class="panel-meta"><span>02 / Rabia Müge Emiroğlu</span><strong>CONTENT + EXPERIENCE</strong></div>
+                    <span class="panel-orbit" aria-hidden="true"></span>
+                    <h3>Müge<br><em>Emiroğlu</em></h3>
+                    <p>İçeriği, görsel dili ve misafir deneyimini tek bir bütün olarak ele alan kreatif operasyon ortağı.</p>
+                    <div class="panel-footer"><span>Profil / çalışmalar</span><b>↗</b></div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section reveal" id="capabilities">
+            <div class="section-head"><div><p class="section-kicker">FIELD 02 / THE CAPABILITY STACK</p><h2>Gerektiğinde<br><span>tam yığın düşünürüz.</span></h2></div><p class="section-intro">Araçları gösteriş için değil, süreci hızlandırıp sonucu netleştirmek için kullanıyoruz.</p></div>
+            <div class="capability-grid">
+                <article class="capability"><span class="tool-index">01 / THINK</span><h3>AI &amp; Automation</h3><p>Agentic workflow, e-posta süreçleri, veri araştırması, cevap sınıflandırma ve tekrar eden işlerin akıllı akışlara dönüşmesi.</p></article>
+                <article class="capability"><span class="tool-index">02 / SHAPE</span><h3>Web &amp; SEO</h3><p>Hızlı, anlaşılır ve amacına hizmet eden siteler; teknik düzenlemeler, içerik mimarisi ve görünürlük odaklı iyileştirmeler.</p></article>
+                <article class="capability"><span class="tool-index">03 / TELL</span><h3>Content &amp; Social</h3><p>Markanın sesini kaybetmeden sosyal medya içerikleri, görsel üretim, kısa video ve yayın akışı tasarımı.</p></article>
+            </div>
+        </section>
+
+        <section class="section reveal" id="projects">
+            <div class="section-head"><div><p class="section-kicker">FIELD 03 / SELECTED SIGNALS</p><h2>Gösterdiğimiz şey<br><span>ne yaptığımızdır.</span></h2></div><p class="section-intro">Portföydeki her parça bir iddia değil; kurulmuş, denenmiş veya aktif olarak kullanılan bir çalışma.</p></div>
+            <div class="work-strip">
+                <a href="omer_tr.html#case-ai"><small>01 / SYSTEM</small><div><strong>Autonomous AI Outreach Engine</strong><span>araştırma · kişiselleştirme · triage · follow-up</span></div><b>↗</b></a>
+                <a href="omer_tr.html#case-web"><small>02 / DIGITAL</small><div><strong>Web, SEO &amp; automation systems</strong><span>tasarım · içerik mimarisi · teknik düzenleme</span></div><b>↗</b></a>
+                <a href="muge_tr.html#case-content"><small>03 / CREATIVE</small><div><strong>Content direction &amp; visual production</strong><span>sosyal medya · marka dili · kısa format video</span></div><b>↗</b></a>
+                <a href="omer_tr.html#case-extensions"><small>04 / TOOLING</small><div><strong>Browser extensions &amp; operations tools</strong><span>Chrome · maps research · workflow helpers</span></div><b>↗</b></a>
+                <a href="artviva.html"><small>05 / EXPERIENCE</small><div><strong>Artviva interactive digital catalog</strong><span>motion · discovery · premium web presentation</span></div><b>↗</b></a>
+            </div>
+        </section>
+
+        <section class="contact-block reveal" id="contact">
+            <div><p class="section-kicker">FIELD 04 / OPEN CHANNEL</p><h2>İyi bir fikir varsa<br><em>başlayalım.</em></h2></div>
+            <div class="contact-copy"><p>Bir web sitesi, otomasyon, SEO düzenlemesi veya içerik sistemi kurmak istiyorsanız; problemi birlikte parçalayıp işe yarayan bir çözüm tasarlayabiliriz.</p><a href="mailto:gallagherandmathers@gmail.com">gallagherandmathers@gmail.com ↗</a></div>
+        </section>
+        <footer class="site-footer"><span>© 2026 Ömer &amp; Müge</span><span>AI / WEB / CONTENT / OPERATIONS</span><a href="#top">Yukarı ↑</a></footer>
+    </main>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
