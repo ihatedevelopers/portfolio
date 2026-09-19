@@ -237,3 +237,181 @@ const loadThreeScene = async (stage) => {
 };
 
 document.querySelectorAll('.hero-stage').forEach((stage) => loadThreeScene(stage));
+
+/* Home page: one expressive, pointer-responsive signal instead of a dashboard of effects. */
+const introGate = document.querySelector('.intro-gate');
+if (introGate && !prefersReducedMotion) {
+    const progressNode = introGate.querySelector('[data-gate-progress]');
+    const startedAt = performance.now();
+    const duration = 760;
+    const countUp = (now) => {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        if (progressNode) progressNode.textContent = String(Math.round(progress * 100)).padStart(2, '0');
+        if (progress < 1) requestAnimationFrame(countUp);
+    };
+    requestAnimationFrame(countUp);
+    window.setTimeout(() => document.body.classList.add('site-ready'), 930);
+} else {
+    document.body.classList.add('site-ready');
+}
+
+const signalStage = document.querySelector('[data-signal-stage]');
+const signalCanvas = document.querySelector('#signal-canvas');
+
+if (signalStage && signalCanvas) {
+    const context = signalCanvas.getContext('2d');
+    const igniteButton = signalStage.querySelector('[data-signal-ignite]');
+    const statusNode = signalStage.querySelector('[data-signal-status]');
+    const pointer = { x: .7, y: .5, tx: .7, ty: .5, active: false };
+    const bursts = [];
+    let width = 0;
+    let height = 0;
+    let pixelRatio = 1;
+    let ignition = 0;
+
+    const resizeSignal = () => {
+        const bounds = signalStage.getBoundingClientRect();
+        pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        width = Math.max(1, bounds.width);
+        height = Math.max(1, bounds.height);
+        signalCanvas.width = Math.round(width * pixelRatio);
+        signalCanvas.height = Math.round(height * pixelRatio);
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    };
+
+    const signalPoint = (u, time, lane = 0) => {
+        const drift = Math.sin((u * 5.4) + time * .00056 + lane * .9);
+        const smaller = Math.sin((u * 12.4) - time * .0011 + lane * 1.7);
+        const pull = Math.exp(-Math.pow((u - .54) / .23, 2));
+        const baseX = width * (.65 + drift * .125 + smaller * .022 + lane * .012);
+        const targetX = pointer.x * width;
+        const targetY = pointer.y * height;
+        return {
+            x: baseX + (targetX - baseX) * pull * .19,
+            y: height * (.07 + u * .86) + Math.cos((u * 8.4) + time * .0007 + lane) * height * .022 + (targetY - height * .5) * pull * .09,
+        };
+    };
+
+    const ignite = () => {
+        const center = signalPoint(.53, performance.now());
+        bursts.push({ x: center.x, y: center.y, born: performance.now() });
+        ignition = 1;
+        signalStage.classList.add('is-ignited');
+        if (statusNode) statusNode.textContent = document.documentElement.lang === 'tr' ? 'SİNYAL YAYILIYOR' : 'SIGNAL EXPANDING';
+        window.setTimeout(() => {
+            signalStage.classList.remove('is-ignited');
+            if (statusNode) statusNode.textContent = document.documentElement.lang === 'tr' ? 'SİNYAL HAREKETTE' : 'SIGNAL IN MOTION';
+        }, 1300);
+    };
+
+    signalStage.addEventListener('pointermove', (event) => {
+        const bounds = signalStage.getBoundingClientRect();
+        pointer.tx = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
+        pointer.ty = Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height));
+        pointer.active = true;
+    }, { passive: true });
+    signalStage.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
+    igniteButton?.addEventListener('click', ignite);
+    window.addEventListener('resize', resizeSignal, { passive: true });
+    resizeSignal();
+
+    const drawLine = (time, lane, color, lineWidth, alpha) => {
+        context.beginPath();
+        const steps = 120;
+        for (let step = 0; step <= steps; step += 1) {
+            const point = signalPoint(step / steps, time, lane);
+            if (step === 0) context.moveTo(point.x, point.y);
+            else context.lineTo(point.x, point.y);
+        }
+        context.strokeStyle = color;
+        context.lineWidth = lineWidth;
+        context.globalAlpha = alpha;
+        context.stroke();
+    };
+
+    const renderSignal = (time) => {
+        if (!width || !height) return;
+        pointer.x += ((pointer.active ? pointer.tx : .7) - pointer.x) * .055;
+        pointer.y += ((pointer.active ? pointer.ty : .5) - pointer.y) * .055;
+        ignition *= .968;
+        context.clearRect(0, 0, width, height);
+
+        const glow = context.createRadialGradient(width * .67, height * .49, 5, width * .67, height * .49, Math.max(width, height) * .53);
+        glow.addColorStop(0, `rgba(154, 241, 212, ${.11 + ignition * .11})`);
+        glow.addColorStop(.43, 'rgba(247, 188, 111, .035)');
+        glow.addColorStop(1, 'rgba(13, 13, 14, 0)');
+        context.fillStyle = glow;
+        context.fillRect(0, 0, width, height);
+
+        context.save();
+        context.globalCompositeOperation = 'lighter';
+        context.lineCap = 'round';
+        context.shadowBlur = 25 + ignition * 45;
+        context.shadowColor = 'rgba(154, 241, 212, .56)';
+        drawLine(time, -1, '#f7bc6f', 1.15, .62);
+        drawLine(time, 0, '#9af1d4', 2.25 + ignition * 1.2, .88);
+        drawLine(time, 1, '#cbbcff', 1.1, .48);
+
+        for (let index = 0; index < 30; index += 1) {
+            const flow = (index / 30 + time * .000082) % 1;
+            const point = signalPoint(flow, time, (index % 3) - 1);
+            const radius = 1.2 + ((index * 7) % 4) * .35 + ignition * 1.3;
+            context.beginPath();
+            context.fillStyle = index % 4 === 0 ? '#f7bc6f' : '#e9e3d9';
+            context.globalAlpha = .4 + (Math.sin(time * .004 + index) + 1) * .2;
+            context.arc(point.x, point.y, radius, 0, Math.PI * 2);
+            context.fill();
+        }
+
+        for (let index = bursts.length - 1; index >= 0; index -= 1) {
+            const burst = bursts[index];
+            const age = (time - burst.born) / 1100;
+            if (age >= 1) {
+                bursts.splice(index, 1);
+                continue;
+            }
+            context.beginPath();
+            context.globalAlpha = (1 - age) * .72;
+            context.strokeStyle = age < .45 ? '#f7bc6f' : '#9af1d4';
+            context.lineWidth = 1.2;
+            context.arc(burst.x, burst.y, 20 + age * Math.min(width, height) * .68, 0, Math.PI * 2);
+            context.stroke();
+        }
+        context.restore();
+        if (!prefersReducedMotion) requestAnimationFrame(renderSignal);
+    };
+    renderSignal(performance.now());
+}
+
+const practiceConsole = document.querySelector('.practice-console');
+if (practiceConsole) {
+    const isTurkish = document.documentElement.lang === 'tr';
+    const practiceContent = isTurkish ? {
+        ai: { index: '01 / THINK', title: 'Tekrar eden işi<br><em>akıllı akışa</em> dönüştür.', copy: 'Araştırma, kişiselleştirme, e-posta yönetimi ve takip gibi operasyonları insan kontrolünü kaybetmeden birbirine bağlarız.', whisper: 'RESEARCH → DECIDE → FOLLOW UP' },
+        web: { index: '02 / SHAPE', title: 'Görünür ol.<br><em>Anlaşılır kal.</em>', copy: 'Tasarımdan teknik düzene, içerik mimarisinden SEO temizliğine kadar sitenin bulunması ve güven vermesi için gereken katmanları kurarız.', whisper: 'DESIGN → STRUCTURE → BE FOUND' },
+        content: { index: '03 / TELL', title: 'Markanın sesini<br><em>hareketli tut.</em>', copy: 'Sosyal medya, kısa video ve görsel yönü tek seferlik paylaşımlar değil, hatırlanabilir bir içerik ritmine dönüştürürüz.', whisper: 'IDEA → MAKE → PUBLISH' },
+    } : {
+        ai: { index: '01 / THINK', title: 'Turn repetitive work<br>into <em>an intelligent flow.</em>', copy: 'Research, personalisation, email operations and follow-ups become connected workflows—without removing the human judgement that matters.', whisper: 'RESEARCH → DECIDE → FOLLOW UP' },
+        web: { index: '02 / SHAPE', title: 'Be visible.<br><em>Stay clear.</em>', copy: 'From design to technical hygiene, content architecture to SEO cleanup: we build the layers that let a site be found and trusted.', whisper: 'DESIGN → STRUCTURE → BE FOUND' },
+        content: { index: '03 / TELL', title: 'Keep the brand voice<br><em>in motion.</em>', copy: 'Social content, short-form video and visual direction become a memorable publishing rhythm—not one-off posts.', whisper: 'IDEA → MAKE → PUBLISH' },
+    };
+    const indexNode = practiceConsole.querySelector('[data-practice-index]');
+    const titleNode = practiceConsole.querySelector('[data-practice-title]');
+    const copyNode = practiceConsole.querySelector('[data-practice-copy]');
+    const whisperNode = practiceConsole.querySelector('[data-practice-whisper]');
+    practiceConsole.querySelectorAll('[data-practice-tab]').forEach((button) => button.addEventListener('click', () => {
+        const key = button.dataset.practiceTab;
+        const content = practiceContent[key];
+        if (!content) return;
+        practiceConsole.dataset.practice = key;
+        indexNode.textContent = content.index;
+        titleNode.innerHTML = content.title;
+        copyNode.textContent = content.copy;
+        whisperNode.textContent = content.whisper;
+        practiceConsole.querySelectorAll('[data-practice-tab]').forEach((tab) => {
+            const active = tab === button;
+            tab.classList.toggle('is-active', active);
+            tab.setAttribute('aria-selected', String(active));
+        });
+    }));
+}
