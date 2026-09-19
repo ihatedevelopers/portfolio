@@ -296,7 +296,19 @@ if (signalStage && signalCanvas) {
         const center = signalPoint(.53, performance.now());
         bursts.push({ x: center.x, y: center.y, born: performance.now() });
         ignition = 1;
+        signalStage.classList.remove('is-ignited');
+        void signalStage.offsetWidth;
         signalStage.classList.add('is-ignited');
+        const stageBounds = signalStage.getBoundingClientRect();
+        const buttonBounds = igniteButton?.getBoundingClientRect();
+        const burstVisual = document.createElement('div');
+        burstVisual.className = 'ignition-burst';
+        burstVisual.setAttribute('aria-hidden', 'true');
+        burstVisual.innerHTML = '<span></span><span></span><span></span>';
+        burstVisual.style.left = `${buttonBounds ? buttonBounds.left - stageBounds.left + buttonBounds.width / 2 : stageBounds.width * .68}px`;
+        burstVisual.style.top = `${buttonBounds ? buttonBounds.top - stageBounds.top + buttonBounds.height / 2 : stageBounds.height * .5}px`;
+        signalStage.appendChild(burstVisual);
+        window.setTimeout(() => burstVisual.remove(), 1250);
         if (statusNode) statusNode.textContent = document.documentElement.lang === 'tr' ? 'SİNYAL YAYILIYOR' : 'SIGNAL EXPANDING';
         window.setTimeout(() => {
             signalStage.classList.remove('is-ignited');
