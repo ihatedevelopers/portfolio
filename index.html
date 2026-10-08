@@ -1,33 +1,316 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#10100f">
-    <meta name="description" content="Ömer & Müge — an independent digital studio building AI systems, web experiences, SEO visibility and content operations.">
-    <title>Ömer & Müge — Digital Operators</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="home-v3.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090c13" />
+  <meta name="description" content="Ömer & Müge — Independent Digital Engineering & Creative Operations Studio." />
+  <title>Ömer & Müge — Autonomous AI & Digital Studio</title>
+  <link rel="stylesheet" href="app.css" />
 </head>
-<body class="v3-home">
-    <div class="v3-intro" data-v3-intro aria-hidden="true"><div class="v3-intro-inner"><div class="v3-intro-top"><span>ÖMER &amp; MÜGE</span><span>INDEPENDENT DIGITAL STUDIO</span></div><div class="v3-intro-mark"><span>O</span><i></i><span>M</span></div><p class="v3-intro-title">We make ideas <em>move.</em></p><p class="v3-intro-progress"><span>Preparing the system</span><b data-v3-progress>00</b></p></div></div>
-    <header class="v3-nav" data-v3-nav><a class="v3-brand" href="index.html" aria-label="Home"><span class="v3-brand-mark">O/M</span><span>Ömer &amp; Müge<small>Digital Operators</small></span></a><nav class="v3-links" aria-label="Main menu"><a href="#work">Work</a><a href="#people">People</a><a href="#method">How we work</a><a href="#contact">Contact</a></nav><div class="v3-lang"><a class="active" data-lang-choice="en" href="index.html">EN</a><span>/</span><a data-lang-choice="tr" href="index_tr.html">TR</a></div><button class="v3-menu" type="button" data-v3-menu aria-label="Open menu" aria-expanded="false"></button></header>
+<body>
+  
+  <div class="ambient-bg"></div>
 
-    <main class="v3-page">
-        <section class="v3-hero" id="top"><div class="v3-hero-copy"><p class="v3-kicker"><i></i> ÖMER + MÜGE / INDEPENDENT DIGITAL STUDIO</p><p class="v3-live"><strong>LIVE</strong><span data-v3-live>Every idea starts as a signal.</span></p><h1>We make ideas <em><span data-v3-word>useful</span>.</em></h1><p class="v3-hero-lede">AI craft, web, SEO and content. We connect the tools an idea needs into one clear current that can move in the real world.</p><div class="v3-actions"><a class="v3-primary" href="#work">See the work <span>↓</span></a><a class="v3-secondary" href="#contact">Let’s think together <span>↗</span></a></div><p class="v3-note">One idea. The right system. A visible result.</p></div><div class="v3-visual" data-v3-visual><img class="v3-visual-image" src="assets/hero-workflow-v1.png" alt="A sketch becoming a connected system and a useful finished result through one mint thread"><canvas id="v3-thread" aria-hidden="true"></canvas><p class="v3-visual-caption">Idea → system → outcome.<br><br>Our job is to carry the flow forward without losing the human point.</p><div class="v3-visual-pipeline" aria-label="The flow from idea to outcome"><span class="is-active" data-v3-stage="idea">IDEA</span><i></i><span data-v3-stage="system">SYSTEM</span><i></i><span data-v3-stage="work">WORK</span></div><div class="v3-visual-meta"><strong>LIVE / IDEA → WORK</strong><span>MOVE THE FRAME</span></div></div><a class="v3-scroll" href="#work"><i></i> SCROLL DOWN</a></section>
+  <!-- Sticky Navbar -->
+  <div class="container navbar">
+    <div class="nav-pill">
+      <a class="brand" href="#top">
+        <span class="brand-badge">O/M</span>
+        <span>Ömer &amp; Müge</span>
+      </a>
+      
+      <div class="nav-links">
+        <a class="nav-link" href="#deployments" data-i18n="projectsHead">Deployments</a>
+        <a class="nav-link" href="#capabilities">Capabilities</a>
+        <a class="nav-link" href="#simulator">AI Terminal</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
 
-        <section class="v3-section reveal" id="work"><div class="v3-section-head"><div><p class="v3-rule">01 / REAL WORK</p><h2>A good idea is<br><em>finished by use.</em></h2></div><p class="v3-lede">AI, web, visibility and content are not separate boxes for us. These projects show how the pieces become useful in the real world.</p></div><div class="v3-work"><div class="v3-work-list"><a class="v3-work-item is-active" data-v3-work="ai" href="omer.html#case-ai"><small>01 / SYSTEM</small><div><strong>AI outreach &amp; follow-up engine</strong><span>research · personalisation · email operations · follow-up</span></div><b>↗</b></a><a class="v3-work-item" data-v3-work="web" href="omer.html#case-web"><small>02 / WEB</small><div><strong>Web, SEO &amp; automation systems</strong><span>design · technical structure · content architecture · visibility</span></div><b>↗</b></a><a class="v3-work-item" data-v3-work="content" href="muge.html#case-content"><small>03 / CONTENT</small><div><strong>Content direction &amp; visual production</strong><span>social media · brand language · short-form video · publishing rhythm</span></div><b>↗</b></a><a class="v3-work-item" data-v3-work="tooling" href="omer.html#case-extensions"><small>04 / TOOLING</small><div><strong>Browser extensions &amp; operations tools</strong><span>Chrome · research · tools that shorten repetitive work</span></div><b>↗</b></a></div><div class="v3-work-media" data-v3-work-media><img data-v3-work-image src="assets/visual-ai-v1.png" alt="Abstract visual for AI systems"></div></div></section>
+      <div class="nav-actions">
+        <button type="button" class="lang-btn" id="langToggle">TR 🌐</button>
+        <a href="https://wa.me/905317114577" target="_blank" class="btn-primary">
+          <span>Let's Talk</span> ↗
+        </a>
+      </div>
+    </div>
+  </div>
 
-        <section class="v3-section reveal" id="proof"><div class="v3-proof"><p class="v3-proof-intro"><strong>We do not display tools.</strong><br>We put them inside research, production and real communication.</p><div class="v3-proof-stat"><b>AI</b><span>research / automation / follow-up</span></div><div class="v3-proof-stat"><b>WEB</b><span>speed / structure / visibility</span></div><div class="v3-proof-stat"><b>+</b><span>human judgement stays in the system</span></div></div></section>
+  <main class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="top">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span data-i18n="statusPill">Available for Spring 2027 Traineeships &amp; AI Projects</span>
+      </div>
 
-        <section class="v3-section reveal" id="people"><div class="v3-people"><div class="v3-people-copy"><p class="v3-rule">02 / PEOPLE</p><h2>Ömer builds the invisible.<br><em>Müge gives it a face.</em></h2><p>One of us builds the inside of AI, automation, web and SEO systems. The other connects content, visual language and experience to people. What we share is the need to make ideas not only beautiful, but useful.</p></div><div class="v3-person-list"><a class="v3-person" href="omer.html"><img src="omer_avatar.jpg" alt="Ömer Vural"><div class="v3-person-info"><small>01 / AI + SYSTEMS</small><h3>Ömer Vural</h3><p>Digital systems builder</p></div></a><a class="v3-person" href="muge.html"><img src="muge_avatar.jpg" alt="Rabia Müge Emiroğlu"><div class="v3-person-info"><small>02 / CONTENT + EXPERIENCE</small><h3>Müge Emiroğlu</h3><p>Creative operations partner</p></div></a></div></div></section>
+      <h1 class="hero-title" data-i18n="heroTitle">
+        We build autonomous AI workflows, high-speed web platforms, and viral media.
+      </h1>
 
-        <section class="v3-section reveal" id="method"><div class="v3-method"><div class="v3-method-copy"><p class="v3-rule">03 / HOW WE WORK</p><h2>First, make the problem<br><em>clear.</em></h2><p>Then we choose the right tool and connect it to a flow people will actually use. Design is not decoration here; it is how a system becomes understandable.</p></div><div class="v3-steps"><article class="v3-step"><small>01</small><div><h3>Listen</h3><p>Find where the problem repeats, stalls or loses its shape.</p></div><b>↗</b></article><article class="v3-step"><small>02</small><div><h3>Build</h3><p>Connect AI, web, SEO and content around the real need.</p></div><b>↗</b></article><article class="v3-step"><small>03</small><div><h3>Move it forward</h3><p>Measure, simplify and leave a system that works in the real world.</p></div><b>↗</b></article></div></div></section>
+      <p class="hero-subtitle" data-i18n="heroSubtitle">
+        An independent digital engineering and visual operations studio. We connect bleeding-edge artificial intelligence with 5-star guest and client experiences.
+      </p>
 
-        <section class="v3-contact reveal" id="contact"><div><p class="v3-rule">04 / OPEN CHANNEL</p><h2>Good ideas<br><em>need movement.</em></h2></div><div class="v3-contact-copy"><p>A new website, an AI-supported operation, an SEO cleanup or a better content rhythm. Send the first signal and let’s see where it can go.</p><a href="mailto:itsomervural@gmail.com">itsomervural@gmail.com ↗</a></div></section>
-        <footer class="v3-footer"><span>© 2026 ÖMER &amp; MÜGE</span><span>AKSARAY → EVERYWHERE</span><a href="#top">BACK TO TOP ↑</a></footer>
-    </main>
-    <script src="language.js"></script>
-    <script type="module" src="home-v3.js"></script>
+      <div class="hero-ctas">
+        <a href="#deployments" class="btn-primary" style="padding: 12px 24px; font-size: 14px;" data-i18n="btnWork">
+          Explore Deployments ↓
+        </a>
+        <a href="#contact" class="btn-secondary" data-i18n="btnContact">
+          Start a Conversation ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- Bento Grid Section -->
+    <section class="bento-grid" id="simulator">
+      
+      <!-- Bento Card 1: Interactive Live Simulator (Span 8) -->
+      <div class="bento-card card-span-8">
+        <div class="card-kicker">⚡ LIVE INTERACTIVE DEMO</div>
+        <h2 class="card-title" data-i18n="simTitle">Live Interactive AI Concierge Simulator</h2>
+        <p class="card-desc">
+          Test our real-time multi-agent workflows. Click any scenario below to see how our AI system interacts with guests, audits web performance, and verifies logistics.
+        </p>
+
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="terminal-title">om-agent-v2 // live terminal</div>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-prompt-buttons">
+              <button type="button" class="sim-btn" data-sim="p1" data-i18n="simP1">💬 Test: Hotel Booking Inquiry</button>
+              <button type="button" class="sim-btn" data-sim="p2" data-i18n="simP2">⚡ Test: Speed &amp; SEO Benchmark</button>
+              <button type="button" class="sim-btn" data-sim="p3" data-i18n="simP3">🛡️ Test: Erasmus+ Zero-Risk Terms</button>
+            </div>
+            <div class="terminal-output" id="simOutput">
+Select a test scenario above to see our AI agent in action...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Card 2: Autonomous Outreach Engine (Span 4) -->
+      <div class="bento-card card-span-4">
+        <div class="card-kicker">🤖 MULTI-NODE AUTOMATION</div>
+        <h2 class="card-title" data-i18n="bentoAITitle">Autonomous Multi-Agent AI Systems</h2>
+        <p class="card-desc" data-i18n="bentoAIDesc">
+          We design autonomous agent architectures that automate complex operations: 9-node concurrent communication, lead research, dynamic verification, and CRM workflows.
+        </p>
+        
+        <div style="margin-top: auto; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-card); border-radius: 8px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-emerald);">
+            ● SYSTEM_STATUS: ONLINE<br>
+            ● NODES_ACTIVE: 9 ACCOUNTS<br>
+            ● LATENCY: 12ms
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Card 3: Next-Gen AI Video (Span 6) -->
+      <div class="bento-card card-span-6">
+        <div class="card-kicker">🎬 VISUAL PRODUCTION</div>
+        <h2 class="card-title" data-i18n="bentoMediaTitle">Next-Gen AI Video &amp; Visuals</h2>
+        <p class="card-desc" data-i18n="bentoMediaDesc">
+          Producing 4K high-retention short-form video (Reels/TikTok) using Higgsfield AI and camera-grade composition.
+        </p>
+        
+        <div class="project-tech">
+          <span class="tech-badge">Higgsfield AI</span>
+          <span class="tech-badge">4K Short-form</span>
+          <span class="tech-badge">Viral Retention</span>
+          <span class="tech-badge">Brand Storytelling</span>
+        </div>
+      </div>
+
+      <!-- Bento Card 4: High-Performance Web & SEO (Span 6) -->
+      <div class="bento-card card-span-6">
+        <div class="card-kicker">🌐 WEB &amp; SEO ENGINE</div>
+        <h2 class="card-title" data-i18n="bentoWebTitle">High-Performance Web &amp; SEO</h2>
+        <p class="card-desc" data-i18n="bentoWebDesc">
+          Sub-second load times, clean code, conversion-optimized booking engines, and multi-language Google SEO dominance.
+        </p>
+
+        <div class="project-tech">
+          <span class="tech-badge">Sub-Second TTFB</span>
+          <span class="tech-badge">Schema.org</span>
+          <span class="tech-badge">Multi-Language Hreflang</span>
+          <span class="tech-badge">Mobile First</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Selected Live Deployments -->
+    <section class="projects-section" id="deployments">
+      <div class="section-head">
+        <div class="section-tag" data-i18n="projectsHead">Selected Live Deployments</div>
+        <h2 class="section-title">Production Deployments &amp; Case Studies</h2>
+        <p class="section-desc" data-i18n="projectsDesc">
+          Real platforms, real customers, and live business impact in production.
+        </p>
+      </div>
+
+      <div class="project-grid">
+        
+        <!-- Project 1: Kardeşler Restaurant -->
+        <a href="https://kardesler-restorant.lovable.app/" target="_blank" class="project-card">
+          <div>
+            <div class="project-meta">
+              <span class="project-tag">Hospitality &amp; Dining</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-name">Kardeşler Restaurant</h3>
+            <p class="project-details">
+              Modern digital menu platform, interactive QR table integration, and local search dominance for high-volume dining.
+            </p>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Live Web App</span>
+            <span class="tech-badge">QR Ordering</span>
+            <span class="tech-badge">Local SEO</span>
+          </div>
+        </a>
+
+        <!-- Project 2: Bi Başka Döner -->
+        <a href="https://bibaskadoner.netlify.app/" target="_blank" class="project-card">
+          <div>
+            <div class="project-meta">
+              <span class="project-tag">Food &amp; Franchise</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-name">Bi Başka Döner</h3>
+            <p class="project-details">
+              Ultra-fast mobile landing engine, real-time dynamic menu showcase, and Google Maps local ranking optimization.
+            </p>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">High-Speed Netlify</span>
+            <span class="tech-badge">Mobile Menu</span>
+            <span class="tech-badge">Google Business</span>
+          </div>
+        </a>
+
+        <!-- Project 3: Atikeler Estetik -->
+        <a href="https://atikeler-estetik.netlify.app/" target="_blank" class="project-card">
+          <div>
+            <div class="project-meta">
+              <span class="project-tag">Medical &amp; Aesthetics</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-name">Atikeler Estetik</h3>
+            <p class="project-details">
+              Clinical appointment booking system, multilingual patient acquisition funnel, and high-conversion aesthetic presentation.
+            </p>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Direct Booking</span>
+            <span class="tech-badge">Lead Funnel</span>
+            <span class="tech-badge">SEO</span>
+          </div>
+        </a>
+
+        <!-- Project 4: Palace Garden -->
+        <a href="https://palace-garden-aksaray.netlify.app/" target="_blank" class="project-card">
+          <div>
+            <div class="project-meta">
+              <span class="project-tag">Luxury Events &amp; Venue</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-name">Palace Garden Aksaray</h3>
+            <p class="project-details">
+              Luxury wedding &amp; event venue digital portal, 3D visual showcase, and automated VIP reservation inquiry system.
+            </p>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Luxury Showcase</span>
+            <span class="tech-badge">VIP Inquiry</span>
+            <span class="tech-badge">Media Gallery</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section class="projects-section" id="capabilities" style="padding-top: 0;">
+      <div class="section-head">
+        <div class="section-tag">ENGINEERING &amp; OPERATIONS</div>
+        <h2 class="section-title">Core Capabilities</h2>
+        <p class="section-desc">
+          We combine code, artificial intelligence, and guest relations into unified operational systems.
+        </p>
+      </div>
+
+      <div class="cap-grid">
+        <div class="cap-box">
+          <div class="cap-icon">🤖</div>
+          <div class="cap-name">AI Workflow Automations</div>
+          <div class="cap-desc">LLM agents, multi-mailbox dispatchers, and automated lead processing that eliminate repetitive manual labor.</div>
+        </div>
+
+        <div class="cap-box">
+          <div class="cap-icon">⚡</div>
+          <div class="cap-name">High-Speed Web Platforms</div>
+          <div class="cap-desc">Sub-second page speeds, mobile-first responsive architecture, and direct booking engine integrations.</div>
+        </div>
+
+        <div class="cap-box">
+          <div class="cap-icon">📱</div>
+          <div class="cap-name">Next-Gen Visual Reels</div>
+          <div class="cap-desc">Higgsfield AI &amp; 4K camera workflows to create high-retention video content that drives real customer engagement.</div>
+        </div>
+
+        <div class="cap-box">
+          <div class="cap-icon">🔍</div>
+          <div class="cap-name">Technical &amp; Local SEO</div>
+          <div class="cap-desc">Multi-language hreflang tags, Google Maps local ranking, and Schema.org structured data dominance.</div>
+        </div>
+
+        <div class="cap-box">
+          <div class="cap-icon">🛎️</div>
+          <div class="cap-name">Front Office &amp; Welcome</div>
+          <div class="cap-desc">Energetic, multilingual guest communication, VIP orientation, and front-desk guest relations in fluent English.</div>
+        </div>
+
+        <div class="cap-box">
+          <div class="cap-icon">📊</div>
+          <div class="cap-name">Office Data &amp; Reporting</div>
+          <div class="cap-desc">Automated Excel/Word reporting pipelines, reservation list synchronization, and custom browser tooling.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-box">
+        <h2 class="contact-title" data-i18n="contactTitle">Let's Build Something Powerful.</h2>
+        <p class="contact-desc" data-i18n="contactDesc">
+          Whether you are a European hotel partner preparing for the 2027 season or a business looking to automate operations, our channel is open.
+        </p>
+
+        <div class="contact-links">
+          <a href="https://wa.me/905317114577" target="_blank" class="btn-whatsapp">
+            <span>💬</span> <span data-i18n="btnWhatsapp">Chat on WhatsApp</span>
+          </a>
+          <a href="mailto:itsomervural@gmail.com" class="btn-email">
+            <span>✉️</span> <span data-i18n="btnEmail">Send an Email</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Ömer &amp; Müge &bull; Independent AI &amp; Digital Operations Studio &bull; Aksaray &bull; Remote Worldwide</p>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
