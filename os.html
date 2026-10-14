@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ömer & Müge OS</title>
+<meta name="description" content="Ömer Vural & Rabia Müge Emiroğlu: websites, local SEO, AI automations and short-form video. Our portfolio is a tiny computer: open the apps and explore.">
+<meta property="og:title" content="Ömer & Müge OS · Our portfolio is a computer">
+<meta property="og:description" content="Websites, AI automations and creative content. Double-click anything.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1d1830">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='6' y='6' width='52' height='44' rx='9' fill='%23ffd9e6' stroke='%232b2340' stroke-width='4'/><circle cx='24' cy='26' r='3.5' fill='%232b2340'/><circle cx='40' cy='26' r='3.5' fill='%232b2340'/><path d='M24 35 q8 7 16 0' stroke='%232b2340' stroke-width='4' fill='none' stroke-linecap='round'/><rect x='22' y='50' width='20' height='8' rx='3' fill='%232b2340'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&family=Pixelify+Sans:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/os.css">
+</head>
+<body>
+
+<!-- Açılış ekranı -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-logo">
+    <svg viewBox="0 0 64 64" width="84" height="84"><rect x="6" y="6" width="52" height="44" rx="9" fill="#ffd9e6" stroke="#2b2340" stroke-width="3.5"/><circle class="boot-eye" cx="24" cy="26" r="3.5" fill="#2b2340"/><circle class="boot-eye" cx="40" cy="26" r="3.5" fill="#2b2340"/><path d="M24 35 q8 7 16 0" stroke="#2b2340" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="22" y="50" width="20" height="8" rx="3" fill="#2b2340"/></svg>
+  </div>
+  <div class="boot-name">Ömer & Müge OS</div>
+  <div class="boot-bar"><i></i></div>
+</div>
+
+<div class="os" id="os">
+  <!-- Duvar kağıdı: Kapadokya, günün saatine göre değişir -->
+  <div class="wall" id="wall"></div>
+
+  <header class="menubar" id="menubar"></header>
+
+  <main class="desktop" id="desktop">
+    <div class="icons" id="icons"></div>
+    <div class="windows" id="windows"></div>
+  </main>
+
+  <nav class="dock" id="dock" aria-label="Dock"></nav>
+
+  <!-- Telefon görünümü: ana ekran -->
+  <div class="phone-home" id="phoneHome"></div>
+</div>
+
+<div class="ctx" id="ctx" hidden></div>
+<div class="spot" id="spot" hidden></div>
+<div class="toasts" id="toasts"></div>
+
+<noscript>
+  <div style="font:16px/1.6 system-ui;padding:32px;max-width:640px;margin:auto">
+    <h1>Ömer & Müge</h1>
+    <p>Websites, local SEO, AI automations and short-form video. Contact: itsomervural@gmail.com · WhatsApp +90 531 711 45 77</p>
+  </div>
+</noscript>
+
+<script type="module" src="js/os.js"></script>
+</body>
+</html>

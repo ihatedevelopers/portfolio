@@ -1,494 +1,210 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0a0d14" />
-  <meta name="description" content="Ömer Vural & Rabia Müge Emiroğlu — Digital Systems & Creative Media Studio. High-speed web architecture, AI workflow automations, and cinematic short-form media." />
-  <title>Ömer &amp; Müge — Digital Systems &amp; Creative Media Studio</title>
-  
-  <!-- Premium Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="app.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ömer & Müge · A balloon flight from Cappadocia</title>
+<meta name="description" content="Ömer Vural & Rabia Müge Emiroğlu: websites, local SEO, AI automations and short-form video. A two-person studio from Cappadocia, flying to Europe for Erasmus+ 2027.">
+<meta property="og:title" content="Ömer & Müge · A balloon flight from Cappadocia">
+<meta property="og:description" content="Websites, AI automations and creative content. Scroll to take off.">
+<meta property="og:image" content="assets/film/hero.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#17110d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M32 4C18 4 10 14 10 26c0 12 12 22 18 28h8c6-6 18-16 18-28C54 14 46 4 32 4z' fill='%23ff7a45'/><path d='M32 4c-6 6-8 32-4 50h8c4-18 2-44-4-50z' fill='%23ffd166'/><rect x='26' y='54' width='12' height='7' rx='2' fill='%2317110d'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/film/hero.jpg">
+<link rel="stylesheet" href="css/flight.css">
 </head>
 <body>
 
-  <!-- Ambient Backdrop -->
-  <div class="ambient-glow glow-top"></div>
-  <div class="ambient-glow glow-bottom"></div>
+<!-- Yükleme: balon dolarak kalkışa hazırlanır -->
+<div class="loader" id="loader" aria-hidden="true">
+  <svg class="ld-balloon" viewBox="0 0 120 150">
+    <defs><clipPath id="ldClip"><path d="M60 6C30 6 12 28 12 54c0 26 26 48 38 62h20c12-14 38-36 38-62C108 28 90 6 60 6z"/></clipPath></defs>
+    <path d="M60 6C30 6 12 28 12 54c0 26 26 48 38 62h20c12-14 38-36 38-62C108 28 90 6 60 6z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    <linearGradient id="ldGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd166"/><stop offset="1" stop-color="#ff7a45"/></linearGradient><g clip-path="url(#ldClip)"><rect id="ldFill" x="0" y="150" width="120" height="150" fill="url(#ldGrad)"/></g>
+    <path d="M52 116l-4 14M68 116l4 14" stroke="currentColor" stroke-width="2"/>
+    <rect x="46" y="130" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  </svg>
+  <div class="ld-n"><span id="ldN">0</span>%</div>
+  <div class="ld-t" data-en="Preparing for take-off" data-tr="Kalkışa hazırlanıyoruz"></div>
+</div>
 
-  <!-- Header Navigation -->
-  <header class="header">
-    <div class="nav-container">
-      <a href="#top" class="brand">
-        <span class="brand-monogram">OM</span>
-        <div class="brand-text">
-          <span class="brand-name">Ömer &amp; Müge</span>
-          <span class="brand-sub">Studio</span>
+<div class="cursor" id="cursor" aria-hidden="true">
+  <svg viewBox="0 0 40 52"><path d="M20 2C10 2 4 9 4 18c0 9 8 16 12 21h8c4-5 12-12 12-21C36 9 30 2 20 2z" fill="#ff7a45" stroke="#17110d" stroke-width="2"/><path d="M20 2c-4 4-5 21-3 37h6c2-16 1-33-3-37z" fill="#ffd166"/><rect x="15" y="42" width="10" height="7" rx="2" fill="#17110d"/></svg>
+  <span class="cursor-l" id="cursorL"></span>
+</div>
+
+<header class="hd" id="hd">
+  <a class="logo" href="#top" aria-label="Top">Ö<em>&</em>M</a>
+  <nav class="hd-nav">
+    <a href="#about" data-en="Us" data-tr="Biz"></a>
+    <a href="#route" data-en="Route" data-tr="Rota"></a>
+    <a href="#studio" data-en="Studio" data-tr="Stüdyo"></a>
+    <a href="#engine" data-en="Engine" data-tr="Motor"></a>
+    <a href="#landing">Erasmus</a>
+  </nav>
+  <div class="hd-r">
+    <button class="chip" id="snd" aria-pressed="false"><span class="eq"><i></i><i></i><i></i></span><span data-en="Sound" data-tr="Ses"></span></button>
+    <button class="chip" id="lang">TR</button>
+    <a class="chip solid" href="#contact" data-en="Say hi" data-tr="Merhaba de"></a>
+  </div>
+</header>
+
+<!-- Sağda irtifa ölçer: yükselir, uçar, iner -->
+<div class="alt" aria-hidden="true">
+  <div class="alt-n"><span id="altN">0</span><small>m</small></div>
+  <div class="alt-line"><i id="altDot"></i></div>
+  <div class="alt-l" data-en="altitude" data-tr="irtifa"></div>
+</div>
+
+<main>
+  <!-- 1. KALKIŞ -->
+  <section class="hero" id="top">
+    <div class="hero-media">
+      <video id="heroVid" muted loop playsinline preload="auto" poster="assets/film/hero.jpg"></video>
+      <div class="hero-shade"></div>
+    </div>
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dot"></span><span data-en="Cappadocia, Türkiye · 38.6° N" data-tr="Kapadokya, Türkiye · 38.6° K"></span></p>
+      <h1 class="hero-title"><span class="ln"><span class="w">Ömer</span></span><span class="ln"><em class="w">&amp;</em> <span class="w">Müge</span></span></h1>
+      <p class="hero-sub" data-en="A tiny studio for websites, AI automations and stories that fly." data-tr="Web siteleri, AI otomasyonları ve uçan hikayeler için minik bir stüdyo."></p>
+    </div>
+    <div class="cue"><span data-en="Scroll to take off" data-tr="Kalkış için kaydır"></span><i></i></div>
+    <div class="hero-clouds">
+      <img class="hc hc1" src="assets/film/cloud4.webp" alt="">
+      <img class="hc hc2" src="assets/film/cloud1.webp" alt="">
+      <img class="hc hc3" src="assets/film/cloud2.webp" alt="">
+      <img class="hc hc4" src="assets/film/cloud3.webp" alt="">
+    </div>
+    <div class="hero-fog"></div>
+  </section>
+
+  <!-- 2. BİZ -->
+  <section class="sky" id="about">
+    <img class="sc sc1" src="assets/film/cloud2.webp" alt="" data-speed="-.25">
+    <img class="sc sc2" src="assets/film/cloud3.webp" alt="" data-speed="-.5">
+    <img class="sc sc3" src="assets/film/cloud1.webp" alt="" data-speed="-.15">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot"></span><span data-en="01 · Who's on board" data-tr="01 · Kimler gemide"></span></p>
+      <p class="statement" id="statement"
+        data-en="Ömer automates the work that eats a business's day. Müge makes brands people actually stop scrolling for. Two people, real clients, and one robot that has handled 50,000+ emails."
+        data-tr="Ömer, bir işletmenin gününü yiyen işleri otomatiğe bağlar. Müge, insanların kaydırırken durup baktığı markalar yapar. İki kişi, gerçek müşteriler ve 50.000+ maili yönetmiş bir robot."></p>
+      <div class="duo" id="duo"></div>
+    </div>
+  </section>
+
+  <!-- 3. ROTA -->
+  <section class="route" id="route">
+    <div class="route-pin">
+      <div class="route-head">
+        <p class="eyebrow"><span class="dot"></span><span data-en="02 · The route" data-tr="02 · Rota"></span></p>
+        <h2 class="h2" data-en="Every stop is a <em>real</em> project" data-tr="Her durak <em>gerçek</em> bir proje"></h2>
+      </div>
+      <svg class="route-line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path id="routePath" d="M0 20 C 120 0, 240 40, 360 20 S 600 0, 720 20 S 900 40, 1000 20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8"/></svg>
+      <div class="route-balloon" id="routeBalloon" aria-hidden="true"><svg viewBox="0 0 40 52"><path d="M20 2C10 2 4 9 4 18c0 9 8 16 12 21h8c4-5 12-12 12-21C36 9 30 2 20 2z" fill="#ff7a45" stroke="#17110d" stroke-width="2"/><path d="M20 2c-4 4-5 21-3 37h6c2-16 1-33-3-37z" fill="#ffd166"/><rect x="15" y="42" width="10" height="7" rx="2" fill="#17110d"/></svg></div>
+      <div class="track" id="track"></div>
+    </div>
+  </section>
+
+  <!-- 4. STÜDYO -->
+  <section class="studio" id="studio">
+    <div class="wrap studio-head">
+      <p class="eyebrow"><span class="dot"></span><span data-en="03 · Müge's studio" data-tr="03 · Müge'nin stüdyosu"></span></p>
+      <h2 class="h2 big" data-en="Scroll-stopping <em>stories</em>" data-tr="Akışı durduran <em>hikayeler</em>"></h2>
+      <p class="lead" data-en="Brand kits, campaigns and price lists for Beauty House, YouTube thumbnails that get clicked, and cinematic AI short videos." data-tr="Beauty House için marka kiti, kampanyalar ve fiyat listesi; tıklanan YouTube kapakları ve sinematik AI kısa videolar."></p>
+    </div>
+    <div class="reel-stage">
+      <div class="marquee m1" id="m1"></div>
+      <div class="marquee m2" id="m2"></div>
+      <div class="phone"><div class="notch"></div><video data-src="assets/gallery/reel.mp4" muted loop playsinline preload="none"></video></div>
+    </div>
+  </section>
+
+  <!-- 5. MOTOR -->
+  <section class="engine" id="engine">
+    <div class="wrap engine-grid">
+      <div>
+        <p class="eyebrow"><span class="dot"></span><span data-en="04 · The engine room" data-tr="04 · Makine dairesi"></span></p>
+        <h2 class="h2" data-en="We built a robot that <em>reads 12 languages</em>" data-tr="<em>12 dil okuyan</em> bir robot yaptık"></h2>
+        <p class="lead" data-en="Our own Python system finds tourism businesses across Europe, sends personal applications from 9 mailboxes, reads every reply and drafts the next answer. We can build the same kind of automation for your office." data-tr="Kendi Python sistemimiz Avrupa'daki turizm işletmelerini bulur, 9 hesaptan kişisel başvurular gönderir, her cevabı okur ve sıradaki cevabı hazırlar. Aynı türden bir otomasyonu sizin ofisiniz için de kurabiliriz."></p>
+        <div class="stats">
+          <div class="stat"><b data-n="50000" data-s="+">0</b><span data-en="emails handled" data-tr="mail yönetildi"></span></div>
+          <div class="stat"><b data-n="9">0</b><span data-en="mailboxes" data-tr="hesap"></span></div>
+          <div class="stat"><b data-n="12">0</b><span data-en="languages" data-tr="dil"></span></div>
+          <div class="stat"><b data-n="22217">0</b><span data-en="businesses mapped" data-tr="işletme haritada"></span></div>
         </div>
-      </a>
-
-      <nav class="nav-menu" id="navMenu">
-        <a href="#deployments" class="nav-link" data-i18n="navWork">Deployments</a>
-        <a href="#duo" class="nav-link" data-i18n="navDuo">The Duo</a>
-        <a href="#media" class="nav-link" data-i18n="navMedia">Media Lab</a>
-        <a href="#capabilities" class="nav-link" data-i18n="navServices">Capabilities</a>
-        <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button type="button" class="lang-switch" id="langSwitch" aria-label="Toggle language">
-          <span class="lang-opt active" id="langEn">EN</span>
-          <span class="lang-divider">/</span>
-          <span class="lang-opt" id="langTr">TR</span>
-        </button>
-
-        <a href="https://wa.me/905317114577" target="_blank" rel="noopener noreferrer" class="btn btn-nav">
-          <span data-i18n="navCta">Let's Talk</span>
-          <span class="btn-arrow">↗</span>
-        </a>
+      </div>
+      <div class="console">
+        <div class="console-bar"><i></i><i></i><i></i><span>outreach-engine · <span data-en="demo log" data-tr="örnek kayıt"></span></span></div>
+        <div class="console-log" id="log"></div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="main-content">
-    
-    <!-- Hero Section -->
-    <section class="section hero" id="top">
-      <div class="container hero-container">
-        
-        <div class="hero-badge">
-          <span class="pulse-dot"></span>
-          <span data-i18n="heroBadge">Independent Digital &amp; Creative Studio</span>
-        </div>
+  <!-- 6. İNİŞ -->
+  <section class="landing" id="landing">
+    <div class="landing-media"><video data-src="assets/film/dusk.mp4" muted loop playsinline preload="none" poster="assets/film/dusk.jpg"></video><div class="landing-shade"></div></div>
+    <div class="wrap landing-copy">
+      <p class="eyebrow light"><span class="dot"></span><span data-en="05 · Landing in 2027" data-tr="05 · 2027'de iniş"></span></p>
+      <h2 class="h2 huge"><span data-en="Next stop:" data-tr="Sıradaki durak:"></span><br><em data-en="your hotel." data-tr="sizin oteliniz."></em></h2>
+      <p class="lead light" data-en="From February 2027 we're looking for a 6-month Erasmus+ traineeship in tourism or digital. Travel, visa and insurance are on us. Tear the ticket to invite us." data-tr="Şubat 2027'den itibaren turizm ya da dijital alanda 6 aylık Erasmus+ stajı arıyoruz. Yol, vize ve sigorta bizden. Bizi davet etmek için bileti yırt."></p>
 
-        <h1 class="hero-headline" data-i18n="heroTitle">
-          Where technical engineering meets visual storytelling.
-        </h1>
-
-        <p class="hero-description" data-i18n="heroDesc">
-          We are <strong>Ömer Vural</strong> and <strong>Rabia Müge Emiroğlu</strong>. We build high-speed web platforms, custom workflow automations, and cinematic short-form media for modern businesses, hospitality brands, and boutique operations.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#deployments" class="btn btn-primary" data-i18n="heroBtnWork">
-            <span>Explore Deployments</span>
-            <span class="btn-arrow">↓</span>
-          </a>
-          <a href="#contact" class="btn btn-secondary" data-i18n="heroBtnContact">
-            <span>Get in Touch</span>
-            <span class="btn-arrow">↗</span>
-          </a>
-        </div>
-
-        <!-- Metric Strip -->
-        <div class="metric-strip">
-          <div class="metric-item">
-            <span class="metric-num">4+</span>
-            <span class="metric-label" data-i18n="metric1">Live Deployments</span>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <span class="metric-num">&lt; 1s</span>
-            <span class="metric-label" data-i18n="metric2">Sub-Second Load Times</span>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <span class="metric-num">4K / 60</span>
-            <span class="metric-label" data-i18n="metric3">AI Video Workflows</span>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <span class="metric-num">100%</span>
-            <span class="metric-label" data-i18n="metric4">Custom Engineering</span>
+      <div class="ticket" id="ticket">
+        <div class="t-main">
+          <div class="t-top"><span>ERASMUS+ AIRLINES</span><span data-en="Boarding pass" data-tr="Biniş kartı"></span></div>
+          <div class="t-route"><div><b>NEV</b><small>Nevşehir</small></div><div class="t-plane"><span>✈</span></div><div class="r"><b>EU</b><small data-en="your hotel" data-tr="oteliniz"></small></div></div>
+          <div class="t-grid">
+            <div><small data-en="Passengers" data-tr="Yolcular"></small><b>Ömer & Müge</b></div>
+            <div><small data-en="Departure" data-tr="Kalkış"></small><b data-en="Feb–Mar 2027" data-tr="Şubat–Mart 2027"></b></div>
+            <div><small data-en="Duration" data-tr="Süre"></small><b data-en="6 months" data-tr="6 ay"></b></div>
+            <div><small data-en="Field" data-tr="Alan"></small><b data-en="Tourism · Digital" data-tr="Turizm · Dijital"></b></div>
           </div>
         </div>
-
-      </div>
-    </section>
-
-    <!-- Selected Client Deployments -->
-    <section class="section deployments-section" id="deployments">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="section-tag" data-i18n="deployTag">PRODUCTION WORK</div>
-          <h2 class="section-title" data-i18n="deployTitle">Selected Client Deployments</h2>
-          <p class="section-subtitle" data-i18n="deploySubtitle">
-            Real platforms, active clients, and measured business impact in production.
-          </p>
-        </div>
-
-        <div class="deployments-grid">
-          
-          <!-- Project 1: Kardeşler Restaurant -->
-          <article class="project-card">
-            <div class="card-inner">
-              <div class="project-top">
-                <span class="project-category" data-i18n="p1Cat">Hospitality &amp; Dining</span>
-                <a href="https://kardesler-restorant.lovable.app/" target="_blank" rel="noopener noreferrer" class="project-link-badge">
-                  <span>Live Site</span>
-                  <span class="link-icon">↗</span>
-                </a>
-              </div>
-              <h3 class="project-title">Kardeşler Restaurant</h3>
-              <p class="project-summary" data-i18n="p1Desc">
-                Modern digital menu platform featuring high-resolution food curation, instant table-side mobile browsing, and strong local search footprint.
-              </p>
-              <div class="project-specs">
-                <span class="spec-pill">Dynamic QR Menu</span>
-                <span class="spec-pill">Mobile-First UI</span>
-                <span class="spec-pill">Local SEO</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 2: Bi Başka Döner -->
-          <article class="project-card">
-            <div class="card-inner">
-              <div class="project-top">
-                <span class="project-category" data-i18n="p2Cat">Food &amp; Fast-Casual</span>
-                <a href="https://bibaskadoner.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link-badge">
-                  <span>Live Site</span>
-                  <span class="link-icon">↗</span>
-                </a>
-              </div>
-              <h3 class="project-title">Bi Başka Döner</h3>
-              <p class="project-summary" data-i18n="p2Desc">
-                Ultra-fast mobile landing engine designed for instantaneous ordering decisions, dynamic pricing updates, and Google Business local dominance.
-              </p>
-              <div class="project-specs">
-                <span class="spec-pill">High-Speed Edge</span>
-                <span class="spec-pill">Instant Load</span>
-                <span class="spec-pill">Google Maps Rank</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 3: Atikeler Estetik -->
-          <article class="project-card">
-            <div class="card-inner">
-              <div class="project-top">
-                <span class="project-category" data-i18n="p3Cat">Medical &amp; Aesthetics</span>
-                <a href="https://atikeler-estetik.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link-badge">
-                  <span>Live Site</span>
-                  <span class="link-icon">↗</span>
-                </a>
-              </div>
-              <h3 class="project-title">Atikeler Estetik</h3>
-              <p class="project-summary" data-i18n="p3Desc">
-                High-conversion clinical portal with direct consultation booking funnels, multilingual aesthetic procedure showcase, and lead acquisition routes.
-              </p>
-              <div class="project-specs">
-                <span class="spec-pill">Direct Booking</span>
-                <span class="spec-pill">Lead Funnel</span>
-                <span class="spec-pill">Clinical Presentation</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 4: Palace Garden Aksaray -->
-          <article class="project-card">
-            <div class="card-inner">
-              <div class="project-top">
-                <span class="project-category" data-i18n="p4Cat">Luxury Events &amp; Venue</span>
-                <a href="https://palace-garden-aksaray.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link-badge">
-                  <span>Live Site</span>
-                  <span class="link-icon">↗</span>
-                </a>
-              </div>
-              <h3 class="project-title">Palace Garden Aksaray</h3>
-              <p class="project-summary" data-i18n="p4Desc">
-                Luxury wedding and event venue digital showcase with immersive architectural photography galleries and automated VIP reservation inquiry routing.
-              </p>
-              <div class="project-specs">
-                <span class="spec-pill">Luxury Showcase</span>
-                <span class="spec-pill">VIP Inquiry Funnel</span>
-                <span class="spec-pill">Visual Portfolio</span>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- The Duo Spotlight -->
-    <section class="section duo-section" id="duo">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="section-tag" data-i18n="duoTag">THE DUO</div>
-          <h2 class="section-title" data-i18n="duoTitle">Two Distinct Disciplines. One Unified Studio.</h2>
-          <p class="section-subtitle" data-i18n="duoSubtitle">
-            We operate as an agile two-person powerhouse, combining rigorous software engineering with cinematic visual direction.
-          </p>
-        </div>
-
-        <div class="duo-grid">
-          
-          <!-- Ömer Profile -->
-          <div class="duo-card">
-            <div class="duo-photo-wrap">
-              <img src="omer_avatar.jpg" alt="Ömer Vural" class="duo-photo" loading="lazy" />
-              <div class="duo-badge" data-i18n="omerBadge">Systems &amp; Code</div>
-            </div>
-            <div class="duo-body">
-              <h3 class="duo-name">Ömer Vural</h3>
-              <div class="duo-role" data-i18n="omerRole">Technical Architect &amp; Automation Engineer</div>
-              <p class="duo-bio" data-i18n="omerBio">
-                Tenacious problem solver with deep expertise in Python, custom multi-inbox workflow automations, sub-second web architectures, and technical SEO. Eliminates manual operational drag by building custom tools, data pipelines, and responsive digital products.
-              </p>
-              <div class="duo-skills">
-                <span class="skill-tag">Python &amp; API Pipelines</span>
-                <span class="skill-tag">Web Architecture</span>
-                <span class="skill-tag">Workflow Automation</span>
-                <span class="skill-tag">Technical &amp; Local SEO</span>
-                <span class="skill-tag">Data Synchronization</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Müge Profile -->
-          <div class="duo-card">
-            <div class="duo-photo-wrap">
-              <img src="muge_avatar.jpg" alt="Rabia Müge Emiroğlu" class="duo-photo" loading="lazy" />
-              <div class="duo-badge" data-i18n="mugeBadge">Creative &amp; Media</div>
-            </div>
-            <div class="duo-body">
-              <h3 class="duo-name">Rabia Müge Emiroğlu</h3>
-              <div class="duo-role" data-i18n="mugeRole">Creative Director &amp; Visual Strategist</div>
-              <p class="duo-bio" data-i18n="mugeBio">
-                Visual storyteller leveraging Higgsfield AI and camera-grade composition to produce high-retention short-form video (Reels &amp; TikTok). Crafts distinctive brand aesthetics, engages online audiences, and delivers warm, articulate guest relations in international environments.
-              </p>
-              <div class="duo-skills">
-                <span class="skill-tag">Higgsfield AI Video</span>
-                <span class="skill-tag">4K Short-Form Media</span>
-                <span class="skill-tag">Visual Brand Identity</span>
-                <span class="skill-tag">Viral Retention Strategy</span>
-                <span class="skill-tag">Guest Relations &amp; PR</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Visual Media & Video Lab -->
-    <section class="section media-section" id="media">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="section-tag" data-i18n="mediaTag">CREATIVE PRODUCTION</div>
-          <h2 class="section-title" data-i18n="mediaTitle">Visual Storytelling &amp; AI Video Production</h2>
-          <p class="section-subtitle" data-i18n="mediaSubtitle">
-            Crafting thumb-stopping short-form content and high-aesthetic brand assets that captivate audiences.
-          </p>
-        </div>
-
-        <div class="media-showcase-grid">
-          
-          <!-- Video Feature Card -->
-          <div class="video-feature-card">
-            <div class="video-wrapper">
-              <video id="featuredVideo" class="custom-video" poster="designs/6%20reels%204k.png" playsinline loop muted autoplay preload="metadata">
-                <source src="designs/6-reels-4k-60fps.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
-              </video>
-              <div class="video-overlay">
-                <button type="button" class="video-toggle-btn" id="videoToggleBtn" aria-label="Play/Pause Video">
-                  <span id="videoPlayIcon">❚❚</span>
-                </button>
-                <div class="video-pill" data-i18n="videoPill">4K / 60 FPS &bull; Higgsfield AI Production</div>
-              </div>
-            </div>
-            <div class="video-meta">
-              <h4 class="video-title" data-i18n="videoTitle">Next-Gen AI Short-Form Video</h4>
-              <p class="video-desc" data-i18n="videoDesc">
-                Combining generative AI camera motion with precision pacing to create cinematic social media assets that convert viewers into loyal guests and customers.
-              </p>
-            </div>
-          </div>
-
-          <!-- Visual Capabilities Showcase -->
-          <div class="visual-stack">
-            
-            <div class="visual-card">
-              <div class="visual-icon">🎬</div>
-              <div class="visual-text">
-                <h4 data-i18n="vCard1Title">Cinematic Short-Form Video</h4>
-                <p data-i18n="vCard1Desc">High-retention Reels and TikTok content engineered to stop scrolling and build brand desire.</p>
-              </div>
-            </div>
-
-            <div class="visual-card">
-              <div class="visual-icon">✨</div>
-              <div class="visual-text">
-                <h4 data-i18n="vCard2Title">Brand Aesthetic Direction</h4>
-                <p data-i18n="vCard2Desc">Refined color palettes, modern typography systems, and visual guidelines that exude quality.</p>
-              </div>
-            </div>
-
-            <div class="visual-card">
-              <div class="visual-icon">⚡</div>
-              <div class="visual-text">
-                <h4 data-i18n="vCard3Title">Autonomous Workflow Tooling</h4>
-                <p data-i18n="vCard3Desc">Custom Python backend scripts for multi-inbox synchronization, lead mining, and real-time operations.</p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- Creative Brand Visuals Strip -->
-        <div class="design-preview-strip">
-          <div class="design-preview-item">
-            <img src="designs/1.jpg" alt="Brand Visual Sample 1" loading="lazy" class="design-thumb" />
-          </div>
-          <div class="design-preview-item">
-            <img src="designs/2.jpg" alt="Brand Visual Sample 2" loading="lazy" class="design-thumb" />
-          </div>
-          <div class="design-preview-item">
-            <img src="designs/3.jpg" alt="Brand Visual Sample 3" loading="lazy" class="design-thumb" />
-          </div>
-          <div class="design-preview-item">
-            <img src="designs/6.jpg" alt="Brand Visual Sample 4" loading="lazy" class="design-thumb" />
+        <button class="t-stub" id="stub" aria-label="Tear the ticket">
+          <span class="perf"></span>
+          <small>GATE</small><b>2027</b>
+          <span class="barcode"></span>
+          <span class="tear-hint" data-en="tear me →" data-tr="yırt beni →"></span>
+        </button>
+        <div class="t-after" id="tafter">
+          <b data-en="Welcome aboard! ✈" data-tr="Gemiye hoş geldiniz! ✈"></b>
+          <div class="row">
+            <a class="btn sun" href="mailto:itsomervural@gmail.com?subject=Erasmus%2B%20traineeship%202027" data-en="Email us" data-tr="Mail atın"></a>
+            <a class="btn ghost" href="https://wa.me/905317114577" target="_blank" rel="noopener">WhatsApp</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Core Capabilities -->
-    <section class="section capabilities-section" id="capabilities">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="section-tag" data-i18n="capTag">STUDIO SERVICES</div>
-          <h2 class="section-title" data-i18n="capTitle">Core Capabilities</h2>
-          <p class="section-subtitle" data-i18n="capSubtitle">
-            Every solution is built from first principles — no bloated templates, no unnecessary dependencies.
-          </p>
-        </div>
-
-        <div class="capabilities-grid">
-          
-          <div class="cap-card">
-            <div class="cap-num">01</div>
-            <h3 class="cap-title" data-i18n="c1Title">High-Speed Web Platforms</h3>
-            <p class="cap-desc" data-i18n="c1Desc">
-              Sub-second page speeds, mobile-first responsive architecture, clean semantic code, and seamless conversion pathways.
-            </p>
-            <ul class="cap-list">
-              <li>JAMstack &amp; Static Edge Deployments</li>
-              <li>Interactive Menus &amp; Booking Engines</li>
-              <li>Responsive Micro-Interactions</li>
-            </ul>
-          </div>
-
-          <div class="cap-card">
-            <div class="cap-num">02</div>
-            <h3 class="cap-title" data-i18n="c2Title">Custom Workflow Automations</h3>
-            <p class="cap-desc" data-i18n="c2Desc">
-              Autonomous Python backends, multi-inbox synchronization engines, automated report builders, and data parsing pipelines.
-            </p>
-            <ul class="cap-list">
-              <li>Multi-Account Dispatch Systems</li>
-              <li>Automated Lead Qualification</li>
-              <li>Repetitive Task Elimination</li>
-            </ul>
-          </div>
-
-          <div class="cap-card">
-            <div class="cap-num">03</div>
-            <h3 class="cap-title" data-i18n="c3Title">AI Video &amp; Visual Strategy</h3>
-            <p class="cap-desc" data-i18n="c3Desc">
-              4K high-retention video production utilizing Higgsfield AI, social storytelling, and distinct visual brand identities.
-            </p>
-            <ul class="cap-list">
-              <li>Viral Short-Form Video (Reels/TikTok)</li>
-              <li>Generative AI Camera Motion</li>
-              <li>Brand Identity &amp; Aesthetic Systems</li>
-            </ul>
-          </div>
-
-          <div class="cap-card">
-            <div class="cap-num">04</div>
-            <h3 class="cap-title" data-i18n="c4Title">Technical &amp; Local SEO</h3>
-            <p class="cap-desc" data-i18n="c4Desc">
-              Structured data markup, Google Maps ranking optimization, multi-language hreflang implementation, and search visibility.
-            </p>
-            <ul class="cap-list">
-              <li>Schema.org Rich Snippets</li>
-              <li>Google Business Profile Ranking</li>
-              <li>Multi-Language SEO Foundations</li>
-            </ul>
-          </div>
-
-        </div>
+  <!-- 7. İLETİŞİM -->
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow light"><span class="dot"></span><span data-en="06 · Say hi" data-tr="06 · Merhaba de"></span></p>
+      <a class="mega" href="mailto:itsomervural@gmail.com"><span data-en="Let's build" data-tr="Birlikte"></span><br><em data-en="something that flies." data-tr="uçan bir şey yapalım."></em></a>
+      <div class="c-row">
+        <button class="btn sun" id="copyMail">itsomervural@gmail.com <span class="cp" data-en="copy" data-tr="kopyala"></span></button>
+        <a class="btn ghost" href="https://wa.me/905317114577" target="_blank" rel="noopener">WhatsApp ↗</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/%C3%B6mer-vural-62b991200" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
-    </section>
-
-    <!-- Contact & Direct Channels -->
-    <section class="section contact-section" id="contact">
-      <div class="container">
-        
-        <div class="contact-box">
-          <div class="contact-badge" data-i18n="contactBadge">DIRECT INQUIRIES</div>
-          
-          <h2 class="contact-headline" data-i18n="contactTitle">
-            Let's build something exceptional together.
-          </h2>
-          
-          <p class="contact-subtext" data-i18n="contactSubtitle">
-            Whether you are a European hospitality partner, a boutique hotel, or a business looking to upgrade your digital operations — our channel is direct and responsive.
-          </p>
-
-          <div class="contact-buttons">
-            <a href="https://wa.me/905317114577" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
-              <span class="btn-icon">💬</span>
-              <span data-i18n="btnWhatsapp">WhatsApp: +90 531 711 45 77</span>
-            </a>
-
-            <a href="mailto:itsomervural@gmail.com" class="btn btn-email">
-              <span class="btn-icon">✉️</span>
-              <span data-i18n="btnEmail">Email: itsomervural@gmail.com</span>
-            </a>
-
-            <a href="https://www.linkedin.com/in/%C3%B6mer-vural-62b991200" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin">
-              <span class="btn-icon">💼</span>
-              <span>LinkedIn</span>
-            </a>
-          </div>
-
-          <div class="contact-footer-note" data-i18n="contactNote">
-            Based in Aksaray, Turkey &bull; Deploying Remotely &amp; On-Site Worldwide
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-brand">
-        <span class="footer-title">Ömer Vural &amp; Rabia Müge Emiroğlu</span>
-        <span class="footer-desc" data-i18n="footerDesc">Digital Systems &amp; Creative Media Studio</span>
-      </div>
-
-      <div class="footer-copy">
-        © 2026 Ömer &amp; Müge. Built with precision. All rights reserved.
+      <div class="foot">
+        <span>© 2026 Ömer Vural & Rabia Müge Emiroğlu</span>
+        <a class="secret" href="os.html" data-en="💾 psst… there's a secret computer" data-tr="💾 psst… gizli bir bilgisayar var"></a>
+        <span data-en="Footage: Pexels · Made by hand in Cappadocia" data-tr="Görüntüler: Pexels · Kapadokya'da elle yapıldı"></span>
       </div>
     </div>
   </footer>
+</main>
 
-  <script src="app.js"></script>
+<div class="toast" id="toast" role="status"></div>
+
+<noscript><style>.loader{display:none}</style></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module" src="js/flight.js"></script>
 </body>
 </html>
