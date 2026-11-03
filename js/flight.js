@@ -42,7 +42,7 @@ function buildDuo() {
         <p class="role" ${bi(p.role)}></p>
         <h3>${esc(p.name)}</h3>
         <p ${bi(p.text)}></p>
-        <ul class="tags">${p.skills.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+        <ul class="tags">${p.skills.slice(0, 3).map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
       </div>
     </article>`).join("");
 }
@@ -77,7 +77,7 @@ function buildTrack() {
         <div class="stop-n"><b>${String(i + 1).padStart(2, "0")}</b><span ${bi(p.tag)}></span></div>
         <h3${p.titleTr ? ` ${bi(L(p.title, p.titleTr))}` : ""}>${esc(p.title)}</h3>
         <p ${bi(p.text)}></p>
-        <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+        ${p.result ? `<p class="result" ${bi(p.result)}></p>` : ""}
         ${p.url ? `<a class="link" href="${p.url}" target="_blank" rel="noopener"><span ${bi(L("Visit the live site", "Canlı siteye git"))}></span><span class="arr">↗</span></a>` : ""}
       </div>
     </article>`).join("");
@@ -256,7 +256,7 @@ const audio = {
     this.ctx.resume();
     this.on = !this.on;
     this.master.gain.setTargetAtTime(this.on ? 0.5 : 0, this.ctx.currentTime, 0.4);
-    $("#snd").setAttribute("aria-pressed", this.on);
+    $("#snd")?.setAttribute("aria-pressed", this.on);
     store.set("om-sound", this.on ? "1" : "0");
   },
   blip(freq = 1600, dur = 0.04, vol = 0.05, type = "sine") {
@@ -333,14 +333,14 @@ function lazyVideos() {
 let lenis = null;
 function scenes() {
   gsap.registerPlugin(ScrollTrigger);
-  if (Lenis) {
+  if (Lenis && fine) {
     lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
   }
 
-  // İrtifa ölçer
-  ScrollTrigger.create({
+  // İrtifa ölçer (telefonda gizli, orada hiç kurulmaz)
+  if (getComputedStyle($(".alt")).display !== "none") ScrollTrigger.create({
     start: 0, end: "max",
     onUpdate: (self) => {
       const alt = Math.round(Math.sin(Math.min(1, self.progress * 1.04) * Math.PI) * 1250);
@@ -405,7 +405,8 @@ function scenes() {
     gsap.fromTo($(".ws-copy", sl).children, { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.07, ease: "power3.out", duration: 1,
       scrollTrigger: { trigger: sl, start: "top 55%", toggleActions: "play none none reverse" } });
     if (!next) return;
-    gsap.to(inn, { scale: 0.88, borderRadius: 28, ease: "none", scrollTrigger: { trigger: next, start: "top bottom", end: "top top", scrub: true } });
+    gsap.to(inn, { scale: 0.88, ease: "none", scrollTrigger: { trigger: next, start: "top bottom", end: "top top", scrub: true } });
+    gsap.to($(".ws-copy", sl), { opacity: 0, y: -30, ease: "none", scrollTrigger: { trigger: next, start: "top bottom", end: "top 65%", scrub: true } });
     gsap.to($(".ws-dim", sl), { opacity: 0.75, ease: "none", scrollTrigger: { trigger: next, start: "top bottom", end: "top top", scrub: true } });
   });
   mm.add("(min-width: 901px)", () => {
@@ -457,8 +458,8 @@ function intro() {
   const px = innerWidth * Math.min(2, devicePixelRatio || 1);
   vid.src = innerWidth < 700 ? "assets/film/sd-sm.mp4" : px >= 1700 ? "assets/film/sd-hd.mp4" : "assets/film/sd.mp4";
   let ready = false;
-  vid.addEventListener("canplaythrough", () => (ready = true), { once: true });
-  setTimeout(() => (ready = true), 3500);
+  vid.addEventListener("loadeddata", () => (ready = true), { once: true });
+  setTimeout(() => (ready = true), 2500);
   vid.load();
   new IntersectionObserver(([en]) => { if (!document.querySelector("#loader")) en.isIntersecting ? vid.play().catch(() => {}) : vid.pause(); }).observe(vid);
 
@@ -477,7 +478,7 @@ function intro() {
     last = now;
     const target = ready && elapsed > 900 ? 100 : Math.min(88, elapsed / 30);
     state.p += (target - state.p) * Math.min(1, dt * 7);
-    const p = elapsed > 5000 ? 100 : Math.min(100, Math.round(state.p + 0.4));
+    const p = elapsed > 3000 ? 100 : Math.min(100, Math.round(state.p + 0.4));
     num.textContent = p;
     fill.style.clipPath = `inset(${100 - p}% 0 0 0)`;
     if (p >= 100) return reveal();
@@ -487,13 +488,15 @@ function intro() {
     if (done) return;
     done = true;
     vid.play().catch(() => {});
-    const tl = gsap.timeline({ onComplete: () => { loader.remove(); document.body.classList.remove("loading"); ScrollTrigger.refresh(); } });
+    const tl = gsap.timeline();
+    tl.call(() => { document.body.classList.remove("loading"); }, null, 0.6)
+      .call(() => { loader.remove(); ScrollTrigger.refresh(); }, null, 1.6);
     tl.to(".ld-mark", { scale: 1.12, opacity: 0, duration: 0.8, ease: "power3.in" })
       .to(".ld-n, .ld-t", { opacity: 0, duration: 0.4 }, 0)
       .to(loader, { yPercent: -100, duration: 1.1, ease: "power4.inOut" }, 0.5)
       .from(".hero-media", { scale: 1.25, duration: 2.2, ease: "power3.out" }, 0.6)
       .from(".hero-title .w", { yPercent: 115, rotate: 4, duration: 1.4, ease: "power4.out", stagger: 0.09 }, 0.95)
-      .from(".hero .eyebrow, .hero-sub, .cue", { y: 24, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.1 }, 1.3)
+      .from(".hero .eyebrow, .hero-sub, .hero-cta, .cue", { y: 24, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.1 }, 1.3)
       .from(".hd", { y: -30, opacity: 0, duration: 1, ease: "power3.out" }, 1.4);
   };
   tick();
@@ -523,7 +526,7 @@ else { startLog(); $$(".stat b").forEach((b) => (b.textContent = (+b.dataset.n).
 intro();
 
 $("#lang").addEventListener("click", () => { lang = lang === "tr" ? "en" : "tr"; store.set("om-lang", JSON.stringify(lang)); applyLang(); audio.blip(1200, 0.06, 0.05); });
-$("#snd").addEventListener("click", () => audio.toggle());
+$("#snd")?.addEventListener("click", () => audio.toggle());
 $("#copyMail").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(CONTACT.email); } catch (_) {}
   const t = $("#toast");

@@ -16,6 +16,7 @@ const S = (id) => `assets/v4/screens/${id}-1280.webp`;
 export const PROJECTS = [
   {
     id: "loving", kind: "site", shot: S("loving"), color: "#7fb8c9", icon: "🏝️", url: "https://ihatedevelopers.github.io/loving-strangers/",
+    result: { en: "An island you fly over, drawn from the hostel's own art", tr: "Hostelin kendi çiziminden yapılmış, üstünden uçulan bir ada" },
     title: "Loving Strangers",
     tag: { en: "Hostel · Pico, Azores", tr: "Hostel · Pico, Azorlar" },
     text: {
@@ -26,6 +27,7 @@ export const PROJECTS = [
   },
   {
     id: "ares", kind: "site", shot: S("ares"), color: "#e0a458", icon: "☕", url: "https://ares-house-cafe.netlify.app/",
+    result: { en: "146 photographed items, a QR on every table", tr: "146 fotoğraflı ürün, her masada bir QR" },
     title: "Ares House Cafe",
     tag: { en: "Cafe · Konya", tr: "Kafe · Konya" },
     text: {
@@ -36,6 +38,7 @@ export const PROJECTS = [
   },
   {
     id: "taxi", kind: "site", shot: S("taxi"), color: "#ffb627", icon: "🚕", url: "https://urgupterminaltaxi.com/",
+    result: { en: "One tap to WhatsApp, a price for every route", tr: "Tek dokunuşla WhatsApp, her rotaya fiyat" },
     title: "Ürgüp Terminal Taksi",
     tag: { en: "Local business · Own domain", tr: "Yerel işletme · Özel alan adı" },
     text: {
@@ -46,6 +49,7 @@ export const PROJECTS = [
   },
   {
     id: "kardesler", kind: "site", shot: S("kardesler"), color: "#ff8a5b", icon: "🍽️", url: "https://kardesler-restorant.lovable.app/",
+    result: { en: "The menu opens at the table from a QR code", tr: "Menü masada QR koddan açılıyor" },
     title: "Kardeşler Restaurant",
     tag: { en: "Restaurant · QR menu", tr: "Restoran · QR menü" },
     text: {
@@ -56,6 +60,7 @@ export const PROJECTS = [
   },
   {
     id: "artviva", kind: "site", shot: "assets/v4/promo/flipbook.webp", video: "assets/v4/promo/flipbook.mp4", color: "#c9a26b", icon: "📖", url: "",
+    result: { en: "Built straight from the client's Excel catalogue", tr: "Doğrudan müşterinin Excel kataloğundan üretildi" },
     title: "Flipbook catalogues",
     titleTr: "Flipbook kataloglar",
     tag: { en: "We build these for you", tr: "Sizin için yapıyoruz" },
@@ -67,6 +72,7 @@ export const PROJECTS = [
   },
   {
     id: "mokissos", kind: "site", shot: "assets/v4/promo/mokissos-1280.webp", shotTr: "assets/v4/promo/mokissos-tr-1280.webp", color: "#9bb87a", icon: "🧾", url: "",
+    result: { en: "40 tables on one live cashier screen", tr: "40 masa tek bir canlı kasa ekranında" },
     title: "Mokissos Kasa",
     tag: { en: "Faculty cafe · Order system", tr: "Fakülte kafesi · Sipariş sistemi" },
     text: {
@@ -77,6 +83,7 @@ export const PROJECTS = [
   },
   {
     id: "lotus", kind: "site", shot: S("lotus"), color: "#e8a0b4", icon: "🏐", url: "https://lotus-voleybol.lovable.app/",
+    result: { en: "A free trial lesson, one tap away for parents", tr: "Veliler için tek dokunuşla ücretsiz deneme dersi" },
     title: "Lotus Voleybol",
     tag: { en: "Sports club · Enrolment", tr: "Spor kulübü · Kayıt" },
     text: {
@@ -87,6 +94,7 @@ export const PROJECTS = [
   },
   {
     id: "atikeler", kind: "site", shot: S("atikeler"), color: "#ff7eb6", icon: "✨", url: "https://atikeler-estetik.netlify.app/",
+    result: { en: "Treatment pages that end in a booking", tr: "Randevuyla biten işlem sayfaları" },
     title: "Atikeler Estetik",
     tag: { en: "Clinic · Booking funnel", tr: "Klinik · Randevu sistemi" },
     text: {
@@ -97,6 +105,7 @@ export const PROJECTS = [
   },
   {
     id: "palace", kind: "site", shot: S("palace"), color: "#b48cff", icon: "🏛️", url: "https://palace-garden-aksaray.netlify.app/",
+    result: { en: "Wedding enquiries straight from the gallery", tr: "Galeriden doğrudan düğün teklifi" },
     title: "Palace Garden",
     tag: { en: "Event venue · Showcase", tr: "Davet mekanı · Vitrin" },
     text: {
@@ -107,6 +116,7 @@ export const PROJECTS = [
   },
   {
     id: "forgeone", kind: "site", shot: S("forgeone"), color: "#b6f23a", icon: "🏋️", url: "https://forgeone-demo-suite.netlify.app/",
+    result: { en: "Memberships, classes and progress in one app", tr: "Üyelik, ders ve gelişim tek uygulamada" },
     title: "FORGEONE",
     tag: { en: "Gym · Sales demo", tr: "Spor salonu · Satış demosu" },
     text: {
@@ -183,7 +193,7 @@ export const PROJECTS = [
     linkLabel: { en: "See a demo", tr: "Demoyu gör" },
   },
   {
-    id: "sdweb", kind: "lab", shot: C("sdweb"), cover: "assets/v4/covers/sdweb", color: "#4c7cf0", icon: "🦋", url: "",
+    id: "sdweb", kind: "hidden", shot: C("sdweb"), cover: "assets/v4/covers/sdweb", color: "#4c7cf0", icon: "🦋", url: "",
     title: "Studio Digitalist",
     tag: { en: "Our studio site · In progress", tr: "Stüdyo sitemiz · Yapım aşamasında" },
     text: {
