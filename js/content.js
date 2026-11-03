@@ -138,7 +138,7 @@ export const PROJECTS = [
   },
   {
     id: "game", kind: "lab", shot: C("game"), cover: "assets/v4/covers/game", color: "#f2c14e", icon: "🎟️", url: "",
-    title: "Milyonluk Bilet",
+    title: "Million Ticket",
     tag: { en: "Game in development · Godot", tr: "Geliştirilen oyun · Godot" },
     text: {
       en: "We're building a 3D game: a winning lottery ticket is lost in a dump of two million pieces of trash, and you dig, sort and build machines until you find it. Currently in development.",
