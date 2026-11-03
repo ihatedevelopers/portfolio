@@ -47,7 +47,7 @@ js/icons.js           Elle çizilmiş SVG ikonlar
 js/wall.js            Kapadokya duvar kağıdı (saate göre gün doğumu/gündüz/gün batımı/gece)
 js/sfx.js             Masaüstü sitesinin 8-bit ses efektleri
 
-assets/film/          sd.mp4 (1280, 3 MB) + sd-sm.mp4 (720, 1,2 MB) + sd.jpg poster, cloud1-4.webp (Python ile üretilmiş bulutlar)
+assets/film/          sd.mp4 (1280, 2,8 MB) + sd-sm.mp4 (720, 1,1 MB), 18 sn: kaynağın 7-17,5. saniyesi (logo oturuşu ve bekleme) 2,5x/3,5x/2,5x hızlandırıldı + sd.jpg poster, cloud1-4.webp (Python ile üretilmiş bulutlar)
                       Kaynak: Desktop\Work\Genel\WEB\assets\hero\giris-1920.mp4 (Google Flow, Veo 3.1)
 assets/v4/cards/      Proje görselleri 3:2, <id>-1200.webp ve <id>-600.webp (telefona küçüğü gider)
 assets/v4/reels/      Reeller 540x960 (+ .webp poster), trailer.mp4 = Milyonluk Bilet fragmanı
