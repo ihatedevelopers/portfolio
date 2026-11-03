@@ -434,3 +434,16 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   .ws-copy .tags { margin-bottom: 14px; }
   .ws-n { margin-bottom: 12px; }
 }
+
+/* Biz: portreler cümlenin içinde kapsül; altta sade iki sütun (büyük fotoğraf yok) */
+.statement .pill { display: inline-block; width: 1.6em; height: .78em; margin: 0 .04em; border-radius: 99px; overflow: hidden; vertical-align: -.04em;
+  box-shadow: 0 10px 30px -12px rgba(60, 30, 60, .45); transition: width .7s var(--ease), opacity .25s linear; }
+.statement .pill img { width: 100%; height: 100%; object-fit: cover; }
+.statement .pill[data-who="omer"] img { object-position: 50% 38%; transform: scale(1.35); }
+.statement .pill[data-who="muge"] img { object-position: 50% 30%; transform: scale(1.15); }
+.statement .pill:hover { width: 2.3em; }
+.duo { align-items: start; }
+.half[data-who="muge"] { margin-top: 0; }
+.half-n { font: 400 clamp(38px, 3.6vw, 56px)/1 var(--serif); letter-spacing: -.01em; margin: 0 0 10px; }
+.half-copy { padding-top: 0; }
+.half { border-top: 1px solid rgba(23, 17, 13, .18); padding-top: 26px; }

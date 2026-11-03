@@ -33,10 +33,7 @@ const MADE = {
 function buildDuo() {
   $("#duo").innerHTML = PEOPLE.map((p) => `
     <article class="half" data-who="${p.id}">
-      <figure class="half-ph">
-        <img src="assets/${p.id}_card.webp" alt="${esc(p.name)}" loading="lazy" width="640" height="640">
-        <figcaption>${esc(p.name.split(" ").slice(-2).join(" "))}</figcaption>
-      </figure>
+      <h3 class="half-n">${esc(p.name)}</h3>
       <div class="half-copy">
         <p class="role" ${bi(p.role)}></p>
         <p ${bi(p.text)}></p>
@@ -201,7 +198,10 @@ function startLog() {
 // ---------------- Dil ----------------
 function splitStatement() {
   const el = $("#statement");
-  el.innerHTML = (el.dataset[lang] || el.dataset.en || "").split(/\s+/).map((w) => `<span class="wd">${esc(w)}</span>`).join(" ");
+  // {omer} / {muge}: cümlenin içinde kelime gibi duran küçük portre kapsülü
+  const pill = (id) => `<span class="wd pill" data-who="${id}"><img src="assets/${id}_card.webp" alt="" width="640" height="640"></span>`;
+  el.innerHTML = (el.dataset[lang] || el.dataset.en || "").split(/\s+/)
+    .map((w) => (/^\{(omer|muge)\}$/.test(w) ? pill(w.slice(1, -1)) : `<span class="wd">${esc(w)}</span>`)).join(" ");
   if (!hasGsap) $$(".wd", el).forEach((w) => w.classList.add("on"));
 }
 function applyLang() {
@@ -363,7 +363,6 @@ function scenes() {
   ScrollTrigger.create({ trigger: "#statement", start: "top 78%", end: "bottom 45%", scrub: true, onUpdate: (s) => updateStatement(s.progress) });
   $$(".half").forEach((el, i) => {
     gsap.from(el, { y: 120, opacity: 0, duration: 1.4, ease: "power4.out", delay: i * 0.12, scrollTrigger: { trigger: "#duo", start: "top 85%" } });
-    gsap.fromTo($(".half-ph img", el), { yPercent: -6 }, { yPercent: 6, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
   });
 
   // 3. Rota: masaüstünde yatay kayan duraklar ve yol boyunca ilerleyen balon.
