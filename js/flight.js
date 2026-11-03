@@ -89,17 +89,28 @@ function buildTrack() {
     </article>`;
 }
 
+// Atölye: her proje tam ekran bir sahne (position: sticky ile üst üste biner).
+// Kapak: yatay ekranda -l.webp, dikey ekranda -p.webp; metin HTML'de, görselin sakin tarafında.
 function buildLab() {
-  $("#labGrid").innerHTML = LAB.map((p) => {
+  const n = LAB.length;
+  $("#labGrid").innerHTML = LAB.map((p, i) => {
     const label = p.linkLabel || L("Open", "Aç");
-    return `<article class="lab-card" style="--c:${p.color}">
-      ${frameTag(p, `<div class="frame-bar"><i></i><i></i><i></i><span>${esc(p.url ? host(p.url) : p.title)}</span></div>${media(p, "(max-width: 900px) 46vw, 600px")}`)}
-      <div class="lab-copy">
-        <p class="stop-n"><span ${bi(p.tag)}></span></p>
-        <h3>${esc(p.title)}</h3>
-        <p ${bi(p.text)}></p>
-        <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
-        ${p.url ? `<a class="link" href="${p.url}" target="_blank" rel="noopener"><span ${bi(label)}></span><span class="arr">↗</span></a>` : ""}
+    const title = p.titleEn ? `<h3 ${bi(L(p.titleEn, p.title))}></h3>` : `<h3>${esc(p.title)}</h3>`;
+    return `<article class="ws-slide" style="--c:${p.color}">
+      <div class="ws-in">
+        <picture class="ws-bg">
+          <source media="(max-aspect-ratio: 1/1)" srcset="${p.cover}-p.webp">
+          <img src="${p.cover}-l.webp" alt="${esc(p.title)}" loading="lazy" decoding="async" width="1920" height="1200">
+        </picture>
+        <div class="ws-shade"></div>
+        <div class="ws-copy">
+          <p class="ws-n"><b>${String(i + 1).padStart(2, "0")}</b> / ${String(n).padStart(2, "0")}<span ${bi(p.tag)}></span></p>
+          ${title}
+          <p class="ws-t" ${bi(p.text)}></p>
+          <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+          ${p.url ? `<a class="link" href="${p.url}" target="_blank" rel="noopener"><span ${bi(label)}></span><span class="arr">↗</span></a>` : ""}
+        </div>
+        <div class="ws-dim"></div>
       </div>
     </article>`;
   }).join("");
@@ -383,7 +394,23 @@ function scenes() {
   });
 
   // 3b. Atölye ve 5b. AI ekibi: kartlar sırayla süzülür.
-  $$(".lab-card").forEach((el, i) => gsap.from(el, { y: 90, opacity: 0, duration: 1.2, ease: "power3.out", delay: (i % 2) * 0.1, scrollTrigger: { trigger: el, start: "top 88%" } }));
+  // Atölye sahneleri: öndeki geri çekilip kararır, sıradaki çerçeveli karttan tam ekrana açılır.
+  const slides = $$(".ws-slide");
+  slides.forEach((sl, i) => {
+    const inn = $(".ws-in", sl), next = slides[i + 1];
+    gsap.fromTo($(".ws-copy", sl).children, { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.07, ease: "power3.out", duration: 1,
+      scrollTrigger: { trigger: sl, start: "top 55%", toggleActions: "play none none reverse" } });
+    if (!next) return;
+    gsap.to(inn, { scale: 0.88, borderRadius: 28, ease: "none", scrollTrigger: { trigger: next, start: "top bottom", end: "top top", scrub: true } });
+    gsap.to($(".ws-dim", sl), { opacity: 0.75, ease: "none", scrollTrigger: { trigger: next, start: "top bottom", end: "top top", scrub: true } });
+  });
+  mm.add("(min-width: 901px)", () => {
+    slides.slice(1).forEach((sl) => {
+      gsap.fromTo($(".ws-in", sl), { clipPath: "inset(9% 9% 0% 9% round 28px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none",
+        scrollTrigger: { trigger: sl, start: "top bottom", end: "top top", scrub: true } });
+      gsap.fromTo($(".ws-bg img", sl), { scale: 1.18 }, { scale: 1, ease: "none", scrollTrigger: { trigger: sl, start: "top bottom", end: "top top", scrub: true } });
+    });
+  });
   gsap.from(".crew-flow li", { y: 60, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.09, scrollTrigger: { trigger: ".crew-flow", start: "top 82%" } });
   gsap.from(".crew-facts li", { y: 40, opacity: 0, duration: 0.9, ease: "power3.out", stagger: 0.08, scrollTrigger: { trigger: ".crew-facts", start: "top 88%" } });
 

@@ -20,9 +20,9 @@ Gizli bir ikinci site daha var: **Ömer & Müge OS** (`os.html`). Pastel, retro 
 |---|---|---|
 | 0 | `#loader` | Balon dolarak yüklenir, en geç 5 sn'de açılır |
 | 1 | `#top` (hero) | SD dönüşüm videosu (`assets/film/sd.mp4`, telefonda `sd-sm.mp4`), "Studio Digitalist" başlığı. Telefonda video geniş tutulup logoya kaydırılır. Kaydırınca yakınlaşır, bulutlar yükselir, sis ekranı kaplar (pinned) |
-| 2 | `#about` (Biz) | Kelime kelime yanan cümle + iki dikdörtgen portre (SD camı tonlarında: Ömer mavi, Müge mor; üstüne gelince renkli) ve altında kişinin işlerine linkler (`MADE` flight.js) |
+| 2 | `#about` (Biz) | Kelime kelime yanan cümle + iki dikdörtgen portre (doğal renk; renk tonu Ömer'e kötü geldi) ve altında kişinin işlerine linkler (`MADE` flight.js) |
 | 3 | `#route` (Rota) | Müşteri/işletme siteleri (`kind: "site"`) monitör çerçevesinde, 16:10 kareler kırpılmadan (`assets/v4/screens/`). Flipbook kartı video (`assets/v4/promo/flipbook.mp4`), Mokissos'un linki yok, tanıtım görseli var (TR/EN ayrı, `shotTr`) |
-| 3b | `#lab` (Atölye) | Kendi ürün ve araçlarımız (`kind: "lab"`): VTDiag, Milyonluk Bilet (fragman videosu), Erasmus Pilot, FPS Rehberi, Harf Çemberi, Mezun Ağı, Studio Digitalist sitesi |
+| 3b | `#lab` (Atölye) | Kendi ürünlerimiz (`kind: "lab"`), her biri tam ekran sahne (`.ws-slide`, position: sticky). Kaydırınca öndeki küçülüp kararır, sıradaki masaüstünde çerçeveli karttan tam ekrana açılır (clip-path; telefonda sadece scale). Kapaklar `assets/v4/covers/<id>-l.webp` (1920x1200) ve `-p.webp` (1080x1600, dikey ekran), kapak üretim HTML'leri scratchpad'deydi. Metin solda/altta, görsel sağda/üstte |
 | 4 | `#studio` | Film şeridinde Müge'nin tasarımları + Instagram karuselleri; telefonda reel, altında reel seçici (`REELS` = Drive "Social Media Content Samples" örnekleri + PvP Radarı) ve "Yönettiğimiz sayfalar" (`ACCOUNTS`) |
 | 5 | `#engine` | Outreach Engine: sayan istatistikler (71.369 mail, 27 ülke, 26.670 site, 9 hesap; 3 Kasım 2026) + "örnek kayıt" konsolu (gerçek veri DEĞİL) |
 | 5b | `#crew` (AI ekibi) | Claude ile nasıl çalışıyoruz: Pilot, Ekip, Kontrol listesi, İkinci pilot, Yer kontrol + 4 kısa bilgi |

@@ -372,13 +372,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 /* ---------- 2. Biz (yeni): dikdörtgen, tek renk tonlu portreler + iş linkleri ---------- */
 .half { position: relative; }
 .half[data-who="muge"] { margin-top: clamp(40px, 10vw, 160px); }
-.half-ph { position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: #1b1d3a; box-shadow: 0 40px 80px -40px rgba(40, 30, 80, .55); }
-.half-ph img { width: 100%; height: 112%; object-fit: cover; filter: grayscale(1) contrast(1.08) brightness(1.02); transition: filter .8s var(--ease); }
-.half-ph::after { content: ""; position: absolute; inset: 0; mix-blend-mode: multiply; transition: opacity .8s var(--ease); }
-.half[data-who="omer"] .half-ph::after { background: linear-gradient(160deg, #6f8cff 0%, #2b3fa8 100%); }
-.half[data-who="muge"] .half-ph::after { background: linear-gradient(160deg, #f3a0c8 0%, #8e44ad 100%); }
-.half:hover .half-ph img { filter: none; }
-.half:hover .half-ph::after { opacity: 0; }
+.half-ph { position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: #e9e1da; box-shadow: 0 40px 80px -40px rgba(40, 30, 80, .55); }
+.half-ph img { width: 100%; height: 112%; object-fit: cover; }
+.half-ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12, 10, 20, 0) 55%, rgba(12, 10, 20, .55) 100%); }
 .half-ph figcaption { position: absolute; z-index: 1; left: 18px; right: 18px; bottom: 14px; color: #fff; font: 400 clamp(46px, 5.4vw, 84px)/.92 var(--serif); letter-spacing: -.02em; text-shadow: 0 4px 30px rgba(10, 10, 40, .35); }
 .half-copy { padding: 22px 2px 0; max-width: 470px; }
 .half-copy .role { font: 600 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--sun); margin: 0 0 10px; }
@@ -411,3 +407,30 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 .accounts a:hover .arr { opacity: 1; transform: translate(3px, -3px); }
 @media (max-width: 900px) { .accounts { grid-template-columns: 1fr; } }
 @media (min-width: 901px) and (max-width: 1180px) { .accounts { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- 3b. Atölye: tam ekran sahne yığını ---------- */
+.lab { padding-bottom: 0; }
+.ws { position: relative; margin-top: clamp(40px, 7vh, 80px); }
+.ws-slide { position: sticky; top: 0; height: 100svh; min-height: 560px; overflow: hidden; }
+.ws-in { position: absolute; inset: 0; overflow: hidden; transform-origin: 50% 40%; will-change: transform; background: #0d0b10; }
+.ws-bg, .ws-bg img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ws-bg img { object-fit: cover; transform-origin: 70% 50%; }
+.ws-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9, 8, 14, .82) 0%, rgba(9, 8, 14, .55) 32%, rgba(9, 8, 14, 0) 58%); }
+.ws-dim { position: absolute; inset: 0; background: #07060b; opacity: 0; pointer-events: none; }
+.ws-copy { position: absolute; left: var(--pad); bottom: clamp(56px, 11vh, 120px); width: min(520px, 42vw); color: #fff; z-index: 1; }
+.ws-n { display: flex; align-items: center; gap: 14px; font: 600 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .62); margin: 0 0 18px; }
+.ws-n b { color: var(--c); font-weight: 600; }
+.ws-n span { color: var(--c); }
+.ws-copy h3 { font: 400 clamp(56px, 7.4vw, 128px)/.92 var(--serif); letter-spacing: -.02em; margin: 0 0 18px; }
+.ws-t { font-size: clamp(16px, 1.25vw, 18px); line-height: 1.55; color: rgba(255, 255, 255, .84); margin: 0 0 18px; max-width: 46ch; }
+.ws-copy .tags li { background: rgba(255, 255, 255, .12); color: #fff; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.ws-copy .tags { margin-bottom: 22px; }
+.ws-copy .link { color: #fff; }
+@media (max-width: 900px) {
+  .ws-shade { background: linear-gradient(0deg, rgba(9, 8, 14, .92) 0%, rgba(9, 8, 14, .7) 34%, rgba(9, 8, 14, 0) 62%); }
+  .ws-copy { left: 20px; right: 20px; width: auto; bottom: 34px; }
+  .ws-copy h3 { font-size: clamp(46px, 13vw, 64px); margin-bottom: 12px; }
+  .ws-t { font-size: 15px; margin-bottom: 12px; }
+  .ws-copy .tags { margin-bottom: 14px; }
+  .ws-n { margin-bottom: 12px; }
+}
