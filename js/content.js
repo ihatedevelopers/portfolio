@@ -10,9 +10,11 @@ export const CONTACT = {
 // kind: "site" = Rota'da (müşteri/işletme siteleri), "lab" = Atölye'de (kendi ürün ve araçlarımız).
 // Görseller: assets/v4/cards/<id>-1200.webp ve -600.webp (3:2). video: assets/v4/reels/<video>.mp4
 const C = (id) => `assets/v4/cards/${id}-1200.webp`;
+// Rota siteleri: monitör çerçevesinde tam görünen 16:10 kareler (assets/v4/screens/<id>-1280/-640.webp)
+const S = (id) => `assets/v4/screens/${id}-1280.webp`;
 export const PROJECTS = [
   {
-    id: "loving", kind: "site", shot: C("loving"), color: "#7fb8c9", icon: "🏝️", url: "https://ihatedevelopers.github.io/loving-strangers/",
+    id: "loving", kind: "site", shot: S("loving"), color: "#7fb8c9", icon: "🏝️", url: "https://ihatedevelopers.github.io/loving-strangers/",
     title: "Loving Strangers",
     tag: { en: "Hostel · Pico, Azores", tr: "Hostel · Pico, Azorlar" },
     text: {
@@ -22,7 +24,7 @@ export const PROJECTS = [
     stack: ["Three.js", "GSAP", "Vite", "3D storytelling"],
   },
   {
-    id: "ares", kind: "site", shot: C("ares"), color: "#e0a458", icon: "☕", url: "https://ares-house-cafe.netlify.app/",
+    id: "ares", kind: "site", shot: S("ares"), color: "#e0a458", icon: "☕", url: "https://ares-house-cafe.netlify.app/",
     title: "Ares House Cafe",
     tag: { en: "Cafe · Konya", tr: "Kafe · Konya" },
     text: {
@@ -32,7 +34,7 @@ export const PROJECTS = [
     stack: ["Three.js", "QR table labels", "Mobile-first"],
   },
   {
-    id: "taxi", kind: "site", shot: C("taxi"), color: "#ffb627", icon: "🚕", url: "https://urgupterminaltaxi.com/",
+    id: "taxi", kind: "site", shot: S("taxi"), color: "#ffb627", icon: "🚕", url: "https://urgupterminaltaxi.com/",
     title: "Ürgüp Terminal Taksi",
     tag: { en: "Local business · Own domain", tr: "Yerel işletme · Özel alan adı" },
     text: {
@@ -42,7 +44,7 @@ export const PROJECTS = [
     stack: ["Custom domain", "WhatsApp CTA", "Route calculator", "Local SEO"],
   },
   {
-    id: "kardesler", kind: "site", shot: C("kardesler"), color: "#ff8a5b", icon: "🍽️", url: "https://kardesler-restorant.lovable.app/",
+    id: "kardesler", kind: "site", shot: S("kardesler"), color: "#ff8a5b", icon: "🍽️", url: "https://kardesler-restorant.lovable.app/",
     title: "Kardeşler Restaurant",
     tag: { en: "Restaurant · QR menu", tr: "Restoran · QR menü" },
     text: {
@@ -52,27 +54,28 @@ export const PROJECTS = [
     stack: ["Mobile-first UI", "Dynamic QR menu", "Local SEO"],
   },
   {
-    id: "artviva", kind: "site", shot: C("artviva"), color: "#c9a26b", icon: "📖", url: "",
-    title: "Artviva 2027",
-    tag: { en: "Tour operator · Florence", tr: "Tur şirketi · Floransa" },
+    id: "artviva", kind: "site", shot: "assets/v4/promo/flipbook.webp", video: "assets/v4/promo/flipbook.mp4", color: "#c9a26b", icon: "📖", url: "",
+    title: "Flipbook catalogues",
+    titleTr: "Flipbook kataloglar",
+    tag: { en: "We build these for you", tr: "Sizin için yapıyoruz" },
     text: {
-      en: "Our first paying client abroad. We audited their master catalogue, then built a page-turning 2027 brochure from it in five designs, with search, favourites and a map.",
-      tr: "Yurt dışındaki ilk ücretli müşterimiz. Ana kataloglarını denetledik, sonra ondan beş farklı tasarımda, arama, favoriler ve harita içeren sayfa çevrilen bir 2027 broşürü ürettik.",
+      en: "Page-turning online brochures built straight from your spreadsheet: search, favourites, a map and a link for every tour. The clip is a 2027 catalogue we made for a tour operator in Florence.",
+      tr: "Doğrudan Excel tablonuzdan üretilen, sayfaları çevrilen online broşürler: arama, favoriler, harita ve her tur için ayrı link. Videodaki, Floransa'daki bir tur şirketi için yaptığımız 2027 kataloğu.",
     },
-    stack: ["Catalogue audit", "Python build pipeline", "Flipbook", "5 designs"],
+    stack: ["Built from Excel", "Search & favourites", "Mobile page mode"],
   },
   {
-    id: "mokissos", kind: "site", shot: C("mokissos"), color: "#9bb87a", icon: "🧾", url: "https://mokissos-kasa.pages.dev/menu.html?masa=3",
+    id: "mokissos", kind: "site", shot: "assets/v4/promo/mokissos-1280.webp", shotTr: "assets/v4/promo/mokissos-tr-1280.webp", color: "#9bb87a", icon: "🧾", url: "",
     title: "Mokissos Kasa",
     tag: { en: "Faculty cafe · Order system", tr: "Fakülte kafesi · Sipariş sistemi" },
     text: {
-      en: "A free ordering system for our faculty's cafe: QR menu at the table, a cashier screen for 40 tables that syncs live, an end-of-day report and a monthly menu planner.",
-      tr: "Fakültemizin kafesi için ücretsiz sipariş sistemi: masada QR menü, 40 masalık canlı eşitlenen kasa ekranı, gün sonu raporu ve aylık menü planlayıcı.",
+      en: "A free system for a faculty cafe: guests scan the QR at their table to see the menu and rate their visit, staff run 40 tables from one cashier screen that syncs live, with an end-of-day report and a monthly menu planner.",
+      tr: "Bir fakülte kafesi için ücretsiz sistem: misafir masadaki QR'ı okutup menüyü görür ve ziyaretini puanlar; personel 40 masayı canlı eşitlenen tek bir kasa ekranından yönetir; gün sonu raporu ve aylık menü planlayıcı da var.",
     },
     stack: ["Supabase realtime", "Cloudflare Pages", "QR menu"],
   },
   {
-    id: "lotus", kind: "site", shot: C("lotus"), color: "#e8a0b4", icon: "🏐", url: "https://lotus-voleybol.lovable.app/",
+    id: "lotus", kind: "site", shot: S("lotus"), color: "#e8a0b4", icon: "🏐", url: "https://lotus-voleybol.lovable.app/",
     title: "Lotus Voleybol",
     tag: { en: "Sports club · Enrolment", tr: "Spor kulübü · Kayıt" },
     text: {
@@ -82,7 +85,7 @@ export const PROJECTS = [
     stack: ["Trial sign-up", "Google reviews", "Mobile-first", "Brand story"],
   },
   {
-    id: "atikeler", kind: "site", shot: C("atikeler"), color: "#ff7eb6", icon: "✨", url: "https://atikeler-estetik.netlify.app/",
+    id: "atikeler", kind: "site", shot: S("atikeler"), color: "#ff7eb6", icon: "✨", url: "https://atikeler-estetik.netlify.app/",
     title: "Atikeler Estetik",
     tag: { en: "Clinic · Booking funnel", tr: "Klinik · Randevu sistemi" },
     text: {
@@ -92,7 +95,7 @@ export const PROJECTS = [
     stack: ["Direct booking", "Lead funnel", "Multilingual"],
   },
   {
-    id: "palace", kind: "site", shot: C("palace"), color: "#b48cff", icon: "🏛️", url: "https://palace-garden-aksaray.netlify.app/",
+    id: "palace", kind: "site", shot: S("palace"), color: "#b48cff", icon: "🏛️", url: "https://palace-garden-aksaray.netlify.app/",
     title: "Palace Garden",
     tag: { en: "Event venue · Showcase", tr: "Davet mekanı · Vitrin" },
     text: {
@@ -102,7 +105,7 @@ export const PROJECTS = [
     stack: ["Luxury showcase", "VIP enquiries", "Gallery"],
   },
   {
-    id: "forgeone", kind: "site", shot: C("forgeone"), color: "#b6f23a", icon: "🏋️", url: "https://forgeone-demo-suite.netlify.app/",
+    id: "forgeone", kind: "site", shot: S("forgeone"), color: "#b6f23a", icon: "🏋️", url: "https://forgeone-demo-suite.netlify.app/",
     title: "FORGEONE",
     tag: { en: "Gym · Sales demo", tr: "Spor salonu · Satış demosu" },
     text: {
@@ -206,17 +209,30 @@ export const PROJECTS = [
   },
 ];
 
-// Stüdyo telefonundaki reeller (dikey). assets/v4/reels/<id>.mp4 + .webp
+// Stüdyo telefonundaki reeller (dikey). Drive "Social Media Content Samples" klasöründeki örnekler + PvP Radarı.
+// assets/v4/reels/<id>.mp4 + .webp
 export const REELS = [
-  { id: "sdreel", en: "Studio Digitalist", tr: "Studio Digitalist" },
-  { id: "fps", en: "FPS tune-up", tr: "FPS optimizasyonu" },
-  { id: "klinik", en: "FPS clinic", tr: "FPS kliniği" },
-  { id: "florence", en: "Florence walk", tr: "Floransa turu" },
-  { id: "muge", en: "Müge's AI reel", tr: "Müge'nin AI reeli" },
-  { id: "web", en: "Web & apps", tr: "Web ve uygulama" },
-  { id: "valo", en: "Valorant settings", tr: "Valorant ayarları" },
-  { id: "winutil", en: "Windows tool", tr: "Windows aracı" },
-  { id: "pcdestek", en: "PC support", tr: "PC destek" },
+  { id: "sdreel", en: "@studiodigitalist", tr: "@studiodigitalist" },
+  { id: "ask", en: "@sinemaotag", tr: "@sinemaotag" },
+  { id: "alcatraz", en: "Kusursuz Kurgu", tr: "Kusursuz Kurgu" },
+  { id: "pvp", en: "PvP Radarı", tr: "PvP Radarı" },
+  { id: "web", en: "Web & apps offer", tr: "Web ve uygulama" },
+  { id: "florence", en: "Florence tour reel", tr: "Floransa tur reeli" },
+  { id: "etnoland", en: "Croatia, hotel pitch", tr: "Hırvatistan, otel" },
+  { id: "elmare", en: "Wine estate, Dutch", tr: "Şarap çiftliği, NL" },
+  { id: "lapalma", en: "La Palma, German", tr: "La Palma, Almanca" },
+  { id: "oneline", en: "Design agency spec", tr: "Ajans tanıtımı" },
+  { id: "yb01", en: "Pet adoption page", tr: "Sahiplendirme sayfası" },
+];
+
+// Yönettiğimiz sayfalar (Stüdyo bölümünde liste)
+export const ACCOUNTS = [
+  { net: "ig", handle: "@studiodigitalist", url: "https://www.instagram.com/studiodigitalist/", en: "PC, FPS and web tips, our own studio", tr: "PC, FPS ve web ipuçları, kendi stüdyomuz" },
+  { net: "ig", handle: "@sinemaotag", url: "https://www.instagram.com/sinemaotag/", en: "Film lists and \"what would you do?\" polls", tr: "Film listeleri ve \"sen olsan?\" anketleri" },
+  { net: "ig", handle: "@kusursuzkurgu", url: "https://www.instagram.com/kusursuzkurgu/", en: "True stories, told like documentaries", tr: "Belgesel gibi anlatılan gerçek hikayeler" },
+  { net: "ig", handle: "@pvpradari", url: "https://www.instagram.com/pvpradari/", en: "Weekly game server news", tr: "Haftalık oyun sunucusu haberleri" },
+  { net: "yt", handle: "PvP Radarı", url: "https://www.youtube.com/@PvPRadar%C4%B1/videos", en: "Long-form weekly episodes and Shorts", tr: "Haftalık uzun bölümler ve Shorts" },
+  { net: "yt", handle: "Kusursuz Kurgu", url: "https://www.youtube.com/@kusursuzkurgu", en: "15-minute documentaries and Shorts", tr: "15 dakikalık belgeseller ve Shorts" },
 ];
 
 export const GALLERY = [

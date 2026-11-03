@@ -20,10 +20,10 @@ Gizli bir ikinci site daha var: **Ömer & Müge OS** (`os.html`). Pastel, retro 
 |---|---|---|
 | 0 | `#loader` | Balon dolarak yüklenir, en geç 5 sn'de açılır |
 | 1 | `#top` (hero) | SD dönüşüm videosu (`assets/film/sd.mp4`, telefonda `sd-sm.mp4`), "Studio Digitalist" başlığı. Telefonda video geniş tutulup logoya kaydırılır. Kaydırınca yakınlaşır, bulutlar yükselir, sis ekranı kaplar (pinned) |
-| 2 | `#about` (Biz) | Kelime kelime yanan cümle + iki yuvarlak portre |
-| 3 | `#route` (Rota) | Müşteri/işletme siteleri (`kind: "site"`). Masaüstünde yatay kayar, telefonda dikey liste |
+| 2 | `#about` (Biz) | Kelime kelime yanan cümle + iki dikdörtgen portre (SD camı tonlarında: Ömer mavi, Müge mor; üstüne gelince renkli) ve altında kişinin işlerine linkler (`MADE` flight.js) |
+| 3 | `#route` (Rota) | Müşteri/işletme siteleri (`kind: "site"`) monitör çerçevesinde, 16:10 kareler kırpılmadan (`assets/v4/screens/`). Flipbook kartı video (`assets/v4/promo/flipbook.mp4`), Mokissos'un linki yok, tanıtım görseli var (TR/EN ayrı, `shotTr`) |
 | 3b | `#lab` (Atölye) | Kendi ürün ve araçlarımız (`kind: "lab"`): VTDiag, Milyonluk Bilet (fragman videosu), Erasmus Pilot, FPS Rehberi, Harf Çemberi, Mezun Ağı, Studio Digitalist sitesi |
-| 4 | `#studio` | Film şeridinde Müge'nin tasarımları + Instagram karuselleri; telefonda reel, altında reel seçici (`REELS`) ve telefonda ses düğmesi |
+| 4 | `#studio` | Film şeridinde Müge'nin tasarımları + Instagram karuselleri; telefonda reel, altında reel seçici (`REELS` = Drive "Social Media Content Samples" örnekleri + PvP Radarı) ve "Yönettiğimiz sayfalar" (`ACCOUNTS`) |
 | 5 | `#engine` | Outreach Engine: sayan istatistikler (71.369 mail, 27 ülke, 26.670 site, 9 hesap; 3 Kasım 2026) + "örnek kayıt" konsolu (gerçek veri DEĞİL) |
 | 5b | `#crew` (AI ekibi) | Claude ile nasıl çalışıyoruz: Pilot, Ekip, Kontrol listesi, İkinci pilot, Yer kontrol + 4 kısa bilgi |
 | 7 | `#contact` | Dev başlık, mail kopyala, WhatsApp, LinkedIn, gizli OS linki |
@@ -47,7 +47,7 @@ js/icons.js           Elle çizilmiş SVG ikonlar
 js/wall.js            Kapadokya duvar kağıdı (saate göre gün doğumu/gündüz/gün batımı/gece)
 js/sfx.js             Masaüstü sitesinin 8-bit ses efektleri
 
-assets/film/          sd.mp4 (1280, 2,8 MB) + sd-sm.mp4 (720, 1,1 MB), 18 sn: kaynağın 7-17,5. saniyesi (logo oturuşu ve bekleme) 2,5x/3,5x/2,5x hızlandırıldı + sd.jpg poster, cloud1-4.webp (Python ile üretilmiş bulutlar)
+assets/film/          sd-hd.mp4 (1920, 7,8 MB, 2560 kaynaktan, büyük ekran) + sd.mp4 (1280, 2,8 MB) + sd-sm.mp4 (720, 1,1 MB), 18 sn: kaynağın 7-17,5. saniyesi (logo oturuşu ve bekleme) 2,5x/3,5x/2,5x hızlandırıldı + sd.jpg poster, cloud1-4.webp (Python ile üretilmiş bulutlar)
                       Kaynak: Desktop\Work\Genel\WEB\assets\hero\giris-1920.mp4 (Google Flow, Veo 3.1)
 assets/v4/cards/      Proje görselleri 3:2, <id>-1200.webp ve <id>-600.webp (telefona küçüğü gider)
 assets/v4/reels/      Reeller 540x960 (+ .webp poster), trailer.mp4 = Milyonluk Bilet fragmanı

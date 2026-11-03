@@ -1,5 +1,5 @@
 // Sinematik balon yolculuğu: GSAP ScrollTrigger + Lenis ile kaydırmaya bağlı sahneler.
-import { PROJECTS, GALLERY, PEOPLE, CONTACT, REELS } from "./content.js";
+import { PROJECTS, GALLERY, PEOPLE, CONTACT, REELS, ACCOUNTS } from "./content.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -19,19 +19,29 @@ const savedLang = String(store.get("om-lang", "")).replace(/"/g, "");
 let lang = savedLang === "tr" || savedLang === "en" ? savedLang : (navigator.language || "en").toLowerCase().startsWith("tr") ? "tr" : "en";
 
 // ---------------- İçerik ----------------
+// Biz: iki dikdörtgen portre (SD camının mavi ve pembe tonunda), altında kişinin yaptığı işlere linkler.
+const MADE = {
+  omer: [
+    [L("Outreach engine", "Başvuru motoru"), "#engine"], [L("VTDiag tool", "VTDiag aracı"), "#lab"],
+    [L("A Godot game", "Godot oyunu"), "#lab"], [L("10+ websites", "10+ site"), "#route"],
+  ],
+  muge: [
+    [L("Reels & carousels", "Reel ve karuseller"), "#studio"], [L("Brand kits", "Marka kitleri"), "#studio"],
+    [L("YouTube thumbnails", "YouTube kapakları"), "#studio"], [L("AI short videos", "AI kısa videolar"), "#studio"],
+  ],
+};
 function buildDuo() {
-  $("#duo").innerHTML = PEOPLE.map((p, i) => `
-    <article class="person">
-      <div class="portrait">
-        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring${i}" d="M100 100 m-88 0 a88 88 0 1 1 176 0 a88 88 0 1 1 -176 0"/></defs><text><textPath href="#ring${i}">${esc(p.skills.join(" · ").toUpperCase())} · </textPath></text></svg>
-        <div class="ph"><img src="assets/${p.id}_card.webp" alt="${esc(p.name)}" loading="lazy"></div>
-        <span class="ph-n">0${i + 1}</span>
-      </div>
-      <div class="person-copy">
+  $("#duo").innerHTML = PEOPLE.map((p) => `
+    <article class="half" data-who="${p.id}">
+      <figure class="half-ph">
+        <img src="assets/${p.id}_card.webp" alt="${esc(p.name)}" loading="lazy" width="640" height="640">
+        <figcaption>${esc(p.name.split(" ").slice(-2).join(" "))}</figcaption>
+      </figure>
+      <div class="half-copy">
         <p class="role" ${bi(p.role)}></p>
-        <h3>${esc(p.name)}</h3>
         <p ${bi(p.text)}></p>
-        <ul class="tags">${p.skills.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+        <p class="made-l" ${bi(L("Made by " + p.name.split(" ")[p.id === "muge" ? 1 : 0], (p.id === "muge" ? "Müge" : "Ömer") + "'" + (p.id === "muge" ? "nin" : "in") + " işleri"))}></p>
+        <ul class="made">${MADE[p.id].map(([t, h]) => `<li><a href="${h}"><span ${bi(t)}></span><span class="arr">↘</span></a></li>`).join("")}</ul>
       </div>
     </article>`).join("");
 }
@@ -40,11 +50,19 @@ function buildDuo() {
 const ROUTE = PROJECTS.filter((p) => p.kind === "site").map((p) => p.id);
 const LAB = PROJECTS.filter((p) => p.kind === "lab");
 const host = (u) => { try { return new URL(u).host + new URL(u).pathname.replace(/\/$/, ""); } catch (_) { return u; } };
-// Ekran görüntüsü: 1200 ve 600 piksellik webp çiftleri (telefona küçüğü gider).
+// Ekran görüntüsü: büyük/küçük webp çiftleri (-1200/-600 ya da -1280/-640), telefona küçüğü gider.
+// shotTr varsa dil değişince görsel de değişir (data-en / data-tr-img).
+const smallOf = (u) => u.replace("-1200.", "-600.").replace("-1280.", "-640.");
 const shotImg = (p, sizes) => {
-  const small = p.shot.includes("-1200.") ? ` srcset="${p.shot.replace("-1200.", "-600.")} 600w, ${p.shot} 1200w" sizes="${sizes}"` : "";
-  return `<img src="${p.shot}"${small} alt="${esc(p.title)}" loading="lazy" decoding="async" width="1200" height="800">`;
+  const src = lang === "tr" && p.shotTr ? p.shotTr : p.shot;
+  const set = /-(1200|1280)\./.test(src) ? ` srcset="${smallOf(src)} 640w, ${src} 1280w" sizes="${sizes}"` : "";
+  const sw = p.shotTr ? ` data-img-en="${p.shot}" data-img-tr="${p.shotTr}"` : "";
+  return `<img src="${src}"${set}${sw} alt="${esc(p.title)}" loading="lazy" decoding="async" width="1280" height="800">`;
 };
+// Videolu projelerde poster + sadece görünürken oynayan video.
+const media = (p, sizes) => p.video
+  ? `<video data-src="${p.video.includes("/") ? p.video : `assets/v4/reels/${p.video}.mp4`}" poster="${p.shot}" muted loop playsinline preload="none" aria-label="${esc(p.title)}"></video>`
+  : shotImg(p, sizes);
 // Linki olan çerçeve <a>, olmayan <div>.
 const frameTag = (p, inner, cls = "frame") => p.url
   ? `<a class="${cls}" href="${p.url}" target="_blank" rel="noopener" data-cursor-en="Visit" data-cursor-tr="Gez">${inner}</a>`
@@ -53,10 +71,10 @@ const frameTag = (p, inner, cls = "frame") => p.url
 function buildTrack() {
   const stops = ROUTE.map((id) => PROJECTS.find((p) => p.id === id)).map((p, i) => `
     <article class="stop" data-color="${p.color}">
-      ${frameTag(p, `<div class="frame-bar"><i></i><i></i><i></i><span>${esc(p.url ? host(p.url) : p.title)}</span></div>${shotImg(p, "(max-width: 900px) 46vw, 600px")}`)}
+      ${frameTag(p, `<div class="screen"><div class="frame-bar"><i></i><i></i><i></i><span>${esc(p.url ? host(p.url) : (p.titleTr && lang === "tr" ? p.titleTr : p.title))}</span></div>${media(p, "(max-width: 900px) 46vw, 640px")}</div>`, "frame monitor")}
       <div>
         <div class="stop-n"><b>${String(i + 1).padStart(2, "0")}</b><span ${bi(p.tag)}></span></div>
-        <h3>${esc(p.title)}</h3>
+        <h3${p.titleTr ? ` ${bi(L(p.title, p.titleTr))}` : ""}>${esc(p.title)}</h3>
         <p ${bi(p.text)}></p>
         <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
         ${p.url ? `<a class="link" href="${p.url}" target="_blank" rel="noopener"><span ${bi(L("Visit the live site", "Canlı siteye git"))}></span><span class="arr">↗</span></a>` : ""}
@@ -73,12 +91,9 @@ function buildTrack() {
 
 function buildLab() {
   $("#labGrid").innerHTML = LAB.map((p) => {
-    const media = p.video
-      ? `<video data-src="assets/v4/reels/${p.video}.mp4" poster="assets/v4/reels/${p.video}.webp" muted loop playsinline preload="none" aria-label="${esc(p.title)}"></video>`
-      : shotImg(p, "(max-width: 900px) 46vw, 600px");
     const label = p.linkLabel || L("Open", "Aç");
     return `<article class="lab-card" style="--c:${p.color}">
-      ${frameTag(p, `<div class="frame-bar"><i></i><i></i><i></i><span>${esc(p.url ? host(p.url) : p.title)}</span></div>${media}`)}
+      ${frameTag(p, `<div class="frame-bar"><i></i><i></i><i></i><span>${esc(p.url ? host(p.url) : p.title)}</span></div>${media(p, "(max-width: 900px) 46vw, 600px")}`)}
       <div class="lab-copy">
         <p class="stop-n"><span ${bi(p.tag)}></span></p>
         <h3>${esc(p.title)}</h3>
@@ -101,6 +116,17 @@ function buildMarquee() {
   };
   $("#m1").innerHTML = row([...beauty.slice(0, 3), ...SLIDES.slice(0, 4), ...beauty.slice(3), ...wide.slice(0, 1)]);
   $("#m2").innerHTML = row([...wide.slice(1), ...SLIDES.slice(4), ...beauty.slice().reverse().slice(0, 3)]);
+}
+
+// Yönettiğimiz sayfalar: platform ikonu + hesap + ne paylaştığı.
+const NET_ICON = {
+  ig: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>',
+  yt: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg>',
+};
+function buildAccounts() {
+  $("#accounts").innerHTML = ACCOUNTS.map((a) => `<li><a href="${a.url}" target="_blank" rel="noopener">
+    <span class="acc-ic acc-${a.net}">${NET_ICON[a.net]}</span>
+    <span class="acc-t"><b>${esc(a.handle)}</b><small ${bi(a)}></small></span><span class="arr">↗</span></a></li>`).join("");
 }
 
 // Telefondaki reel: alttaki kapaklardan seçilir, ses düğmesi telefonun üstünde.
@@ -170,6 +196,10 @@ function splitStatement() {
 function applyLang() {
   document.documentElement.lang = lang;
   $$("[data-en]").forEach((el) => { if (el.id !== "statement") el.innerHTML = el.dataset[lang]; });
+  $$("img[data-img-en]").forEach((im) => {
+    const src = lang === "tr" ? im.dataset.imgTr : im.dataset.imgEn;
+    if (im.getAttribute("src") !== src) { im.src = src; im.srcset = `${smallOf(src)} 640w, ${src} 1280w`; }
+  });
   $("#lang").textContent = lang === "tr" ? "EN" : "TR";
   splitStatement();
   updateStatement(statementProgress);
@@ -320,9 +350,9 @@ function scenes() {
   // 2. Bulut paralaksı + cümle kelime kelime yanar + balonlu kartlar süzülür.
   $$(".sc").forEach((c) => gsap.to(c, { y: () => +c.dataset.speed * 500, x: () => +c.dataset.speed * -120, ease: "none", scrollTrigger: { trigger: ".sky", start: "top bottom", end: "bottom top", scrub: true } }));
   ScrollTrigger.create({ trigger: "#statement", start: "top 78%", end: "bottom 45%", scrub: true, onUpdate: (s) => updateStatement(s.progress) });
-  $$(".person").forEach((el, i) => {
-    gsap.from(el, { y: 140, opacity: 0, duration: 1.5, ease: "power4.out", delay: i * 0.12, scrollTrigger: { trigger: "#duo", start: "top 85%" } });
-    gsap.to($(".ring", el), { rotate: 120, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
+  $$(".half").forEach((el, i) => {
+    gsap.from(el, { y: 120, opacity: 0, duration: 1.4, ease: "power4.out", delay: i * 0.12, scrollTrigger: { trigger: "#duo", start: "top 85%" } });
+    gsap.fromTo($(".half-ph img", el), { yPercent: -6 }, { yPercent: 6, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
   });
 
   // 3. Rota: masaüstünde yatay kayan duraklar ve yol boyunca ilerleyen balon.
@@ -392,7 +422,9 @@ function scenes() {
 function intro() {
   const loader = $("#loader"), num = $("#ldN"), fill = $("#ldFill"), vid = $("#heroVid");
   // Giriş: kelebeğin SD logosuna dönüştüğü kendi AI videomuz (telefona 720p, 1,2 MB).
-  vid.src = innerWidth < 700 ? "assets/film/sd-sm.mp4" : "assets/film/sd.mp4";
+  // Büyük ekrana 1920'lik keskin sürüm (7,8 MB), orta ekrana 1280, telefona 720.
+  const px = innerWidth * Math.min(2, devicePixelRatio || 1);
+  vid.src = innerWidth < 700 ? "assets/film/sd-sm.mp4" : px >= 1700 ? "assets/film/sd-hd.mp4" : "assets/film/sd.mp4";
   let ready = false;
   vid.addEventListener("canplaythrough", () => (ready = true), { once: true });
   setTimeout(() => (ready = true), 3500);
@@ -450,6 +482,7 @@ buildTrack();
 buildLab();
 buildMarquee();
 buildReels();
+buildAccounts();
 applyLang();
 initCursor();
 initTilt();
