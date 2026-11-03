@@ -3,51 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ömer & Müge · A balloon flight from Cappadocia</title>
-<meta name="description" content="Ömer Vural & Rabia Müge Emiroğlu: websites, local SEO, AI automations and short-form video. A two-person studio from Cappadocia, flying to Europe for Erasmus+ 2027.">
-<meta property="og:title" content="Ömer & Müge · A balloon flight from Cappadocia">
-<meta property="og:description" content="Websites, AI automations and creative content. Scroll to take off.">
-<meta property="og:image" content="assets/film/hero.jpg">
+<title>Studio Digitalist · Ömer & Müge from Cappadocia</title>
+<meta name="description" content="Studio Digitalist is Ömer Vural & Rabia Müge Emiroğlu: websites, AI automations, tools, a Godot game and short-form video, built with AI in Cappadocia.">
+<meta property="og:title" content="Studio Digitalist · Ömer & Müge from Cappadocia">
+<meta property="og:description" content="Websites, AI automations, tools, a game and reels. Scroll to take off.">
+<meta property="og:image" content="assets/film/sd.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#17110d">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M32 4C18 4 10 14 10 26c0 12 12 22 18 28h8c6-6 18-16 18-28C54 14 46 4 32 4z' fill='%23ff7a45'/><path d='M32 4c-6 6-8 32-4 50h8c4-18 2-44-4-50z' fill='%23ffd166'/><rect x='26' y='54' width='12' height='7' rx='2' fill='%2317110d'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%233b5bdb'/><stop offset='.55' stop-color='%238e44ad'/><stop offset='1' stop-color='%23f08fb0'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='%2317110d'/><text x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='34' text-anchor='middle' fill='url(%23g)'>SD</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/film/hero.jpg">
+<link rel="preload" as="image" href="assets/film/sd.jpg">
 <link rel="stylesheet" href="css/flight.css">
 </head>
 <body>
 
 <!-- Yükleme: balon dolarak kalkışa hazırlanır -->
 <div class="loader" id="loader" aria-hidden="true">
-  <svg class="ld-balloon" viewBox="0 0 120 150">
-    <defs><clipPath id="ldClip"><path d="M60 6C30 6 12 28 12 54c0 26 26 48 38 62h20c12-14 38-36 38-62C108 28 90 6 60 6z"/></clipPath></defs>
-    <path d="M60 6C30 6 12 28 12 54c0 26 26 48 38 62h20c12-14 38-36 38-62C108 28 90 6 60 6z" fill="none" stroke="currentColor" stroke-width="2.5"/>
-    <linearGradient id="ldGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd166"/><stop offset="1" stop-color="#ff7a45"/></linearGradient><g clip-path="url(#ldClip)"><rect id="ldFill" x="0" y="150" width="120" height="150" fill="url(#ldGrad)"/></g>
-    <path d="M52 116l-4 14M68 116l4 14" stroke="currentColor" stroke-width="2"/>
-    <rect x="46" y="130" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
-  </svg>
+  <div class="ld-mark"><span class="ld-o">SD</span><span class="ld-f" id="ldFill">SD</span></div>
   <div class="ld-n"><span id="ldN">0</span>%</div>
-  <div class="ld-t" data-en="Preparing for take-off" data-tr="Kalkışa hazırlanıyoruz"></div>
+  <div class="ld-t" data-en="Studio Digitalist" data-tr="Studio Digitalist"></div>
 </div>
 
-<div class="cursor" id="cursor" aria-hidden="true">
-  <svg viewBox="0 0 40 52"><path d="M20 2C10 2 4 9 4 18c0 9 8 16 12 21h8c4-5 12-12 12-21C36 9 30 2 20 2z" fill="#ff7a45" stroke="#17110d" stroke-width="2"/><path d="M20 2c-4 4-5 21-3 37h6c2-16 1-33-3-37z" fill="#ffd166"/><rect x="15" y="42" width="10" height="7" rx="2" fill="#17110d"/></svg>
-  <span class="cursor-l" id="cursorL"></span>
-</div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cur-ring"></span><span class="cursor-l" id="cursorL"></span></div>
+<div class="cur-dot" id="curDot" aria-hidden="true"></div>
 
 <header class="hd" id="hd">
-  <a class="logo" href="#top" aria-label="Top">Ö<em>&</em>M</a>
+  <a class="logo" href="#top" aria-label="Studio Digitalist, top">S<em>D</em></a>
   <nav class="hd-nav">
-    <a href="#about" data-en="Us" data-tr="Biz"></a>
-    <a href="#route" data-en="Route" data-tr="Rota"></a>
+    <a href="#route" data-en="Work" data-tr="İşler"></a>
+    <a href="#lab" data-en="Workshop" data-tr="Atölye"></a>
     <a href="#studio" data-en="Studio" data-tr="Stüdyo"></a>
     <a href="#engine" data-en="Engine" data-tr="Motor"></a>
-    <a href="#landing">Erasmus</a>
+    <a href="#crew" data-en="AI crew" data-tr="AI ekibi"></a>
   </nav>
   <div class="hd-r">
-    <button class="chip" id="snd" aria-pressed="false"><span class="eq"><i></i><i></i><i></i></span><span data-en="Sound" data-tr="Ses"></span></button>
+    <button class="chip" id="snd" aria-pressed="false"><span class="eq"><i></i><i></i><i></i></span><span data-en="Wind" data-tr="Rüzgar"></span></button>
     <button class="chip" id="lang">TR</button>
     <a class="chip solid" href="#contact" data-en="Say hi" data-tr="Merhaba de"></a>
   </div>
@@ -64,13 +56,13 @@
   <!-- 1. KALKIŞ -->
   <section class="hero" id="top">
     <div class="hero-media">
-      <video id="heroVid" muted loop playsinline preload="auto" poster="assets/film/hero.jpg"></video>
+      <video id="heroVid" muted loop playsinline preload="auto" poster="assets/film/sd.jpg"></video>
       <div class="hero-shade"></div>
     </div>
     <div class="hero-copy">
       <p class="eyebrow"><span class="dot"></span><span data-en="Cappadocia, Türkiye · 38.6° N" data-tr="Kapadokya, Türkiye · 38.6° K"></span></p>
-      <h1 class="hero-title"><span class="ln"><span class="w">Ömer</span></span><span class="ln"><em class="w">&amp;</em> <span class="w">Müge</span></span></h1>
-      <p class="hero-sub" data-en="A tiny studio for websites, AI automations and stories that fly." data-tr="Web siteleri, AI otomasyonları ve uçan hikayeler için minik bir stüdyo."></p>
+      <h1 class="hero-title"><span class="ln"><span class="w">Studio</span></span><span class="ln"><span class="w">Digitalist</span></span></h1>
+      <p class="hero-sub" data-en="Ömer &amp; Müge's tiny studio from Cappadocia: websites, AI automations, tools, games and stories that fly." data-tr="Ömer &amp; Müge'nin Kapadokya'dan minik stüdyosu: web siteleri, AI otomasyonları, araçlar, oyunlar ve uçan hikayeler."></p>
     </div>
     <div class="cue"><span data-en="Scroll to take off" data-tr="Kalkış için kaydır"></span><i></i></div>
     <div class="hero-clouds">
@@ -90,8 +82,8 @@
     <div class="wrap">
       <p class="eyebrow"><span class="dot"></span><span data-en="01 · Who's on board" data-tr="01 · Kimler gemide"></span></p>
       <p class="statement" id="statement"
-        data-en="Ömer automates the work that eats a business's day. Müge makes brands people actually stop scrolling for. Two people, real clients, and one robot that has handled 50,000+ emails."
-        data-tr="Ömer, bir işletmenin gününü yiyen işleri otomatiğe bağlar. Müge, insanların kaydırırken durup baktığı markalar yapar. İki kişi, gerçek müşteriler ve 50.000+ maili yönetmiş bir robot."></p>
+        data-en="Ömer automates the work that eats a business's day. Müge makes brands people actually stop scrolling for. Two people, real clients, an open-source tool, a game and one robot that has sent 71,000+ emails."
+        data-tr="Ömer, bir işletmenin gününü yiyen işleri otomatiğe bağlar. Müge, insanların kaydırırken durup baktığı markalar yapar. İki kişi, gerçek müşteriler, açık kaynak bir araç, bir oyun ve 71.000'den fazla mail göndermiş bir robot."></p>
       <div class="duo" id="duo"></div>
     </div>
   </section>
@@ -109,32 +101,45 @@
     </div>
   </section>
 
+  <!-- 3b. ATÖLYE: kendi ürün ve araçlarımız -->
+  <section class="lab" id="lab">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot"></span><span data-en="03 · The workshop" data-tr="03 · Atölye"></span></p>
+      <h2 class="h2" data-en="Things we build <em>for ourselves</em>" data-tr="<em>Kendimiz için</em> yaptıklarımız"></h2>
+      <p class="lead" data-en="An open-source Windows tool, a 3D game, a desktop app and a few small experiments. Built at night with AI agents, finished by hand." data-tr="Açık kaynak bir Windows aracı, bir 3D oyun, bir masaüstü uygulaması ve birkaç küçük deney. Geceleri AI ajanlarıyla yapıldı, elle bitirildi."></p>
+      <div class="lab-grid" id="labGrid"></div>
+    </div>
+  </section>
+
   <!-- 4. STÜDYO -->
   <section class="studio" id="studio">
     <div class="wrap studio-head">
-      <p class="eyebrow"><span class="dot"></span><span data-en="03 · Müge's studio" data-tr="03 · Müge'nin stüdyosu"></span></p>
+      <p class="eyebrow"><span class="dot"></span><span data-en="04 · The studio" data-tr="04 · Stüdyo"></span></p>
       <h2 class="h2 big" data-en="Scroll-stopping <em>stories</em>" data-tr="Akışı durduran <em>hikayeler</em>"></h2>
-      <p class="lead" data-en="Brand kits, campaigns and price lists for Beauty House, YouTube thumbnails that get clicked, and cinematic AI short videos." data-tr="Beauty House için marka kiti, kampanyalar ve fiyat listesi; tıklanan YouTube kapakları ve sinematik AI kısa videolar."></p>
+      <p class="lead" data-en="110 finished reels from our own video pipeline (Remotion and ElevenLabs), Instagram carousels, Müge's brand work for Beauty House and AI short videos. Pick a reel for the phone." data-tr="Kendi video hattımızdan (Remotion ve ElevenLabs) çıkan 110 bitmiş reel, Instagram karuselleri, Müge'nin Beauty House için marka işleri ve AI kısa videolar. Telefonda izlemek için bir reel seç."></p>
     </div>
     <div class="reel-stage">
       <div class="marquee m1" id="m1"></div>
       <div class="marquee m2" id="m2"></div>
-      <div class="phone"><div class="notch"></div><video data-src="assets/gallery/reel.mp4" muted loop playsinline preload="none"></video></div>
+      <div class="phone"><div class="notch"></div><video id="phoneVid" data-src="assets/v4/reels/sdreel.mp4" poster="assets/v4/reels/sdreel.webp" muted loop playsinline preload="none"></video>
+        <button class="phone-snd" id="phoneSnd" type="button" aria-pressed="false"><span class="eq"><i></i><i></i><i></i></span><span data-en="Sound" data-tr="Ses"></span></button>
+      </div>
     </div>
+    <div class="wrap"><div class="reel-pick" id="reelPick" role="group" aria-label="Reels"></div></div>
   </section>
 
   <!-- 5. MOTOR -->
   <section class="engine" id="engine">
     <div class="wrap engine-grid">
       <div>
-        <p class="eyebrow"><span class="dot"></span><span data-en="04 · The engine room" data-tr="04 · Makine dairesi"></span></p>
-        <h2 class="h2" data-en="We built a robot that <em>reads 12 languages</em>" data-tr="<em>12 dil okuyan</em> bir robot yaptık"></h2>
-        <p class="lead" data-en="Our own Python system finds tourism businesses across Europe, sends personal applications from 9 mailboxes, reads every reply and drafts the next answer. We can build the same kind of automation for your office." data-tr="Kendi Python sistemimiz Avrupa'daki turizm işletmelerini bulur, 9 hesaptan kişisel başvurular gönderir, her cevabı okur ve sıradaki cevabı hazırlar. Aynı türden bir otomasyonu sizin ofisiniz için de kurabiliriz."></p>
+        <p class="eyebrow"><span class="dot"></span><span data-en="05 · The engine room" data-tr="05 · Makine dairesi"></span></p>
+        <h2 class="h2" data-en="We built a robot that <em>never clocks out</em>" data-tr="<em>Hiç mesai bitirmeyen</em> bir robot yaptık"></h2>
+        <p class="lead" data-en="Our own Python system finds tourism businesses across Europe from open map data, checks every website and mail server, sends personalised outreach from 9 mailboxes in office hours, sorts every reply and drafts the next answer. Seven workers keep it running day and night. We can build the same kind of automation for your office." data-tr="Kendi Python sistemimiz açık harita verisinden Avrupa'daki turizm işletmelerini bulur, her siteyi ve mail sunucusunu kontrol eder, mesai saatlerinde 9 hesaptan kişiselleştirilmiş mail gönderir, her cevabı ayırır ve sıradaki cevabı hazırlar. Yedi işçi onu gece gündüz ayakta tutar. Aynı türden bir otomasyonu sizin ofisiniz için de kurabiliriz."></p>
         <div class="stats">
-          <div class="stat"><b data-n="50000" data-s="+">0</b><span data-en="emails handled" data-tr="mail yönetildi"></span></div>
+          <div class="stat"><b data-n="71369">0</b><span data-en="emails sent" data-tr="mail gönderildi"></span></div>
+          <div class="stat"><b data-n="27">0</b><span data-en="countries" data-tr="ülke"></span></div>
+          <div class="stat"><b data-n="26670">0</b><span data-en="websites checked" data-tr="site kontrol edildi"></span></div>
           <div class="stat"><b data-n="9">0</b><span data-en="mailboxes" data-tr="hesap"></span></div>
-          <div class="stat"><b data-n="12">0</b><span data-en="languages" data-tr="dil"></span></div>
-          <div class="stat"><b data-n="22217">0</b><span data-en="businesses mapped" data-tr="işletme haritada"></span></div>
         </div>
       </div>
       <div class="console">
@@ -144,46 +149,33 @@
     </div>
   </section>
 
-  <!-- 6. İNİŞ -->
-  <section class="landing" id="landing">
-    <div class="landing-media"><video data-src="assets/film/dusk.mp4" muted loop playsinline preload="none" poster="assets/film/dusk.jpg"></video><div class="landing-shade"></div></div>
-    <div class="wrap landing-copy">
-      <p class="eyebrow light"><span class="dot"></span><span data-en="05 · Landing in 2027" data-tr="05 · 2027'de iniş"></span></p>
-      <h2 class="h2 huge"><span data-en="Next stop:" data-tr="Sıradaki durak:"></span><br><em data-en="your hotel." data-tr="sizin oteliniz."></em></h2>
-      <p class="lead light" data-en="From February 2027 we're looking for a 6-month Erasmus+ traineeship in tourism or digital. Travel, visa and insurance are on us. Tear the ticket to invite us." data-tr="Şubat 2027'den itibaren turizm ya da dijital alanda 6 aylık Erasmus+ stajı arıyoruz. Yol, vize ve sigorta bizden. Bizi davet etmek için bileti yırt."></p>
-
-      <div class="ticket" id="ticket">
-        <div class="t-main">
-          <div class="t-top"><span>ERASMUS+ AIRLINES</span><span data-en="Boarding pass" data-tr="Biniş kartı"></span></div>
-          <div class="t-route"><div><b>NEV</b><small>Nevşehir</small></div><div class="t-plane"><span>✈</span></div><div class="r"><b>EU</b><small data-en="your hotel" data-tr="oteliniz"></small></div></div>
-          <div class="t-grid">
-            <div><small data-en="Passengers" data-tr="Yolcular"></small><b>Ömer & Müge</b></div>
-            <div><small data-en="Departure" data-tr="Kalkış"></small><b data-en="Feb–Mar 2027" data-tr="Şubat–Mart 2027"></b></div>
-            <div><small data-en="Duration" data-tr="Süre"></small><b data-en="6 months" data-tr="6 ay"></b></div>
-            <div><small data-en="Field" data-tr="Alan"></small><b data-en="Tourism · Digital" data-tr="Turizm · Dijital"></b></div>
-          </div>
-        </div>
-        <button class="t-stub" id="stub" aria-label="Tear the ticket">
-          <span class="perf"></span>
-          <small>GATE</small><b>2027</b>
-          <span class="barcode"></span>
-          <span class="tear-hint" data-en="tear me →" data-tr="yırt beni →"></span>
-        </button>
-        <div class="t-after" id="tafter">
-          <b data-en="Welcome aboard! ✈" data-tr="Gemiye hoş geldiniz! ✈"></b>
-          <div class="row">
-            <a class="btn sun" href="mailto:itsomervural@gmail.com?subject=Erasmus%2B%20traineeship%202027" data-en="Email us" data-tr="Mail atın"></a>
-            <a class="btn ghost" href="https://wa.me/905317114577" target="_blank" rel="noopener">WhatsApp</a>
-          </div>
-        </div>
-      </div>
+  <!-- 5b. AI EKİBİ: nasıl çalışıyoruz -->
+  <section class="crew" id="crew">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot"></span><span data-en="06 · The crew" data-tr="06 · Mürettebat"></span></p>
+      <h2 class="h2" data-en="We fly with a crew of <em>AI agents</em>" data-tr="<em>AI ajanlarından</em> bir ekiple uçuyoruz"></h2>
+      <p class="lead" data-en="We don't type a prompt and hope. We run Claude like a small team, with rules it can't skip." data-tr="Bir prompt yazıp umut etmiyoruz. Claude'u kuralları atlayamayan küçük bir ekip gibi çalıştırıyoruz."></p>
+      <ol class="crew-flow">
+        <li><b data-en="Pilot" data-tr="Pilot"></b><span data-en="One main session plans the flight, splits the work and keeps its head clear." data-tr="Ana oturum uçuşu planlar, işi böler ve kafasını temiz tutar."></span></li>
+        <li><b data-en="Crew" data-tr="Ekip"></b><span data-en="Parallel agents: a fast model reads and searches, a mid model builds, the strongest one designs." data-tr="Paralel ajanlar: hızlı model okur ve arar, orta model üretir, en güçlüsü tasarlar."></span></li>
+        <li><b data-en="Checklist" data-tr="Kontrol listesi"></b><span data-en="Proof before done: tests, type checks, audio loudness, screenshots." data-tr="Bitti demeden kanıt: test, tip kontrolü, ses seviyesi, ekran görüntüsü."></span></li>
+        <li><b data-en="Second pilot" data-tr="İkinci pilot"></b><span data-en="A fresh agent with no history critiques the result." data-tr="Geçmişi bilmeyen yeni bir ajan sonucu eleştirir."></span></li>
+        <li><b data-en="Ground control" data-tr="Yer kontrol"></b><span data-en="No reply, post, payment or launch goes out without our yes." data-tr="Onayımız olmadan hiçbir cevap, paylaşım, ödeme ya da yayın çıkmaz."></span></li>
+      </ol>
+      <ul class="crew-facts">
+        <li data-en="<b>19 skills</b> installed, 4 written by us: a working playbook, a reel pipeline, a mail reader and a reply writer that can't send without approval." data-tr="<b>19 skill</b> kurulu, 4'ünü biz yazdık: bir çalışma rehberi, bir reel hattı, bir mail okuyucu ve onaysız gönderemeyen bir cevap yazıcı."></li>
+        <li data-en="<b>A second brain</b> in plain Markdown and git that Claude, Codex, Gemini and Cursor all read, with a shield that blocks any commit containing a token or bank number." data-tr="<b>İkinci beyin:</b> Claude, Codex, Gemini ve Cursor'ın okuduğu düz Markdown ve git; token ya da banka numarası içeren commit'i durduran bir kalkanla."></li>
+        <li data-en="<b>Watchdogs:</b> a scheduled task keeps 7 workers alive day and night and emails us when one stops." data-tr="<b>Bekçiler:</b> zamanlanmış bir görev 7 işçiyi gece gündüz ayakta tutar, biri durursa bize mail atar."></li>
+        <li data-en="<b>This page:</b> five agents searched our computer for projects, then three judge agents and Gemini reviewed the plan." data-tr="<b>Bu sayfa:</b> beş ajan bilgisayarımızda projeleri aradı, sonra üç hakem ajan ve Gemini planı değerlendirdi."></li>
+      </ul>
     </div>
   </section>
+
 
   <!-- 7. İLETİŞİM -->
   <footer class="contact" id="contact">
     <div class="wrap">
-      <p class="eyebrow light"><span class="dot"></span><span data-en="06 · Say hi" data-tr="06 · Merhaba de"></span></p>
+      <p class="eyebrow light"><span class="dot"></span><span data-en="07 · Say hi" data-tr="07 · Merhaba de"></span></p>
       <a class="mega" href="mailto:itsomervural@gmail.com"><span data-en="Let's build" data-tr="Birlikte"></span><br><em data-en="something that flies." data-tr="uçan bir şey yapalım."></em></a>
       <div class="c-row">
         <button class="btn sun" id="copyMail">itsomervural@gmail.com <span class="cp" data-en="copy" data-tr="kopyala"></span></button>
@@ -191,9 +183,9 @@
         <a class="btn ghost" href="https://www.linkedin.com/in/%C3%B6mer-vural-62b991200" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
       <div class="foot">
-        <span>© 2026 Ömer Vural & Rabia Müge Emiroğlu</span>
+        <span>© 2026 Studio Digitalist · Ömer Vural & Rabia Müge Emiroğlu</span>
         <a class="secret" href="os.html" data-en="💾 psst… there's a secret computer" data-tr="💾 psst… gizli bir bilgisayar var"></a>
-        <span data-en="Footage: Pexels · Made by hand in Cappadocia" data-tr="Görüntüler: Pexels · Kapadokya'da elle yapıldı"></span>
+        <span data-en="Intro video made by us with AI" data-tr="Giriş videosunu AI ile biz ürettik"></span>
       </div>
     </div>
   </footer>

@@ -7,49 +7,32 @@ export const CONTACT = {
   linkedin: "https://www.linkedin.com/in/%C3%B6mer-vural-62b991200",
 };
 
+// kind: "site" = Rota'da (müşteri/işletme siteleri), "lab" = Atölye'de (kendi ürün ve araçlarımız).
+// Görseller: assets/v4/cards/<id>-1200.webp ve -600.webp (3:2). video: assets/v4/reels/<video>.mp4
+const C = (id) => `assets/v4/cards/${id}-1200.webp`;
 export const PROJECTS = [
   {
-    id: "kardesler", shot: "assets/shots/kardesler.webp", color: "#ff8a5b", icon: "🍽️", url: "https://kardesler-restorant.lovable.app/",
-    title: "Kardeşler Restaurant",
-    tag: { en: "Restaurant · QR menu", tr: "Restoran · QR menü" },
+    id: "loving", kind: "site", shot: C("loving"), color: "#7fb8c9", icon: "🏝️", url: "https://ihatedevelopers.github.io/loving-strangers/",
+    title: "Loving Strangers",
+    tag: { en: "Hostel · Pico, Azores", tr: "Hostel · Pico, Azorlar" },
     text: {
-      en: "A fast mobile menu that opens instantly at the table from a QR code, with rich food photography and a strong local Google presence.",
-      tr: "Masada QR koddan anında açılan hızlı mobil menü; iştah açan yemek fotoğrafları ve güçlü yerel Google görünürlüğü.",
+      en: "A hostel site drawn like the hostel's own tile art: you fly over an ink-style 3D island, visit four artist rooms, climb the summit and tear a ticket for a promo code.",
+      tr: "Hostelin kendi çini çizimleri gibi çizilmiş bir site: mürekkep tarzı 3D adanın üstünden uçuyor, dört sanatçı odasını geziyor, zirveye tırmanıyor, bileti yırtıp indirim kodu alıyorsun.",
     },
-    stack: ["Mobile-first UI", "Dynamic QR menu", "Local SEO"],
+    stack: ["Three.js", "GSAP", "Vite", "3D storytelling"],
   },
   {
-    id: "doner", shot: "assets/shots/doner.webp", color: "#ffc93c", icon: "🥙", url: "https://bibaskadoner.netlify.app/",
-    title: "Bi Başka Döner",
-    tag: { en: "Fast food · Mobile site", tr: "Hızlı servis · Mobil site" },
+    id: "ares", kind: "site", shot: C("ares"), color: "#e0a458", icon: "☕", url: "https://ares-house-cafe.netlify.app/",
+    title: "Ares House Cafe",
+    tag: { en: "Cafe · Konya", tr: "Kafe · Konya" },
     text: {
-      en: "A lightning-fast menu site that makes ordering decisions easy, with instant price updates and better Google Maps ranking.",
-      tr: "Sipariş kararını kolaylaştıran, fiyatları anında güncellenebilen ve Google Haritalar sıralamasını güçlendiren hızlı site.",
+      en: "A cafe site with a marbling (ebru) effect, the full photographed menu of 146 items and QR labels for every table.",
+      tr: "Ebru efektli bir kafe sitesi; 146 ürünlük fotoğraflı tam menü ve her masa için QR etiketi.",
     },
-    stack: ["Edge hosting", "Instant load", "Google Maps"],
+    stack: ["Three.js", "QR table labels", "Mobile-first"],
   },
   {
-    id: "atikeler", shot: "assets/shots/atikeler.webp", color: "#ff7eb6", icon: "✨", url: "https://atikeler-estetik.netlify.app/",
-    title: "Atikeler Estetik",
-    tag: { en: "Clinic · Booking funnel", tr: "Klinik · Randevu sistemi" },
-    text: {
-      en: "A clinic portal that turns visitors into consultations: multilingual treatment pages and a direct booking flow.",
-      tr: "Ziyaretçiyi ön görüşmeye çeviren klinik portalı: çok dilli işlem sayfaları ve doğrudan randevu akışı.",
-    },
-    stack: ["Direct booking", "Lead funnel", "Multilingual"],
-  },
-  {
-    id: "palace", shot: "assets/shots/palace.webp", color: "#b48cff", icon: "🏛️", url: "https://palace-garden-aksaray.netlify.app/",
-    title: "Palace Garden",
-    tag: { en: "Event venue · Showcase", tr: "Davet mekanı · Vitrin" },
-    text: {
-      en: "A prestige venue site with immersive photo galleries and an automatic VIP enquiry flow for weddings and events.",
-      tr: "Etkileyici fotoğraf galerileri ve düğün/davetler için otomatik VIP talep akışı olan prestijli mekan sitesi.",
-    },
-    stack: ["Luxury showcase", "VIP enquiries", "Gallery"],
-  },
-  {
-    id: "taxi", shot: "assets/shots/taxi.webp", color: "#ffb627", icon: "🚕", url: "https://urgupterminaltaxi.com/",
+    id: "taxi", kind: "site", shot: C("taxi"), color: "#ffb627", icon: "🚕", url: "https://urgupterminaltaxi.com/",
     title: "Ürgüp Terminal Taksi",
     tag: { en: "Local business · Own domain", tr: "Yerel işletme · Özel alan adı" },
     text: {
@@ -59,7 +42,37 @@ export const PROJECTS = [
     stack: ["Custom domain", "WhatsApp CTA", "Route calculator", "Local SEO"],
   },
   {
-    id: "lotus", shot: "assets/shots/lotus.webp", color: "#e8a0b4", icon: "🏐", url: "https://lotus-voleybol.lovable.app/",
+    id: "kardesler", kind: "site", shot: C("kardesler"), color: "#ff8a5b", icon: "🍽️", url: "https://kardesler-restorant.lovable.app/",
+    title: "Kardeşler Restaurant",
+    tag: { en: "Restaurant · QR menu", tr: "Restoran · QR menü" },
+    text: {
+      en: "A fast mobile menu that opens instantly at the table from a QR code, with rich food photography and a strong local Google presence.",
+      tr: "Masada QR koddan anında açılan hızlı mobil menü; iştah açan yemek fotoğrafları ve güçlü yerel Google görünürlüğü.",
+    },
+    stack: ["Mobile-first UI", "Dynamic QR menu", "Local SEO"],
+  },
+  {
+    id: "artviva", kind: "site", shot: C("artviva"), color: "#c9a26b", icon: "📖", url: "",
+    title: "Artviva 2027",
+    tag: { en: "Tour operator · Florence", tr: "Tur şirketi · Floransa" },
+    text: {
+      en: "Our first paying client abroad. We audited their master catalogue, then built a page-turning 2027 brochure from it in five designs, with search, favourites and a map.",
+      tr: "Yurt dışındaki ilk ücretli müşterimiz. Ana kataloglarını denetledik, sonra ondan beş farklı tasarımda, arama, favoriler ve harita içeren sayfa çevrilen bir 2027 broşürü ürettik.",
+    },
+    stack: ["Catalogue audit", "Python build pipeline", "Flipbook", "5 designs"],
+  },
+  {
+    id: "mokissos", kind: "site", shot: C("mokissos"), color: "#9bb87a", icon: "🧾", url: "https://mokissos-kasa.pages.dev/menu.html?masa=3",
+    title: "Mokissos Kasa",
+    tag: { en: "Faculty cafe · Order system", tr: "Fakülte kafesi · Sipariş sistemi" },
+    text: {
+      en: "A free ordering system for our faculty's cafe: QR menu at the table, a cashier screen for 40 tables that syncs live, an end-of-day report and a monthly menu planner.",
+      tr: "Fakültemizin kafesi için ücretsiz sipariş sistemi: masada QR menü, 40 masalık canlı eşitlenen kasa ekranı, gün sonu raporu ve aylık menü planlayıcı.",
+    },
+    stack: ["Supabase realtime", "Cloudflare Pages", "QR menu"],
+  },
+  {
+    id: "lotus", kind: "site", shot: C("lotus"), color: "#e8a0b4", icon: "🏐", url: "https://lotus-voleybol.lovable.app/",
     title: "Lotus Voleybol",
     tag: { en: "Sports club · Enrolment", tr: "Spor kulübü · Kayıt" },
     text: {
@@ -69,7 +82,27 @@ export const PROJECTS = [
     stack: ["Trial sign-up", "Google reviews", "Mobile-first", "Brand story"],
   },
   {
-    id: "forgeone", shot: "assets/shots/forgeone.webp", color: "#b6f23a", icon: "🏋️", url: "https://forgeone-demo-suite.netlify.app/",
+    id: "atikeler", kind: "site", shot: C("atikeler"), color: "#ff7eb6", icon: "✨", url: "https://atikeler-estetik.netlify.app/",
+    title: "Atikeler Estetik",
+    tag: { en: "Clinic · Booking funnel", tr: "Klinik · Randevu sistemi" },
+    text: {
+      en: "A clinic portal that turns visitors into consultations: multilingual treatment pages and a direct booking flow.",
+      tr: "Ziyaretçiyi ön görüşmeye çeviren klinik portalı: çok dilli işlem sayfaları ve doğrudan randevu akışı.",
+    },
+    stack: ["Direct booking", "Lead funnel", "Multilingual"],
+  },
+  {
+    id: "palace", kind: "site", shot: C("palace"), color: "#b48cff", icon: "🏛️", url: "https://palace-garden-aksaray.netlify.app/",
+    title: "Palace Garden",
+    tag: { en: "Event venue · Showcase", tr: "Davet mekanı · Vitrin" },
+    text: {
+      en: "A prestige venue site with immersive photo galleries and an automatic VIP enquiry flow for weddings and events.",
+      tr: "Etkileyici fotoğraf galerileri ve düğün/davetler için otomatik VIP talep akışı olan prestijli mekan sitesi.",
+    },
+    stack: ["Luxury showcase", "VIP enquiries", "Gallery"],
+  },
+  {
+    id: "forgeone", kind: "site", shot: C("forgeone"), color: "#b6f23a", icon: "🏋️", url: "https://forgeone-demo-suite.netlify.app/",
     title: "FORGEONE",
     tag: { en: "Gym · Sales demo", tr: "Spor salonu · Satış demosu" },
     text: {
@@ -79,27 +112,90 @@ export const PROJECTS = [
     stack: ["React", "TypeScript", "Class booking", "Member dashboard"],
   },
   {
-    id: "pilot", shot: "assets/shots/pilot.webp", color: "#4fd1c5", icon: "✈️", url: "https://erasmuspilot.lovable.app/",
-    title: "Erasmus Pilot",
-    tag: { en: "Our own product", tr: "Kendi ürünümüz" },
+    id: "vtdiag", kind: "lab", shot: C("vtdiag"), color: "#ff4655", icon: "🩺", url: "https://github.com/ihatedevelopers/vtdiag",
+    title: "VTDiag",
+    tag: { en: "Open-source Windows tool", tr: "Açık kaynak Windows aracı" },
     text: {
-      en: "A platform that helps students find Erasmus+ traineeships with accommodation, meals and an allowance. Officially announced to students by Nevşehir University's International Office.",
-      tr: "Öğrencilerin konaklama, yemek ve harçlık içeren Erasmus+ stajı bulmasına yardım eden platform. Nevşehir Üniversitesi Uluslararası İlişkiler Ofisi tarafından öğrencilere resmi olarak duyuruldu.",
+      en: "A free tool for Valorant players. It scans the PC, compares it with 952 solved Reddit threads and offers 32 one-click fixes that ask first, back up and can be undone. English and Turkish.",
+      tr: "Valorant oyuncuları için ücretsiz araç. Bilgisayarı tarar, 952 çözülmüş Reddit konusuyla karşılaştırır, önce soran, yedek alan ve geri alınabilen 32 tek tık düzeltme sunar. İngilizce ve Türkçe.",
     },
-    stack: ["Product design", "AI matching", "Visa data"],
+    stack: [".NET 10", "C#", "xUnit", "GitHub Actions"],
+    linkLabel: { en: "See it on GitHub", tr: "GitHub'da gör" },
   },
   {
-    id: "engine", shot: "assets/shots/engine.webp", color: "#7bd88f", icon: "🤖", url: "",
+    id: "game", kind: "lab", shot: C("game"), video: "trailer", color: "#f2c14e", icon: "🎟️", url: "",
+    title: "Milyonluk Bilet",
+    tag: { en: "3D game · Godot", tr: "3D oyun · Godot" },
+    text: {
+      en: "Dad threw a winning lottery ticket into a dump of two million pieces of trash. You dig, sort, sell, build conveyors and robot arms, and find it. About 12,000 lines of GDScript. Steam page in preparation.",
+      tr: "Babam ikramiye çıkan bileti iki milyon parça çöpün olduğu hurdalığa attı. Kazıyor, ayıklıyor, satıyor, bant ve robot kol kuruyor, bileti buluyorsun. Yaklaşık 12.000 satır GDScript. Steam sayfası hazırlanıyor.",
+    },
+    stack: ["Godot 4.7", "GDScript", "Shaders", "TR / EN"],
+  },
+  {
+    id: "pilot", kind: "lab", shot: C("pilotapp"), color: "#4fd1c5", icon: "✈️", url: "https://ihatedevelopers.github.io/erasmuspilot/",
+    title: "Erasmus Pilot",
+    tag: { en: "Windows app · Our product", tr: "Windows uygulaması · Kendi ürünümüz" },
+    text: {
+      en: "Our outreach engine, packaged for students: a Windows app that sets up their own application campaign in 8 steps, hunts for host businesses in 12 fields and keeps passwords encrypted on their PC.",
+      tr: "Başvuru motorumuzun öğrenci sürümü: kendi kampanyasını 8 adımda kuran, 12 alanda ev sahibi işletme arayan ve şifreleri bilgisayarda şifreli tutan Windows uygulaması.",
+    },
+    stack: ["Python", "PyInstaller", "Windows DPAPI"],
+    linkLabel: { en: "Product site", tr: "Ürün sitesi" },
+  },
+  {
+    id: "fps", kind: "lab", shot: C("fps"), color: "#e5484d", icon: "🎮", url: "https://ihatedevelopers.github.io/fps-rehberi/",
+    title: "FPS Rehberi",
+    tag: { en: "Free guide · @studiodigitalist", tr: "Ücretsiz rehber · @studiodigitalist" },
+    text: {
+      en: "The step-by-step FPS guide our reels send people to: only settings that were measured, nothing that risks the system.",
+      tr: "Reellerimizin yönlendirdiği adım adım FPS rehberi: sadece ölçülmüş ayarlar, sisteme risk veren hiçbir şey yok.",
+    },
+    stack: ["HTML", "GitHub Pages"],
+    linkLabel: { en: "Open the guide", tr: "Rehberi aç" },
+  },
+  {
+    id: "passaparola", kind: "lab", shot: C("passaparola"), color: "#7aa2f7", icon: "🔤", url: "",
+    title: "Harf Çemberi",
+    tag: { en: "Classroom word game", tr: "Sınıf için kelime oyunu" },
+    text: {
+      en: "A word-wheel game for English and gastronomy classes: a teacher screen, 2,551 words from CEFR, exam and kitchen pools, and repetition tracking.",
+      tr: "İngilizce ve gastronomi dersleri için harf çemberi: öğretmen ekranı, CEFR, sınav ve mutfak havuzlarından 2.551 kelime ve tekrar takibi.",
+    },
+    stack: ["One HTML file", "Teacher mode"],
+  },
+  {
+    id: "mezun", kind: "lab", shot: C("mezun"), color: "#d4a373", icon: "🎓", url: "https://ihatedevelopers.github.io/asu-mezun-agi/",
+    title: "ASÜ Mezun Ağı",
+    tag: { en: "Alumni platform concept", tr: "Mezun platformu konsepti" },
+    text: {
+      en: "An alumni platform concept for our tourism faculty: graduate sign-up, surveys and stories from the valley.",
+      tr: "Turizm fakültemiz için mezun platformu konsepti: mezun kaydı, anketler ve vadiden hikayeler.",
+    },
+    stack: ["HTML", "GitHub Pages"],
+  },
+  {
+    id: "sdweb", kind: "lab", shot: C("sdweb"), color: "#4c7cf0", icon: "🦋", url: "",
+    title: "Studio Digitalist",
+    tag: { en: "Our studio site · In progress", tr: "Stüdyo sitemiz · Yapım aşamasında" },
+    text: {
+      en: "Our studio site, still in the workshop: an AI-generated intro where a butterfly dissolves into our logo.",
+      tr: "Stüdyo sitemiz, hâlâ atölyede: kelebeğin dağılıp logomuza dönüştüğü, yapay zekâyla üretilmiş bir giriş.",
+    },
+    stack: ["Google Flow", "Veo 3.1", "ffmpeg"],
+  },
+  {
+    id: "engine", kind: "engine", shot: "assets/shots/engine.webp", color: "#7bd88f", icon: "🤖", url: "",
     title: "Outreach Engine",
     tag: { en: "Automation · Case study", tr: "Otomasyon · Vaka çalışması" },
     text: {
-      en: "Our in-house Python system: it finds tourism businesses across Europe, sends personalised applications from 9 mailboxes, reads every reply in 12 languages and drafts the next answer. 50,000+ emails handled.",
-      tr: "Kendi Python sistemimiz: Avrupa'daki turizm işletmelerini bulur, 9 hesaptan kişiselleştirilmiş başvuru gönderir, 12 dilde gelen her cevabı okur ve sıradaki cevabı hazırlar. 50.000+ mail yönetildi.",
+      en: "Our in-house Python system: it finds tourism businesses across Europe, checks every site and mail server, sends personalised outreach from 9 mailboxes, sorts every reply and drafts the next answer. 71,369 emails sent in 14 weeks.",
+      tr: "Kendi Python sistemimiz: Avrupa'daki turizm işletmelerini bulur, her siteyi ve mail sunucusunu kontrol eder, 9 hesaptan kişiselleştirilmiş mail gönderir, her cevabı ayırır ve sıradaki cevabı hazırlar. 14 haftada 71.369 mail gönderildi.",
     },
-    stack: ["Python", "Gmail automation", "12-language classifier", "Live dashboard"],
+    stack: ["Python", "SQLite", "Overture Maps", "Claude Code agents"],
   },
   {
-    id: "studio", shot: "assets/gallery/beauty-glow.webp", color: "#ff6b8b", icon: "🎬", url: "", gallery: true,
+    id: "studio", kind: "studio", shot: "assets/gallery/beauty-glow.webp", color: "#ff6b8b", icon: "🎬", url: "", gallery: true,
     title: "Müge's Studio",
     tag: { en: "Design · AI video", tr: "Tasarım · AI video" },
     text: {
@@ -108,6 +204,19 @@ export const PROJECTS = [
     },
     stack: ["Social media", "Branding", "Thumbnails", "Higgsfield AI video"],
   },
+];
+
+// Stüdyo telefonundaki reeller (dikey). assets/v4/reels/<id>.mp4 + .webp
+export const REELS = [
+  { id: "sdreel", en: "Studio Digitalist", tr: "Studio Digitalist" },
+  { id: "fps", en: "FPS tune-up", tr: "FPS optimizasyonu" },
+  { id: "klinik", en: "FPS clinic", tr: "FPS kliniği" },
+  { id: "florence", en: "Florence walk", tr: "Floransa turu" },
+  { id: "muge", en: "Müge's AI reel", tr: "Müge'nin AI reeli" },
+  { id: "web", en: "Web & apps", tr: "Web ve uygulama" },
+  { id: "valo", en: "Valorant settings", tr: "Valorant ayarları" },
+  { id: "winutil", en: "Windows tool", tr: "Windows aracı" },
+  { id: "pcdestek", en: "PC support", tr: "PC destek" },
 ];
 
 export const GALLERY = [
@@ -127,17 +236,17 @@ export const PEOPLE = [
     id: "omer", name: "Ömer Vural", photo: "assets/omer_avatar.webp",
     role: { en: "Automation & Web Developer", tr: "Otomasyon & Web Geliştirici" },
     text: {
-      en: "Builds websites, local SEO and AI automations that remove boring, repetitive office work. Stubborn problem solver. Two-time Erasmus student.",
-      tr: "Sıkıcı, tekrar eden ofis işlerini ortadan kaldıran web siteleri, yerel SEO ve AI otomasyonları kurar. Pes etmeyen bir problem çözücü. İki kez Erasmus yaptı.",
+      en: "Builds websites, local SEO, AI agent systems and automations that remove boring, repetitive office work. Also ships an open-source tool and a Godot game. Tourist guiding graduate.",
+      tr: "Sıkıcı, tekrar eden ofis işlerini ortadan kaldıran web siteleri, yerel SEO, AI ajan sistemleri ve otomasyonlar kurar. Açık kaynak bir araç ve bir Godot oyunu da yaptı. Turist rehberliği mezunu.",
     },
-    skills: ["Python", "Web & SEO", "AI agents", "Automation", "Booking flows"],
+    skills: ["Python", "Web & SEO", "AI agents", "Automation", "Godot"],
   },
   {
     id: "muge", name: "Rabia Müge Emiroğlu", photo: "assets/muge_avatar.webp",
     role: { en: "Creative Director & Content", tr: "Kreatif Direktör & İçerik" },
     text: {
-      en: "Creates scroll-stopping Reels and TikToks with AI video tools, designs brand visuals and is great with guests. Erasmus alumna.",
-      tr: "AI video araçlarıyla akışı durduran Reels ve TikTok'lar üretir, marka görselleri tasarlar ve misafirlerle harika iletişim kurar. Erasmus mezunu.",
+      en: "Creates scroll-stopping Reels and TikToks with AI video tools, designs brand visuals and knows hospitality from the inside. Tourism graduate.",
+      tr: "AI video araçlarıyla akışı durduran Reels ve TikTok'lar üretir, marka görselleri tasarlar ve misafirperverliği içeriden bilir. Turizm mezunu.",
     },
     skills: ["AI video", "Reels / TikTok", "Branding", "Photography", "Guest relations"],
   },
@@ -160,7 +269,7 @@ export const UI = {
     team: "Who we are",
     projects: "Projects",
     contact: "Contact",
-    hireTitle: "Erasmus+ 2027",
+    hireTitle: "Studio Digitalist",
     footer: "Made by Ömer & Müge with Three.js. BMO is a fan-made tribute.",
   },
   tr: {
@@ -179,7 +288,7 @@ export const UI = {
     team: "Biz kimiz",
     projects: "Projeler",
     contact: "İletişim",
-    hireTitle: "Erasmus+ 2027",
+    hireTitle: "Studio Digitalist",
     footer: "Ömer & Müge tarafından Three.js ile yapıldı. BMO bir hayran çalışmasıdır.",
   },
 };
@@ -192,10 +301,10 @@ export const CHAT = {
     help: "I know about: projects, Ömer, Müge, services, hire us, contact. I can also dance!",
     projects: "These floating screens are our projects! Websites for real businesses, our own Erasmus Pilot, our automation engine and Müge's design studio. Click one!",
     about: "Ömer builds websites and automations. Müge makes videos and designs. Together they're a tiny, very fast studio. And I'm BMO!",
-    omer: "Ömer is the automation wizard: Python, websites, SEO and AI agents. He made a system that reads 50,000 emails in 12 languages!",
+    omer: "Ömer is the automation wizard: Python, websites, SEO and AI agents. He made a system that has sent 71,000+ emails on its own!",
     muge: "Müge is the creative director: AI short videos, Reels, branding and photography. Check her studio screen!",
     services: "We build fast websites, local SEO, booking flows, AI automations for repetitive office work, and short videos for social media.",
-    hire: "Ömer & Müge are looking for a 6-month Erasmus+ traineeship from Feb–Mar 2027 in tourism or digital. Travel, visa and insurance are covered by them!",
+    hire: "Ömer & Müge take on websites, automations and video projects. Write to them, they answer!",
     contact: "Email itsomervural@gmail.com or WhatsApp +90 531 711 45 77. I'll open the contact card for you!",
     dance: "♪ Who wants to play video games? ♪",
     unknown: "Hmm, BMO doesn't know that yet! Try: projects, hire us or contact.",
@@ -207,10 +316,10 @@ export const CHAT = {
     help: "Şunları biliyorum: projeler, Ömer, Müge, hizmetler, staj, iletişim. Bir de dans edebilirim!",
     projects: "Havada süzülen ekranlar projelerimiz! Gerçek işletmeler için siteler, kendi ürünümüz Erasmus Pilot, otomasyon sistemimiz ve Müge'nin tasarım stüdyosu. Birine tıkla!",
     about: "Ömer web siteleri ve otomasyonlar kurar. Müge video ve tasarım yapar. Birlikte minik ama çok hızlı bir stüdyolar. Ben de BMO'yum!",
-    omer: "Ömer otomasyon büyücüsü: Python, web siteleri, SEO ve AI ajanları. 12 dilde 50.000 maili okuyan bir sistem yaptı!",
+    omer: "Ömer otomasyon büyücüsü: Python, web siteleri, SEO ve AI ajanları. Kendi kendine 71.000'den fazla mail gönderen bir sistem yaptı!",
     muge: "Müge kreatif direktör: AI kısa videolar, Reels, marka tasarımı ve fotoğraf. Stüdyo ekranına bir bak!",
     services: "Hızlı web siteleri, yerel SEO, rezervasyon akışları, tekrar eden ofis işleri için AI otomasyonları ve sosyal medya videoları yapıyoruz.",
-    hire: "Ömer & Müge, Şubat-Mart 2027'den itibaren turizm ya da dijital alanda 6 aylık Erasmus+ stajı arıyor. Yol, vize ve sigorta onlardan!",
+    hire: "Ömer & Müge web sitesi, otomasyon ve video projeleri alıyor. Yazın, cevap veriyorlar!",
     contact: "itsomervural@gmail.com adresine yaz ya da WhatsApp: +90 531 711 45 77. İletişim kartını açıyorum!",
     dance: "♪ Kim video oyunu oynamak ister? ♪",
     unknown: "Hmm, BMO bunu henüz bilmiyor! Şunları dene: projeler, staj, iletişim.",

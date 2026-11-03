@@ -1,13 +1,14 @@
-# Portfolyo notları (Ömer & Müge)
+# Portfolyo notları (Studio Digitalist: Ömer & Müge)
 
 Bu dosya, portfolyo sitesini ileride değiştirmek isteyen herkes için (insan ya da AI) rehberdir.
 Canlı adres: https://ihatedevelopers.github.io/portfolio (GitHub Pages, repo: `ihatedevelopers/portfolio`).
 
 ## Konsept
 
-**"Bir Balon Yolculuğu"**: Kapadokya'dan Avrupa'ya sinematik, kaydırmaya bağlı bir hikaye.
-Ziyaretçi aşağı kaydırdıkça balonla kalkar, bulutların içinden geçer, projeleri "durak" olarak gezer
-ve sonunda "Sıradaki durak: sizin oteliniz" sahnesine iner (Erasmus+ 2027 stajı çağrısı).
+**"Bir Balon Yolculuğu"**: Kapadokya'dan sinematik, kaydırmaya bağlı bir hikaye.
+Ziyaretçi aşağı kaydırdıkça kalkar, bulutların içinden geçer, işleri "durak" olarak gezer ve iletişime iner.
+3 Kasım 2026'dan beri site **genel bir iş portfolyosu**: kişisel/Erasmus anlatımı yok (Ömer'in kararı).
+Başlık "Studio Digitalist"; girişte kelebeğin toza dağılıp SD logosuna dönüştüğü kendi AI videomuz oynar.
 
 Gizli bir ikinci site daha var: **Ömer & Müge OS** (`os.html`). Pastel, retro bir masaüstü
 (pencereler, dock, kedi, terminal, Paint, Balloon Pop oyunu). Ana sitenin en altındaki
@@ -18,12 +19,13 @@ Gizli bir ikinci site daha var: **Ömer & Müge OS** (`os.html`). Pastel, retro 
 | # | Bölüm (id) | Ne oluyor |
 |---|---|---|
 | 0 | `#loader` | Balon dolarak yüklenir, en geç 5 sn'de açılır |
-| 1 | `#top` (hero) | Gerçek Kapadokya videosu, "Ömer & Müge" başlığı. Kaydırınca video yakınlaşır, bulutlar yükselir, sis ekranı kaplar (sabitlenmiş/pinned) |
-| 2 | `#about` (Biz) | Kelime kelime yanan cümle + iki yuvarlak portre (etrafında dönen beceri yazısı, 01/02 numaraları) |
-| 3 | `#route` (Rota) | Masaüstünde yatay kayan proje durakları, yol çizgisinde ilerleyen balon, durağa göre değişen arka plan rengi. Telefonda dikey liste |
-| 4 | `#studio` | Müge'nin tasarımları iki sıra sonsuz film şeridinde, ortada telefon içinde reel videosu |
-| 5 | `#engine` | Outreach Engine: sayan istatistikler + akan "örnek kayıt" konsolu (gerçek veri DEĞİL, gösterim) |
-| 6 | `#landing` | Alacakaranlık videosu, "Sıradaki durak: sizin oteliniz", yırtılabilir biniş kartı (yırtınca mail/WhatsApp çıkar) |
+| 1 | `#top` (hero) | SD dönüşüm videosu (`assets/film/sd.mp4`, telefonda `sd-sm.mp4`), "Studio Digitalist" başlığı. Telefonda video geniş tutulup logoya kaydırılır. Kaydırınca yakınlaşır, bulutlar yükselir, sis ekranı kaplar (pinned) |
+| 2 | `#about` (Biz) | Kelime kelime yanan cümle + iki yuvarlak portre |
+| 3 | `#route` (Rota) | Müşteri/işletme siteleri (`kind: "site"`). Masaüstünde yatay kayar, telefonda dikey liste |
+| 3b | `#lab` (Atölye) | Kendi ürün ve araçlarımız (`kind: "lab"`): VTDiag, Milyonluk Bilet (fragman videosu), Erasmus Pilot, FPS Rehberi, Harf Çemberi, Mezun Ağı, Studio Digitalist sitesi |
+| 4 | `#studio` | Film şeridinde Müge'nin tasarımları + Instagram karuselleri; telefonda reel, altında reel seçici (`REELS`) ve telefonda ses düğmesi |
+| 5 | `#engine` | Outreach Engine: sayan istatistikler (71.369 mail, 27 ülke, 26.670 site, 9 hesap; 3 Kasım 2026) + "örnek kayıt" konsolu (gerçek veri DEĞİL) |
+| 5b | `#crew` (AI ekibi) | Claude ile nasıl çalışıyoruz: Pilot, Ekip, Kontrol listesi, İkinci pilot, Yer kontrol + 4 kısa bilgi |
 | 7 | `#contact` | Dev başlık, mail kopyala, WhatsApp, LinkedIn, gizli OS linki |
 
 Ekstralar: balon şeklinde fare imleci (sadece fareli cihazlarda), sağda irtifa ölçer,
@@ -45,10 +47,13 @@ js/icons.js           Elle çizilmiş SVG ikonlar
 js/wall.js            Kapadokya duvar kağıdı (saate göre gün doğumu/gündüz/gün batımı/gece)
 js/sfx.js             Masaüstü sitesinin 8-bit ses efektleri
 
-assets/film/          hero.mp4 (+ hero-sm.mp4 telefon), dusk.mp4, valley.mp4 (şu an kullanılmıyor),
-                      posterler (.jpg), cloud1-4.webp (Python ile üretilmiş bulutlar)
-assets/shots/         Proje ekran görüntüleri (1280 genişlik webp)
-assets/gallery/       Müge'nin tasarımları + reel.mp4
+assets/film/          sd.mp4 (1280, 3 MB) + sd-sm.mp4 (720, 1,2 MB) + sd.jpg poster, cloud1-4.webp (Python ile üretilmiş bulutlar)
+                      Kaynak: Desktop\Work\Genel\WEB\assets\hero\giris-1920.mp4 (Google Flow, Veo 3.1)
+assets/v4/cards/      Proje görselleri 3:2, <id>-1200.webp ve <id>-600.webp (telefona küçüğü gider)
+assets/v4/reels/      Reeller 540x960 (+ .webp poster), trailer.mp4 = Milyonluk Bilet fragmanı
+assets/v4/carousel/   Karusel slaytları (valocar, win11car) 540x675
+assets/shots/         engine.webp (gizli OS kullanıyor)
+assets/gallery/       Müge'nin tasarımları + reel.mp4 (gizli OS kullanıyor)
 assets/omer_card.webp, assets/muge_card.webp   Portreler (kare, 640px)
 designs/              Müge'nin ham tasarım dosyaları (sitede kullanılmıyor)
 ```
@@ -59,16 +64,14 @@ Fontlar (Google Fonts): Instrument Serif, Inter, JetBrains Mono. Masaüstü site
 ## Sık yapılacak değişiklikler
 
 ### Yeni proje eklemek
-1. Ekran görüntüsü al (1440x900), `assets/shots/<id>.webp` olarak kaydet (1280 genişlik, kalite ~80).
+1. Ekran görüntüsü al (1440x960), `assets/v4/cards/<id>-1200.webp` (1200x800) ve `<id>-600.webp` (600x400) kaydet, kalite ~78.
    Hızlı yol: Chrome headless
    `chrome --headless=new --hide-scrollbars --window-size=1440,900 --virtual-time-budget=9000 --screenshot=C:\temp\x.png <url>`
    (Boşluklu klasör yolunda çalışmıyor, önce TEMP'e kaydet, sonra taşı.)
 2. `js/content.js` içindeki `PROJECTS` listesine bir kayıt ekle:
-   `id, shot, color, icon, url, title, tag{en,tr}, text{en,tr}, stack[]`.
-3. Ana sitede görünmesi için `js/flight.js` içindeki `ROUTE` listesine `id`'yi ekle (sıra = durak sırası).
-4. Masaüstü sitesinde klasör filtresi için `js/apps.js` içindeki `GROUPS` listesine ekle.
-5. Ekran görüntüsünün altında boş/siyah alan varsa: görseli kırp ve `flight.js` içinde
-   `natural` sınıfı verilen projelere ekle (şu an sadece `taxi`).
+   `id, kind ("site" = Rota, "lab" = Atölye), shot: C("<id>"), color, icon, url, title, tag{en,tr}, text{en,tr}, stack[]`
+   (+ isteğe bağlı `video`, `linkLabel`). Sıra = sayfadaki sıra. Gizli OS klasörleri de `kind`'a göre otomatik dolar.
+3. Yeni reel: `assets/v4/reels/<id>.mp4` (540x960, crf 28, faststart) + `<id>.webp` poster, `REELS` listesine ekle.
 
 ### Metin değiştirmek
 - Sabit metinler: `index.html` içinde, her elemanda `data-en="..."` ve `data-tr="..."`. İkisini de güncelle.
@@ -99,8 +102,9 @@ Fontlar (Google Fonts): Instrument Serif, Inter, JetBrains Mono. Masaüstü site
 - **Ö harfinin noktaları:** Instrument Serif'te büyük boyda yukarı taşar. Hero'da `.ln` satırlarına
   üst boşluk ve eyebrow altına margin verildi; başlık boyutunu büyütürsen tekrar kontrol et.
 - **Outreach Engine konsolu** örnek satırlar gösterir, gerçek veri değildir (konsol başlığında "örnek kayıt" yazar).
-- Sayılar (50.000+ mail, 9 hesap, 12 dil, 22.217 işletme) Ekim 2026 itibarıyla; güncellemek için
+- Sayılar (71.369 mail, 27 ülke, 26.670 site, 9 hesap) 3 Kasım 2026 itibarıyla veritabanından; güncellemek için
   `index.html` → `.stat b[data-n]`.
+- Kişisel konu yok: Erasmus/staj/Estonya anlatımı bilerek çıkarıldı. Erasmus Pilot sadece ürün olarak duruyor.
 
 ## Yerelde çalıştırma
 
@@ -126,6 +130,8 @@ Repoya kişisel belge, TC numarası vb. koyma; bu repo herkese açık.
 3. Ömer & Müge OS (retro masaüstü): güzel ama tatmin etmedi, gizli sayfa olarak kaldı.
 4. Balon yolculuğu (şimdiki): gerçek videolar + sinematik kaydırma. "Biz" bölümü klişe bulununca
    balona asılı kartlar kaldırılıp yuvarlak portrelere geçildi, metin sadeleştirildi.
+5. 3 Kasım 2026: düzen aynen korunup içerik genişletildi (Atölye, reel seçici, karuseller, AI ekibi),
+   başlık Studio Digitalist + SD dönüşüm videosu, Erasmus/Räpina bölümü kaldırıldı. Denenip reddedilen:
+   tamamen yeni "kartpostal" tasarımı (Ömer düzenin değişmesini istemedi).
 
-Ekim 2026 itibarıyla projeler: Ürgüp Terminal Taksi, Kardeşler Restaurant, Lotus Voleybol, Bi Başka Döner,
-Atikeler Estetik, Palace Garden, FORGEONE (satış demosu), Erasmus Pilot, Outreach Engine, Müge's Studio.
+Projelerin güncel listesi: `js/content.js`. Tam envanter (gizlilik notlarıyla): Desktop\Work\Beyin\projeler\portfolyo-envanteri.md (repoda değil).

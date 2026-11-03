@@ -1,5 +1,5 @@
 // Sinematik balon yolculuğu: GSAP ScrollTrigger + Lenis ile kaydırmaya bağlı sahneler.
-import { PROJECTS, GALLERY, PEOPLE, CONTACT } from "./content.js";
+import { PROJECTS, GALLERY, PEOPLE, CONTACT, REELS } from "./content.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -36,21 +36,30 @@ function buildDuo() {
     </article>`).join("");
 }
 
-const ROUTE = ["taxi", "kardesler", "lotus", "doner", "atikeler", "palace", "forgeone", "pilot"];
+// Rota = müşteri ve işletme siteleri, Atölye = kendi ürünlerimiz (content.js içindeki kind alanı).
+const ROUTE = PROJECTS.filter((p) => p.kind === "site").map((p) => p.id);
+const LAB = PROJECTS.filter((p) => p.kind === "lab");
+const host = (u) => { try { return new URL(u).host + new URL(u).pathname.replace(/\/$/, ""); } catch (_) { return u; } };
+// Ekran görüntüsü: 1200 ve 600 piksellik webp çiftleri (telefona küçüğü gider).
+const shotImg = (p, sizes) => {
+  const small = p.shot.includes("-1200.") ? ` srcset="${p.shot.replace("-1200.", "-600.")} 600w, ${p.shot} 1200w" sizes="${sizes}"` : "";
+  return `<img src="${p.shot}"${small} alt="${esc(p.title)}" loading="lazy" decoding="async" width="1200" height="800">`;
+};
+// Linki olan çerçeve <a>, olmayan <div>.
+const frameTag = (p, inner, cls = "frame") => p.url
+  ? `<a class="${cls}" href="${p.url}" target="_blank" rel="noopener" data-cursor-en="Visit" data-cursor-tr="Gez">${inner}</a>`
+  : `<div class="${cls}">${inner}</div>`;
+
 function buildTrack() {
-  const host = (u) => { try { return new URL(u).host; } catch (_) { return u; } };
-  const stops = ROUTE.map((id, i) => PROJECTS.find((p) => p.id === id)).map((p, i) => `
+  const stops = ROUTE.map((id) => PROJECTS.find((p) => p.id === id)).map((p, i) => `
     <article class="stop" data-color="${p.color}">
-      <a class="frame" href="${p.url}" target="_blank" rel="noopener" data-cursor-en="Visit" data-cursor-tr="Gez">
-        <div class="frame-bar"><i></i><i></i><i></i><span>${esc(host(p.url))}</span></div>
-        <img src="${p.shot}" alt="${esc(p.title)}"${p.id === "taxi" ? ' class="natural"' : ""}>
-      </a>
+      ${frameTag(p, `<div class="frame-bar"><i></i><i></i><i></i><span>${esc(p.url ? host(p.url) : p.title)}</span></div>${shotImg(p, "(max-width: 900px) 46vw, 600px")}`)}
       <div>
         <div class="stop-n"><b>${String(i + 1).padStart(2, "0")}</b><span ${bi(p.tag)}></span></div>
         <h3>${esc(p.title)}</h3>
         <p ${bi(p.text)}></p>
         <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
-        <a class="link" href="${p.url}" target="_blank" rel="noopener"><span ${bi(L("Visit the live site", "Canlı siteye git"))}></span><span class="arr">↗</span></a>
+        ${p.url ? `<a class="link" href="${p.url}" target="_blank" rel="noopener"><span ${bi(L("Visit the live site", "Canlı siteye git"))}></span><span class="arr">↗</span></a>` : ""}
       </div>
     </article>`).join("");
   $("#track").innerHTML = stops + `
@@ -62,15 +71,62 @@ function buildTrack() {
     </article>`;
 }
 
+function buildLab() {
+  $("#labGrid").innerHTML = LAB.map((p) => {
+    const media = p.video
+      ? `<video data-src="assets/v4/reels/${p.video}.mp4" poster="assets/v4/reels/${p.video}.webp" muted loop playsinline preload="none" aria-label="${esc(p.title)}"></video>`
+      : shotImg(p, "(max-width: 900px) 46vw, 600px");
+    const label = p.linkLabel || L("Open", "Aç");
+    return `<article class="lab-card" style="--c:${p.color}">
+      ${frameTag(p, `<div class="frame-bar"><i></i><i></i><i></i><span>${esc(p.url ? host(p.url) : p.title)}</span></div>${media}`)}
+      <div class="lab-copy">
+        <p class="stop-n"><span ${bi(p.tag)}></span></p>
+        <h3>${esc(p.title)}</h3>
+        <p ${bi(p.text)}></p>
+        <ul class="tags">${p.stack.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+        ${p.url ? `<a class="link" href="${p.url}" target="_blank" rel="noopener"><span ${bi(label)}></span><span class="arr">↗</span></a>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+}
+
+// Karusel slaytları (4:5) film şeridine Müge'nin tasarımlarıyla karışık girer.
+const SLIDES = ["valocar", "win11car"].flatMap((d) => [1, 2, 3, 4].map((i) => ({ src: `assets/v4/carousel/${d}-${i}.webp`, cap: "Instagram carousel", tall: true })));
 function buildMarquee() {
   const beauty = GALLERY.filter((g) => !g.wide);
   const wide = GALLERY.filter((g) => g.wide);
   const row = (list) => {
-    const html = list.map((g) => `<img src="${g.src}" alt="${esc(g.cap)}" class="${g.wide ? "wide" : ""}" loading="lazy">`).join("");
+    const html = list.map((g) => `<img src="${g.src}" alt="${esc(g.cap)}" class="${g.wide ? "wide" : g.tall ? "tall" : ""}" loading="lazy">`).join("");
     return html + html;
   };
-  $("#m1").innerHTML = row([...beauty, ...wide]);
-  $("#m2").innerHTML = row([...wide, ...beauty.slice().reverse()]);
+  $("#m1").innerHTML = row([...beauty.slice(0, 3), ...SLIDES.slice(0, 4), ...beauty.slice(3), ...wide.slice(0, 1)]);
+  $("#m2").innerHTML = row([...wide.slice(1), ...SLIDES.slice(4), ...beauty.slice().reverse().slice(0, 3)]);
+}
+
+// Telefondaki reel: alttaki kapaklardan seçilir, ses düğmesi telefonun üstünde.
+function buildReels() {
+  const pick = $("#reelPick"), vid = $("#phoneVid"), snd = $("#phoneSnd");
+  pick.innerHTML = REELS.map((r, i) => `
+    <button class="rp${i === 0 ? " on" : ""}" type="button" data-id="${r.id}" aria-pressed="${i === 0}">
+      <img src="assets/v4/reels/${r.id}.webp" alt="" loading="lazy" width="540" height="960"><span ${bi(r)}></span>
+    </button>`).join("");
+  pick.addEventListener("click", (e) => {
+    const b = e.target.closest(".rp");
+    if (!b) return;
+    $$(".rp", pick).forEach((x) => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", x === b); });
+    const src = `assets/v4/reels/${b.dataset.id}.mp4`;
+    vid.dataset.src = src;
+    vid.poster = `assets/v4/reels/${b.dataset.id}.webp`;
+    vid.src = src;
+    vid.play().catch(() => {});
+    audio.blip(1500, 0.05, 0.05);
+  });
+  snd.addEventListener("click", () => {
+    vid.muted = !vid.muted;
+    if (!vid.src) vid.src = vid.dataset.src;
+    vid.play().catch(() => {});
+    snd.setAttribute("aria-pressed", String(!vid.muted));
+  });
 }
 
 const LOGS = [
@@ -78,12 +134,12 @@ const LOGS = [
   ["ok", "✓ new reply · classified: positive (de)"],
   ["", "› drafting an answer in German…"],
   ["dim", "› bounce detected · address removed"],
-  ["hot", "★ offer received · flagged for Ömer & Müge"],
-  ["ok", "✓ personalised applications sent in local time windows"],
+  ["hot", "★ warm reply · flagged for a human"],
+  ["ok", "✓ personalised emails sent in local office hours"],
   ["", "› auto-reply recognised · ignored"],
   ["ok", "✓ site audit: 3 SEO quick wins found"],
   ["dim", "› next send window: 09:00 local time"],
-  ["hot", "★ interview request · reply drafted"],
+  ["hot", "★ meeting request · reply drafted"],
   ["ok", "✓ polite no (fr) · thank-you + collab offer drafted"],
   ["", "› reading reply in Italian…"],
 ];
@@ -179,19 +235,23 @@ const audio = {
 // ---------------- İmleç ----------------
 function initCursor() {
   if (!fine) return;
-  const c = $("#cursor"), lbl = $("#cursorL");
+  const c = $("#cursor"), dot = $("#curDot"), lbl = $("#cursorL");
   let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y, last = 0;
-  addEventListener("pointermove", (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  addEventListener("pointermove", (e) => { tx = e.clientX; ty = e.clientY; c.classList.add("on"); dot.classList.add("on"); }, { passive: true });
+  document.addEventListener("pointerleave", () => { c.classList.remove("on"); dot.classList.remove("on"); });
+  addEventListener("pointerdown", () => c.classList.add("press"));
+  addEventListener("pointerup", () => c.classList.remove("press"));
   const loop = () => {
-    x += (tx - x) * 0.18; y += (ty - y) * 0.18;
-    const tilt = Math.max(-25, Math.min(25, (tx - x) * 0.6));
-    c.style.transform = `translate(${x - 13}px, ${y - 8}px) rotate(${tilt}deg)`;
+    x += (tx - x) * 0.2; y += (ty - y) * 0.2;
+    c.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    dot.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
     requestAnimationFrame(loop);
   };
   loop();
   document.addEventListener("pointerover", (e) => {
     const t = e.target.closest("a, button, [data-cursor-en]");
     c.classList.toggle("big", !!t);
+    dot.classList.toggle("big", !!t);
     lbl.textContent = t?.dataset?.[lang === "tr" ? "cursorTr" : "cursorEn"] || "";
     if (t && t !== last) audio.blip(1900, 0.03, 0.035);
     last = t;
@@ -211,29 +271,6 @@ function initTilt() {
   });
 }
 
-// ---------------- Bilet yırtma ----------------
-function initTicket() {
-  const stub = $("#stub"), ticket = $("#ticket");
-  let torn = false;
-  const tear = () => {
-    if (torn) return;
-    torn = true;
-    audio.tear();
-    if (hasGsap) {
-      gsap.to(stub, { x: 90, y: 340, rotate: 38, opacity: 0, duration: 1.1, ease: "power2.in", onComplete: () => (stub.style.visibility = "hidden") });
-    } else stub.style.visibility = "hidden";
-    ticket.classList.add("torn");
-  };
-  let sx = null;
-  stub.addEventListener("pointerdown", (e) => { sx = e.clientX; stub.setPointerCapture(e.pointerId); });
-  stub.addEventListener("pointermove", (e) => {
-    if (sx === null || torn) return;
-    const dx = Math.max(0, e.clientX - sx);
-    stub.style.transform = `rotate(${dx / 8}deg) translateX(${dx / 3}px)`;
-    if (dx > 70) tear();
-  });
-  stub.addEventListener("pointerup", () => { if (!torn) { stub.style.transform = ""; tear(); } sx = null; });
-}
 
 // ---------------- Videolar ----------------
 function lazyVideos() {
@@ -315,6 +352,11 @@ function scenes() {
     $$(".stop").forEach((stop) => gsap.from(stop, { y: 80, opacity: 0, duration: 1.1, ease: "power3.out", scrollTrigger: { trigger: stop, start: "top 85%" } }));
   });
 
+  // 3b. Atölye ve 5b. AI ekibi: kartlar sırayla süzülür.
+  $$(".lab-card").forEach((el, i) => gsap.from(el, { y: 90, opacity: 0, duration: 1.2, ease: "power3.out", delay: (i % 2) * 0.1, scrollTrigger: { trigger: el, start: "top 88%" } }));
+  gsap.from(".crew-flow li", { y: 60, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.09, scrollTrigger: { trigger: ".crew-flow", start: "top 82%" } });
+  gsap.from(".crew-facts li", { y: 40, opacity: 0, duration: 0.9, ease: "power3.out", stagger: 0.08, scrollTrigger: { trigger: ".crew-facts", start: "top 88%" } });
+
   // 4. Stüdyo: sonsuz film şeridi, kaydırma hızıyla hızlanır.
   const m1 = gsap.to("#m1", { xPercent: -50, ease: "none", duration: 40, repeat: -1 });
   const m2 = gsap.fromTo("#m2", { xPercent: -50 }, { xPercent: 0, ease: "none", duration: 46, repeat: -1 });
@@ -325,7 +367,7 @@ function scenes() {
       gsap.to([m1, m2], { timeScale: boost, duration: 0.2, overwrite: true, onComplete: () => gsap.to([m1, m2], { timeScale: 1, duration: 1.2 }) });
     },
   });
-  gsap.fromTo(".phone", { rotate: -12, yPercent: -40 }, { rotate: 4, yPercent: -60, ease: "none", scrollTrigger: { trigger: ".studio", start: "top bottom", end: "bottom top", scrub: true } });
+  gsap.fromTo(".phone", { rotate: -9 }, { rotate: 3, ease: "none", scrollTrigger: { trigger: ".studio", start: "top bottom", end: "bottom top", scrub: true } });
   gsap.from(".studio-head .h2", { y: 120, opacity: 0, duration: 1.3, ease: "power4.out", scrollTrigger: { trigger: ".studio", start: "top 70%" } });
 
   // 5. Motor: sayaçlar ve canlı kayıt.
@@ -341,10 +383,6 @@ function scenes() {
   });
   gsap.from(".console", { y: 100, rotateX: 18, opacity: 0, transformPerspective: 1200, duration: 1.4, ease: "power3.out", scrollTrigger: { trigger: ".engine", start: "top 60%" } });
 
-  // 6. İniş: video paralaksı, başlık ve bilet gelir.
-  gsap.fromTo(".landing-media", { yPercent: -8 }, { yPercent: 8, ease: "none", scrollTrigger: { trigger: ".landing", start: "top bottom", end: "bottom top", scrub: true } });
-  gsap.from(".landing .h2", { y: 140, opacity: 0, duration: 1.4, ease: "power4.out", scrollTrigger: { trigger: ".landing", start: "top 60%" } });
-  gsap.from(".ticket", { y: 160, rotate: -6, opacity: 0, duration: 1.4, ease: "power3.out", scrollTrigger: { trigger: ".ticket", start: "top 92%" } });
 
   // 7. Son: dev başlık aşağıdan gelir.
   gsap.from(".mega", { y: 120, opacity: 0, duration: 1.4, ease: "power4.out", scrollTrigger: { trigger: ".contact", start: "top 70%" } });
@@ -353,11 +391,13 @@ function scenes() {
 // ---------------- Yükleme ve giriş ----------------
 function intro() {
   const loader = $("#loader"), num = $("#ldN"), fill = $("#ldFill"), vid = $("#heroVid");
-  vid.src = innerWidth < 700 ? "assets/film/hero-sm.mp4" : "assets/film/hero.mp4";
+  // Giriş: kelebeğin SD logosuna dönüştüğü kendi AI videomuz (telefona 720p, 1,2 MB).
+  vid.src = innerWidth < 700 ? "assets/film/sd-sm.mp4" : "assets/film/sd.mp4";
   let ready = false;
   vid.addEventListener("canplaythrough", () => (ready = true), { once: true });
   setTimeout(() => (ready = true), 3500);
   vid.load();
+  new IntersectionObserver(([en]) => { if (!document.querySelector("#loader")) en.isIntersecting ? vid.play().catch(() => {}) : vid.pause(); }).observe(vid);
 
   if (!hasGsap) {
     loader.remove();
@@ -376,7 +416,7 @@ function intro() {
     state.p += (target - state.p) * Math.min(1, dt * 7);
     const p = elapsed > 5000 ? 100 : Math.min(100, Math.round(state.p + 0.4));
     num.textContent = p;
-    fill.setAttribute("y", 150 - p * 1.5);
+    fill.style.clipPath = `inset(${100 - p}% 0 0 0)`;
     if (p >= 100) return reveal();
     setTimeout(tick, 16);
   };
@@ -385,7 +425,7 @@ function intro() {
     done = true;
     vid.play().catch(() => {});
     const tl = gsap.timeline({ onComplete: () => { loader.remove(); document.body.classList.remove("loading"); ScrollTrigger.refresh(); } });
-    tl.to(".ld-balloon", { y: -200, opacity: 0, duration: 0.9, ease: "power3.in" })
+    tl.to(".ld-mark", { scale: 1.12, opacity: 0, duration: 0.8, ease: "power3.in" })
       .to(".ld-n, .ld-t", { opacity: 0, duration: 0.4 }, 0)
       .to(loader, { yPercent: -100, duration: 1.1, ease: "power4.inOut" }, 0.5)
       .from(".hero-media", { scale: 1.25, duration: 2.2, ease: "power3.out" }, 0.6)
@@ -407,11 +447,12 @@ document.addEventListener("error", (e) => {
 document.body.classList.add("loading");
 buildDuo();
 buildTrack();
+buildLab();
 buildMarquee();
+buildReels();
 applyLang();
 initCursor();
 initTilt();
-initTicket();
 lazyVideos();
 if (hasGsap) scenes();
 else { startLog(); $$(".stat b").forEach((b) => (b.textContent = (+b.dataset.n).toLocaleString("en") + (b.dataset.s || ""))); }

@@ -9,8 +9,8 @@ const host = (url) => { try { return new URL(url).host; } catch (_) { return url
 
 const GROUPS = [
   { id: "all", icon: "✦", name: L("All projects", "Tüm projeler"), ids: PROJECTS.map((p) => p.id) },
-  { id: "web", icon: "🌐", name: L("Websites", "Web siteleri"), ids: ["taxi", "kardesler", "lotus", "doner", "atikeler", "palace", "forgeone"] },
-  { id: "product", icon: "🚀", name: L("Our products", "Ürünlerimiz"), ids: ["pilot", "engine"] },
+  { id: "web", icon: "🌐", name: L("Websites", "Web siteleri"), ids: PROJECTS.filter((p) => p.kind === "site").map((p) => p.id) },
+  { id: "product", icon: "🚀", name: L("Our products", "Ürünlerimiz"), ids: ["engine", ...PROJECTS.filter((p) => p.kind === "lab").map((p) => p.id)] },
   { id: "creative", icon: "🎨", name: L("Creative", "Kreatif"), ids: ["studio"] },
 ];
 
@@ -235,8 +235,8 @@ const erasmus = {
 
 // ---------------- Kişiler ----------------
 const FACTS = {
-  omer: [L("Two-time Erasmus student", "İki kez Erasmus yaptı"), L("Built a system that handled 50,000+ emails in 12 languages", "12 dilde 50.000+ maili yöneten bir sistem kurdu"), L("Turns boring office work into one-click automations", "Sıkıcı ofis işlerini tek tıklık otomasyonlara çevirir")],
-  muge: [L("Erasmus alumna", "Erasmus mezunu"), L("Designs full brand kits: logo, price list, campaigns", "Logo, fiyat listesi, kampanya: komple marka kiti tasarlar"), L("Makes cinematic AI short videos", "Sinematik AI kısa videolar üretir")],
+  omer: [L("Tourist guiding graduate", "Turist rehberliği mezunu"), L("Built a system that has sent 71,000+ emails on its own", "Kendi kendine 71.000+ mail gönderen bir sistem kurdu"), L("Turns boring office work into one-click automations", "Sıkıcı ofis işlerini tek tıklık otomasyonlara çevirir")],
+  muge: [L("Tourism graduate", "Turizm mezunu"), L("Designs full brand kits: logo, price list, campaigns", "Logo, fiyat listesi, kampanya: komple marka kiti tasarlar"), L("Makes cinematic AI short videos", "Sinematik AI kısa videolar üretir")],
 };
 function person(id, color) {
   return {
@@ -305,7 +305,7 @@ const NEOFETCH = String.raw`
      __|__        <y>Team</y>    2 humans, 1 cat
                   <y>Skills</y>  Web · SEO · AI automation · Video
                   <y>Langs</y>   Türkçe, English
-                  <y>Status</y>  <g>open to Erasmus+ 2027 ✓</g>`;
+                  <y>Status</y>  <g>open for projects ✓</g>`;
 const terminal = {
   color: "#b9a6ff", w: 680, h: 440,
   label: () => "Terminal",
