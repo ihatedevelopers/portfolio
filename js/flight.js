@@ -31,14 +31,18 @@ const MADE = {
   ],
 };
 function buildDuo() {
-  $("#duo").innerHTML = PEOPLE.map((p) => `
-    <article class="half" data-who="${p.id}">
-      <h3 class="half-n">${esc(p.name)}</h3>
-      <div class="half-copy">
+  $("#duo").innerHTML = PEOPLE.map((p, i) => `
+    <article class="person">
+      <div class="portrait">
+        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring${i}" d="M100 100 m-88 0 a88 88 0 1 1 176 0 a88 88 0 1 1 -176 0"/></defs><text><textPath href="#ring${i}">${esc(p.skills.join(" · ").toUpperCase())} · </textPath></text></svg>
+        <div class="ph"><img src="assets/${p.id}_card.webp" alt="${esc(p.name)}" loading="lazy"></div>
+        <span class="ph-n">0${i + 1}</span>
+      </div>
+      <div class="person-copy">
         <p class="role" ${bi(p.role)}></p>
+        <h3>${esc(p.name)}</h3>
         <p ${bi(p.text)}></p>
-        <p class="made-l" ${bi(L("Made by " + p.name.split(" ")[p.id === "muge" ? 1 : 0], (p.id === "muge" ? "Müge" : "Ömer") + "'" + (p.id === "muge" ? "nin" : "in") + " işleri"))}></p>
-        <ul class="made">${MADE[p.id].map(([t, h]) => `<li><a href="${h}"><span ${bi(t)}></span><span class="arr">↘</span></a></li>`).join("")}</ul>
+        <ul class="tags">${p.skills.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
       </div>
     </article>`).join("");
 }
@@ -361,8 +365,9 @@ function scenes() {
   // 2. Bulut paralaksı + cümle kelime kelime yanar + balonlu kartlar süzülür.
   $$(".sc").forEach((c) => gsap.to(c, { y: () => +c.dataset.speed * 500, x: () => +c.dataset.speed * -120, ease: "none", scrollTrigger: { trigger: ".sky", start: "top bottom", end: "bottom top", scrub: true } }));
   ScrollTrigger.create({ trigger: "#statement", start: "top 78%", end: "bottom 45%", scrub: true, onUpdate: (s) => updateStatement(s.progress) });
-  $$(".half").forEach((el, i) => {
-    gsap.from(el, { y: 120, opacity: 0, duration: 1.4, ease: "power4.out", delay: i * 0.12, scrollTrigger: { trigger: "#duo", start: "top 85%" } });
+  $$(".person").forEach((el, i) => {
+    gsap.from(el, { y: 100, opacity: 0, duration: 1.4, ease: "power4.out", delay: i * 0.12, scrollTrigger: { trigger: "#duo", start: "top 85%" } });
+    gsap.to($(".ring", el), { rotate: 120, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
   });
 
   // 3. Rota: masaüstünde yatay kayan duraklar ve yol boyunca ilerleyen balon.

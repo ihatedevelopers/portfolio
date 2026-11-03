@@ -447,3 +447,24 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 .half-n { font: 400 clamp(38px, 3.6vw, 56px)/1 var(--serif); letter-spacing: -.01em; margin: 0 0 10px; }
 .half-copy { padding-top: 0; }
 .half { border-top: 1px solid rgba(23, 17, 13, .18); padding-top: 26px; }
+
+/* Biz (ilk sürümün daha derli hali): küçük yuvarlak portre solda, yazı sağda; ikinci kişi hafif aşağıda */
+.duo { gap: clamp(28px, 5vw, 90px); }
+.person { display: grid; grid-template-columns: clamp(170px, 15vw, 230px) 1fr; gap: clamp(18px, 2.4vw, 34px); align-items: center; }
+.person:nth-child(2) { margin-top: clamp(30px, 6vw, 90px); }
+.portrait { width: 100%; }
+.ring text { font-size: 10.5px; letter-spacing: .3em; opacity: .5; }
+.person .ph { width: 74%; box-shadow: 0 26px 50px -24px rgba(70, 40, 60, .5); }
+.ph-n { left: auto; right: -6px; top: -10px; margin: 0; font-size: clamp(34px, 3vw, 48px); }
+.person-copy { padding: 0; }
+.person h3 { font-size: clamp(32px, 2.8vw, 46px); margin: 6px 0 10px; }
+.person p { font-size: 15px; margin-bottom: 12px; }
+@media (max-width: 900px) {
+  .person { grid-template-columns: 130px 1fr; align-items: start; }
+  .person:nth-child(2) { margin-top: 0; }
+  .ph-n { right: -4px; top: -6px; font-size: 30px; }
+}
+@media (max-width: 480px) {
+  .person { grid-template-columns: 1fr; }
+  .portrait { width: 170px; }
+}
